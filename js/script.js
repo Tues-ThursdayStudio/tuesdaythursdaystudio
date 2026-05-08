@@ -69,10 +69,10 @@ window.addEventListener('resize', resizeVideo);
 // ===== AOS Animation Initialization =====
 document.addEventListener('DOMContentLoaded', function() {
     AOS.init({
-        duration: 800,
-        easing: 'ease-in-out',
+        duration: 600,
+        easing: 'ease-out',
         once: true,
-        offset: 100
+        offset: 300
     });
 });
 
@@ -306,7 +306,7 @@ function loadPortfolioVideos() {
         const portfolioItem = document.createElement('div');
         portfolioItem.className = 'portfolio-item show';
         portfolioItem.setAttribute('data-aos', 'fade-up');
-        portfolioItem.setAttribute('data-aos-delay', `${(index % 12) * 50}`);
+        portfolioItem.setAttribute('data-aos-delay', `${(index % 12) * 30}`);
         portfolioItem.setAttribute('data-category', video.category);
         
         const categoryNames = {
@@ -387,7 +387,7 @@ const revealObserver = new IntersectionObserver((entries) => {
             revealObserver.unobserve(entry.target);
         }
     });
-}, { threshold: 0.1 });
+}, { threshold: 0, rootMargin: '0px 0px -50px 0px' });
 
 revealElements.forEach(element => {
     element.style.opacity = '0';
