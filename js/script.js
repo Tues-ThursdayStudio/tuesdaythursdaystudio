@@ -257,6 +257,13 @@ const portfolioData = {
         { id: '0Fy_veK8GZc', title: '2024 모모콘', client: '우리금융그룹', role: '촬영감독으로 참여' }
     ],
     promotion: [
+        { id: 'yR__nuXqVwg', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT', client: '에버글로우', role: '원스톱 프로덕션' },
+        { id: 'PU1_brnxWbo', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #EU', client: '에버글로우', role: '원스톱 프로덕션' },
+        { id: 'Yyep1-txVjI', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #SIHYEON', client: '에버글로우', role: '원스톱 프로덕션' },
+        { id: 'RGGy1VBvjqA', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #ONDA', client: '에버글로우', role: '원스톱 프로덕션' },
+        { id: 'iX485v6AN8U', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #AISHA', client: '에버글로우', role: '원스톱 프로덕션' },
+        { id: 'Zqti4I3fwjA', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #3', client: '에버글로우', role: '원스톱 프로덕션' },
+        { id: 'oRQWdH77LbI', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #2', client: '에버글로우', role: '원스톱 프로덕션' },
         { id: 'iY4AZs0_rqQ', title: '임팩트스퀘어 소개영상', client: '임팩트스퀘어', role: '원스톱 프로덕션' },
         { id: 'wBOBW8NNn-4', title: '[경기도교육청 광고 영상] \'하이러닝\'', client: '경기도교육청', role: '원스톱 프로덕션' },
         { id: 'MbDToX3MwQ8', title: '디지털 시민교육 경기도교육청이 함께 하겠습니다', client: '경기도교육청', role: '원스톱 프로덕션' },
@@ -275,6 +282,9 @@ const portfolioData = {
         { id: 'W--t4Yw4JDM', title: '[2024 현장사례 아카데미] 사회적 가치로 만들어가는 커뮤니티, #VAKE #베이크 가 추구하는 소셜 임팩트 이야기', client: '성동구사회적경제지원센터', role: '원스톱 프로덕션' }
     ],
     behind: [
+        { id: 'lK7wOPqhqek', title: "EVERGLOW (에버글로우) 'CODE' Jacket Photo Behind The Scene", client: '에버글로우', role: '원스톱 프로덕션' },
+        { id: '_uBgMMeeVdY', title: "EVERGLOW (에버글로우) 'CODE' MV Behind The Scene", client: '에버글로우', role: '원스톱 프로덕션' },
+        { id: 'YXMhLzlvf-4', title: 'EVERGLOW (에버글로우) Profile Behind The Scene', client: '에버글로우', role: '원스톱 프로덕션' },
         { id: 'msLsqqGQsP4', title: '[Behind] BACKSTAGE : Logline CONCERT with CREZL(크레즐) #2', client: '크레즐', role: '원스톱 프로덕션' },
         { id: 'C6i4mv7HsHc', title: '[Behind] BACKSTAGE : Logline CONCERT with CREZL(크레즐) #1', client: '크레즐', role: '원스톱 프로덕션' },
         { id: 'nUsRXfySsqw', title: '[Behind] KBS 불후의명곡 with CREZL(크레즐)', client: '크레즐', role: '원스톱 프로덕션' },
