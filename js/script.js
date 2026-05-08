@@ -258,12 +258,12 @@ const portfolioData = {
     ],
     promotion: [
         { id: 'yR__nuXqVwg', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT', client: '에버글로우', role: '원스톱 프로덕션' },
-        { id: 'PU1_brnxWbo', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #EU', client: '에버글로우', role: '원스톱 프로덕션' },
-        { id: 'Yyep1-txVjI', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #SIHYEON', client: '에버글로우', role: '원스톱 프로덕션' },
-        { id: 'RGGy1VBvjqA', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #ONDA', client: '에버글로우', role: '원스톱 프로덕션' },
-        { id: 'iX485v6AN8U', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #AISHA', client: '에버글로우', role: '원스톱 프로덕션' },
-        { id: 'Zqti4I3fwjA', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #3', client: '에버글로우', role: '원스톱 프로덕션' },
-        { id: 'oRQWdH77LbI', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #2', client: '에버글로우', role: '원스톱 프로덕션' },
+        { id: 'PU1_brnxWbo', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #EU', client: '에버글로우', role: '원스톱 프로덕션', shorts: true },
+        { id: 'Yyep1-txVjI', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #SIHYEON', client: '에버글로우', role: '원스톱 프로덕션', shorts: true },
+        { id: 'RGGy1VBvjqA', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #ONDA', client: '에버글로우', role: '원스톱 프로덕션', shorts: true },
+        { id: 'iX485v6AN8U', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #AISHA', client: '에버글로우', role: '원스톱 프로덕션', shorts: true },
+        { id: 'Zqti4I3fwjA', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #3', client: '에버글로우', role: '원스톱 프로덕션', shorts: true },
+        { id: 'oRQWdH77LbI', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #2', client: '에버글로우', role: '원스톱 프로덕션', shorts: true },
         { id: 'iY4AZs0_rqQ', title: '임팩트스퀘어 소개영상', client: '임팩트스퀘어', role: '원스톱 프로덕션' },
         { id: 'wBOBW8NNn-4', title: '[경기도교육청 광고 영상] \'하이러닝\'', client: '경기도교육청', role: '원스톱 프로덕션' },
         { id: 'MbDToX3MwQ8', title: '디지털 시민교육 경기도교육청이 함께 하겠습니다', client: '경기도교육청', role: '원스톱 프로덕션' },
@@ -302,38 +302,35 @@ let currentCategory = 'variety'; // Default to variety (첫 번째 카테고리)
 
 function loadPortfolioVideos() {
     const portfolioGrid = document.getElementById('portfolioGrid');
-    
     if (!portfolioGrid) return;
-    
-    // Clear existing content
+
     portfolioGrid.innerHTML = '';
-    
-    // Get videos to display (specific category only, no 'all')
-    let videosToShow = portfolioData[currentCategory].map(video => ({ ...video, category: currentCategory }));
-    
-    // Create portfolio items
-    videosToShow.forEach((video, index) => {
-        const portfolioItem = document.createElement('div');
-        portfolioItem.className = 'portfolio-item show';
-        portfolioItem.setAttribute('data-aos', 'fade-up');
-        portfolioItem.setAttribute('data-aos-delay', `${(index % 12) * 30}`);
-        portfolioItem.setAttribute('data-category', video.category);
-        
-        const categoryNames = {
-            variety: '유튜브 예능',
-            event: '행사 스케치',
-            promotion: '홍보영상',
-            lecture: '강의 및 인터뷰',
-            behind: '비하인드 영상'
-        };
-        
-        portfolioItem.innerHTML = `
-            <iframe 
-                class="portfolio-video" 
-                src="https://www.youtube.com/embed/${video.id}" 
+
+    const allVideos = portfolioData[currentCategory].map(video => ({ ...video, category: currentCategory }));
+    const regularVideos = allVideos.filter(v => !v.shorts);
+    const shortsVideos = allVideos.filter(v => v.shorts);
+
+    const categoryNames = {
+        variety: '유튜브 예능',
+        event: '행사 스케치',
+        promotion: '홍보영상',
+        lecture: '강의 및 인터뷰',
+        behind: '비하인드 영상'
+    };
+
+    function createItem(video, index, isShorts) {
+        const item = document.createElement('div');
+        item.className = isShorts ? 'portfolio-item portfolio-item--shorts show' : 'portfolio-item show';
+        item.setAttribute('data-aos', 'fade-up');
+        item.setAttribute('data-aos-delay', `${(index % 12) * 30}`);
+        item.setAttribute('data-category', video.category);
+        item.innerHTML = `
+            <iframe
+                class="portfolio-video"
+                src="https://www.youtube.com/embed/${video.id}"
                 title="${video.title}"
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen
                 loading="lazy">
             </iframe>
@@ -344,11 +341,32 @@ function loadPortfolioVideos() {
                 <p class="portfolio-role">${video.role}</p>
             </div>
         `;
-        
-        portfolioGrid.appendChild(portfolioItem);
+        return item;
+    }
+
+    regularVideos.forEach((video, index) => {
+        portfolioGrid.appendChild(createItem(video, index, false));
     });
-    
-    // Reinitialize AOS
+
+    if (shortsVideos.length > 0) {
+        const section = document.createElement('div');
+        section.className = 'portfolio-shorts-section';
+
+        const label = document.createElement('p');
+        label.className = 'portfolio-shorts-label';
+        label.textContent = 'Shorts';
+        section.appendChild(label);
+
+        const grid = document.createElement('div');
+        grid.className = 'portfolio-shorts-grid';
+        shortsVideos.forEach((video, index) => {
+            grid.appendChild(createItem(video, index, true));
+        });
+
+        section.appendChild(grid);
+        portfolioGrid.appendChild(section);
+    }
+
     AOS.refresh();
 }
 

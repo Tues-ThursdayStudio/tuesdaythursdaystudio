@@ -753,6 +753,49 @@ body {
     margin-bottom: 0.5rem;
 }
 
+/* ===== Shorts Section ===== */
+.portfolio-shorts-section {
+    grid-column: 1 / -1;
+    margin-top: 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.portfolio-shorts-label {
+    font-size: 0.7rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.portfolio-shorts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.25rem;
+}
+
+.portfolio-item--shorts {
+    background: var(--dark-card);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.portfolio-item--shorts:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(201, 168, 108, 0.25);
+}
+
+.portfolio-item--shorts .portfolio-video {
+    aspect-ratio: 9 / 16;
+    width: 100%;
+    height: auto;
+}
+
 /* ===== Contact Section ===== */
 .contact-content {
     display: grid;
