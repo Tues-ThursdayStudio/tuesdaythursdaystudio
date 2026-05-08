@@ -126,19 +126,29 @@ navLinks.forEach(link => {
 });
 
 // ===== Update Active Nav Link on Scroll =====
+const sectionToNavHref = {
+    'home': '#home',
+    'about': '#home',
+    'services': '#home',
+    'equipment': '#home',
+    'portfolio': '#portfolio',
+    'contact': '#contact'
+};
+
 function updateActiveNavLink() {
     const sections = document.querySelectorAll('.section, .hero');
     const scrollPos = window.scrollY + 150;
-    
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
         const sectionId = section.getAttribute('id');
-        
+
         if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+            const targetHref = sectionToNavHref[sectionId];
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
+                if (targetHref && link.getAttribute('href') === targetHref) {
                     link.classList.add('active');
                 }
             });
