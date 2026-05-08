@@ -247,53 +247,54 @@ const portfolioData = {
     ],
     event: [
         { id: '4WHqwGOEsSI', title: '2025 심장병 예방을 위한 한걸음 더 걷기대회', client: '한국심장재단', role: '촬영감독으로 참여' },
-        { id: 'BPopwEEJfVw', title: '[갤럭시 워치8 시리즈] 갤럭시 워치런 @사파리', client: '삼성전자', role: '촬영감독으로 참여' },
         { id: 'K943B3I1xdI', title: '[THE SHARP X PLEATSMAMA] 지속가능한 미래를 위한 더샵과 플리츠마마의 특별한 만남✨', client: '더샵', role: '촬영감독으로 참여' },
         { id: 'p11_BU6K7So', title: '2024 포스코이앤씨 더샵 신평면 디자인 발표회 현장스케치 | The Home Curator', client: '더샵', role: '촬영감독으로 참여' },
         { id: 'E6NiNHLP6Yc', title: '[현장스케치] KT&G 상상플래닛 | 𝐏𝐋𝐀𝐍𝐄𝐓 𝐒𝐔𝐌𝐌𝐈𝐓의 현장 속으로 🪐', client: 'KT&G 상상플래닛', role: '1인 제작' },
-        { id: 'JjfoD9Kp_9I', title: 'IMPACT CIRCLE 결과공유회 스케치', client: '임팩트서클', role: '원스톱 프로덕션' },
-        { id: 'iLFYVQDN3_g', title: '임팩트서클이 SOVAC 2023에 참여했습니다', client: '임팩트서클', role: '원스톱 프로덕션' },
+        { id: 'JjfoD9Kp_9I', title: 'IMPACT CIRCLE 결과공유회 스케치', client: '임팩트서클', role: '1인 제작' },
+        { id: 'iLFYVQDN3_g', title: '임팩트서클이 SOVAC 2023에 참여했습니다', client: '임팩트서클', role: '1인 제작' },
         { id: '8cSnCOWji-I', title: '2025 모모콘', client: '우리금융그룹', role: '촬영감독으로 참여' },
         { id: '0Fy_veK8GZc', title: '2024 모모콘', client: '우리금융그룹', role: '촬영감독으로 참여' }
     ],
     promotion: [
-        { id: 'yR__nuXqVwg', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT', client: '에버글로우', role: '원스톱 프로덕션' },
-        { id: 'PU1_brnxWbo', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #EU', client: '에버글로우', role: '원스톱 프로덕션', shorts: true },
-        { id: 'Yyep1-txVjI', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #SIHYEON', client: '에버글로우', role: '원스톱 프로덕션', shorts: true },
-        { id: 'RGGy1VBvjqA', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #ONDA', client: '에버글로우', role: '원스톱 프로덕션', shorts: true },
-        { id: 'iX485v6AN8U', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #AISHA', client: '에버글로우', role: '원스톱 프로덕션', shorts: true },
-        { id: 'Zqti4I3fwjA', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #3', client: '에버글로우', role: '원스톱 프로덕션', shorts: true },
-        { id: 'oRQWdH77LbI', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #2', client: '에버글로우', role: '원스톱 프로덕션', shorts: true },
-        { id: 'iY4AZs0_rqQ', title: '임팩트스퀘어 소개영상', client: '임팩트스퀘어', role: '원스톱 프로덕션' },
-        { id: 'wBOBW8NNn-4', title: '[경기도교육청 광고 영상] \'하이러닝\'', client: '경기도교육청', role: '원스톱 프로덕션' },
-        { id: 'MbDToX3MwQ8', title: '디지털 시민교육 경기도교육청이 함께 하겠습니다', client: '경기도교육청', role: '원스톱 프로덕션' },
-        { id: 'ndF6rZwg0c8', title: '경기도교육청 광교 신청사에서 새롭게 출발', client: '경기도교육청', role: '원스톱 프로덕션' },
-        { id: 'OmpWk9AE4YQ', title: '따뜻한💖 가르침, 진심으로 감사합니다.', client: '경기도교육청', role: '원스톱 프로덕션' },
-        { id: '18mFpNcxNew', title: 'CREZL (크레즐) Digital Single \'늦편지\' Official Lyric Video teaser', client: '크레즐', role: '원스톱 프로덕션' }
+        { id: 'yR__nuXqVwg', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT', client: '에버글로우', role: '1인 제작' },
+        { id: 'iY4AZs0_rqQ', title: '임팩트스퀘어 소개영상', client: '임팩트스퀘어', role: '1인 제작' },
+        { id: 'wBOBW8NNn-4', title: '[경기도교육청 광고 영상] \'하이러닝\'', client: '경기도교육청', role: '1인 제작' },
+        { id: 'MbDToX3MwQ8', title: '디지털 시민교육 경기도교육청이 함께 하겠습니다', client: '경기도교육청', role: '1인 제작' },
+        { id: 'ndF6rZwg0c8', title: '경기도교육청 광교 신청사에서 새롭게 출발', client: '경기도교육청', role: '1인 제작' },
+        { id: 'OmpWk9AE4YQ', title: '따뜻한💖 가르침, 진심으로 감사합니다.', client: '경기도교육청', role: '1인 제작' },
+        { id: '18mFpNcxNew', title: 'CREZL (크레즐) Digital Single \'늦편지\' Official Lyric Video teaser', client: '크레즐', role: '1인 제작' }
     ],
     lecture: [
-        { id: 'C21GmrufI6w', title: '국내 거주 외국인의 커리어를 확장하다 | 엑스프리베', client: 'KT&G 상상플래닛', role: '원스톱 프로덕션' },
-        { id: 'Jmb2QxfU42U', title: '소유가 아닌 경험으로, 캠핑의 진입장벽을 낮추다 | 캠터 정성식', client: 'KT&G 상상플래닛', role: '원스톱 프로덕션' },
-        { id: 'V10nvw9mad0', title: '홍삼 부산물로 스킨케어 제품을 만드는 이유 | 그리닝 김기현 김수빈 오수진', client: 'KT&G 상상플래닛', role: '원스톱 프로덕션' },
-        { id: '10SC73vbmKA', title: '전 세대 음악심리치료, [피어나]는 다르게 제공합니다 | 피어나 박혜인', client: 'KT&G 상상플래닛', role: '원스톱 프로덕션' },
-        { id: 'EDB_7NpY4a0', title: '수어콘텐츠, [뉴챕터]는 다르게 만듭니다 | 뉴챕터 유동영', client: 'KT&G 상상플래닛', role: '원스톱 프로덕션' },
-        { id: 'JqelOiRBJEg', title: '온가족 안심 숟가락, [세모녀]는 일상과 함께합니다 | 세모녀 이한결', client: 'KT&G 상상플래닛', role: '원스톱 프로덕션' },
-        { id: 'xo5hQ6dNncM', title: '[2024 현장사례 아카데미] 환경, 순환 경제, 재활용, 옷을 다시 입다?! #다시입다연구소', client: '성동구사회적경제지원센터', role: '원스톱 프로덕션' },
-        { id: 'W--t4Yw4JDM', title: '[2024 현장사례 아카데미] 사회적 가치로 만들어가는 커뮤니티, #VAKE #베이크 가 추구하는 소셜 임팩트 이야기', client: '성동구사회적경제지원센터', role: '원스톱 프로덕션' }
+        { id: 'C21GmrufI6w', title: '국내 거주 외국인의 커리어를 확장하다 | 엑스프리베', client: 'KT&G 상상플래닛', role: '1인 제작' },
+        { id: 'Jmb2QxfU42U', title: '소유가 아닌 경험으로, 캠핑의 진입장벽을 낮추다 | 캠터 정성식', client: 'KT&G 상상플래닛', role: '1인 제작' },
+        { id: 'V10nvw9mad0', title: '홍삼 부산물로 스킨케어 제품을 만드는 이유 | 그리닝 김기현 김수빈 오수진', client: 'KT&G 상상플래닛', role: '1인 제작' },
+        { id: '10SC73vbmKA', title: '전 세대 음악심리치료, [피어나]는 다르게 제공합니다 | 피어나 박혜인', client: 'KT&G 상상플래닛', role: '1인 제작' },
+        { id: 'EDB_7NpY4a0', title: '수어콘텐츠, [뉴챕터]는 다르게 만듭니다 | 뉴챕터 유동영', client: 'KT&G 상상플래닛', role: '1인 제작' },
+        { id: 'JqelOiRBJEg', title: '온가족 안심 숟가락, [세모녀]는 일상과 함께합니다 | 세모녀 이한결', client: 'KT&G 상상플래닛', role: '1인 제작' },
+        { id: 'xo5hQ6dNncM', title: '[2024 현장사례 아카데미] 환경, 순환 경제, 재활용, 옷을 다시 입다?! #다시입다연구소', client: '성동구사회적경제지원센터', role: '1인 제작' },
+        { id: 'W--t4Yw4JDM', title: '[2024 현장사례 아카데미] 사회적 가치로 만들어가는 커뮤니티, #VAKE #베이크 가 추구하는 소셜 임팩트 이야기', client: '성동구사회적경제지원센터', role: '1인 제작' }
     ],
     behind: [
-        { id: 'lK7wOPqhqek', title: "EVERGLOW (에버글로우) 'CODE' Jacket Photo Behind The Scene", client: '에버글로우', role: '원스톱 프로덕션' },
-        { id: '_uBgMMeeVdY', title: "EVERGLOW (에버글로우) 'CODE' MV Behind The Scene", client: '에버글로우', role: '원스톱 프로덕션' },
-        { id: 'YXMhLzlvf-4', title: 'EVERGLOW (에버글로우) Profile Behind The Scene', client: '에버글로우', role: '원스톱 프로덕션' },
-        { id: 'msLsqqGQsP4', title: '[Behind] BACKSTAGE : Logline CONCERT with CREZL(크레즐) #2', client: '크레즐', role: '원스톱 프로덕션' },
-        { id: 'C6i4mv7HsHc', title: '[Behind] BACKSTAGE : Logline CONCERT with CREZL(크레즐) #1', client: '크레즐', role: '원스톱 프로덕션' },
-        { id: 'nUsRXfySsqw', title: '[Behind] KBS 불후의명곡 with CREZL(크레즐)', client: '크레즐', role: '원스톱 프로덕션' },
-        { id: 'nFOu_TSxFEY', title: '[Behind] KBS 열린음악회 with CREZL(크레즐)', client: '크레즐', role: '원스톱 프로덕션' },
-        { id: 'XDNCNl0KOxo', title: '[Behind] \'HAKUNAMATA:舵\' | Music Video with CREZL(크레즐)', client: '크레즐', role: '원스톱 프로덕션' },
-        { id: 'byZTtzc7pp4', title: '[Behind] \'HAKUNAMATA:舵\' | ALBUM COVER with CREZL(크레즐)', client: '크레즐', role: '원스톱 프로덕션' },
-        { id: 'hC0NODJaPug', title: '[Behind] DIVE INTO CREZL(FAN-CONCERT) #2', client: '크레즐', role: '원스톱 프로덕션' },
-        { id: '51utwEUL064', title: '[Behind] DIVE INTO CREZL(FAN-CONCERT) #1', client: '크레즐', role: '원스톱 프로덕션' },
-        { id: '0y7Lg9dYNt8', title: '[Behind] 청주 단독 콘서트 With CREZL (크레즐)', client: '크레즐', role: '원스톱 프로덕션' }
+        { id: 'lK7wOPqhqek', title: "EVERGLOW (에버글로우) 'CODE' Jacket Photo Behind The Scene", client: '에버글로우', role: '1인 제작' },
+        { id: '_uBgMMeeVdY', title: "EVERGLOW (에버글로우) 'CODE' MV Behind The Scene", client: '에버글로우', role: '1인 제작' },
+        { id: 'YXMhLzlvf-4', title: 'EVERGLOW (에버글로우) Profile Behind The Scene', client: '에버글로우', role: '1인 제작' },
+        { id: 'msLsqqGQsP4', title: '[Behind] BACKSTAGE : Logline CONCERT with CREZL(크레즐) #2', client: '크레즐', role: '1인 제작' },
+        { id: 'C6i4mv7HsHc', title: '[Behind] BACKSTAGE : Logline CONCERT with CREZL(크레즐) #1', client: '크레즐', role: '1인 제작' },
+        { id: 'nUsRXfySsqw', title: '[Behind] KBS 불후의명곡 with CREZL(크레즐)', client: '크레즐', role: '1인 제작' },
+        { id: 'nFOu_TSxFEY', title: '[Behind] KBS 열린음악회 with CREZL(크레즐)', client: '크레즐', role: '1인 제작' },
+        { id: 'XDNCNl0KOxo', title: '[Behind] \'HAKUNAMATA:舵\' | Music Video with CREZL(크레즐)', client: '크레즐', role: '1인 제작' },
+        { id: 'byZTtzc7pp4', title: '[Behind] \'HAKUNAMATA:舵\' | ALBUM COVER with CREZL(크레즐)', client: '크레즐', role: '1인 제작' },
+        { id: 'hC0NODJaPug', title: '[Behind] DIVE INTO CREZL(FAN-CONCERT) #2', client: '크레즐', role: '1인 제작' },
+        { id: '51utwEUL064', title: '[Behind] DIVE INTO CREZL(FAN-CONCERT) #1', client: '크레즐', role: '1인 제작' },
+        { id: '0y7Lg9dYNt8', title: '[Behind] 청주 단독 콘서트 With CREZL (크레즐)', client: '크레즐', role: '1인 제작' }
+    ],
+    shorts: [
+        { id: 'oRQWdH77LbI', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #2', client: '에버글로우', role: '1인 제작', shorts: true },
+        { id: 'Zqti4I3fwjA', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #3', client: '에버글로우', role: '1인 제작', shorts: true },
+        { id: 'iX485v6AN8U', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #AISHA', client: '에버글로우', role: '1인 제작', shorts: true },
+        { id: 'Yyep1-txVjI', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #SIHYEON', client: '에버글로우', role: '1인 제작', shorts: true },
+        { id: 'RGGy1VBvjqA', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #ONDA', client: '에버글로우', role: '1인 제작', shorts: true },
+        { id: 'PU1_brnxWbo', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #EU', client: '에버글로우', role: '1인 제작', shorts: true }
     ]
 };
 
@@ -315,7 +316,8 @@ function loadPortfolioVideos() {
         event: '행사 스케치',
         promotion: '홍보영상',
         lecture: '강의 및 인터뷰',
-        behind: '비하인드 영상'
+        behind: '비하인드 영상',
+        shorts: '숏폼'
     };
 
     function createItem(video, index, isShorts) {
@@ -344,27 +346,37 @@ function loadPortfolioVideos() {
         return item;
     }
 
-    regularVideos.forEach((video, index) => {
-        portfolioGrid.appendChild(createItem(video, index, false));
-    });
-
-    if (shortsVideos.length > 0) {
-        const section = document.createElement('div');
-        section.className = 'portfolio-shorts-section';
-
-        const label = document.createElement('p');
-        label.className = 'portfolio-shorts-label';
-        label.textContent = 'Shorts';
-        section.appendChild(label);
-
+    if (regularVideos.length === 0 && shortsVideos.length > 0) {
         const grid = document.createElement('div');
         grid.className = 'portfolio-shorts-grid';
+        grid.style.gridColumn = '1 / -1';
         shortsVideos.forEach((video, index) => {
             grid.appendChild(createItem(video, index, true));
         });
+        portfolioGrid.appendChild(grid);
+    } else {
+        regularVideos.forEach((video, index) => {
+            portfolioGrid.appendChild(createItem(video, index, false));
+        });
 
-        section.appendChild(grid);
-        portfolioGrid.appendChild(section);
+        if (shortsVideos.length > 0) {
+            const section = document.createElement('div');
+            section.className = 'portfolio-shorts-section';
+
+            const label = document.createElement('p');
+            label.className = 'portfolio-shorts-label';
+            label.textContent = 'Shorts';
+            section.appendChild(label);
+
+            const grid = document.createElement('div');
+            grid.className = 'portfolio-shorts-grid';
+            shortsVideos.forEach((video, index) => {
+                grid.appendChild(createItem(video, index, true));
+            });
+
+            section.appendChild(grid);
+            portfolioGrid.appendChild(section);
+        }
     }
 
     AOS.refresh();
