@@ -156,42 +156,6 @@ function updateActiveNavLink() {
     });
 }
 
-// ===== Counter Animation for Stats =====
-function animateCounter(element, target, duration = 2000) {
-    const start = 0;
-    const increment = target / (duration / 16);
-    let current = start;
-    
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            element.textContent = target;
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(current);
-        }
-    }, 16);
-}
-
-// Intersection Observer for Counter Animation
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const statNumbers = entry.target.querySelectorAll('.stat-number');
-            statNumbers.forEach(stat => {
-                const target = parseInt(stat.getAttribute('data-count'));
-                animateCounter(stat, target);
-            });
-            statsObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
-
-const aboutSection = document.querySelector('.about-stats');
-if (aboutSection) {
-    statsObserver.observe(aboutSection);
-}
-
 // ===== Scroll to Top Button =====
 const scrollToTopBtn = document.getElementById('scrollToTop');
 

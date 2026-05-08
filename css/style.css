@@ -499,55 +499,43 @@ body {
     width: 30px;
 }
 
-.about-stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-}
-
-.stat-card {
+.about-info-box {
     background: var(--dark-card);
     border-radius: 15px;
-    padding: 2rem;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    transition: var(--transition);
+    padding: 2.5rem;
     border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.stat-card:hover {
-    transform: translateY(-5px);
-    background: var(--dark-card-hover);
-    box-shadow: var(--shadow-md);
-}
-
-.stat-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 12px;
-    background: var(--gradient-primary);
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.75rem;
-    flex-shrink: 0;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-self: center;
 }
 
-.stat-content {
-    flex: 1;
+.info-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
-.stat-number {
-    font-size: 2rem;
-    font-weight: 700;
+.info-row:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.info-label {
+    font-size: 0.85rem;
+    font-weight: 500;
     color: var(--primary-color);
-    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.stat-label {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
+.info-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.5;
 }
 
 /* ===== Services Section ===== */
@@ -1079,10 +1067,8 @@ body {
         gap: 2rem;
     }
     
-    .about-stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
 }
+
 
 @media (max-width: 768px) {
     html {
@@ -1158,11 +1144,6 @@ body {
         width: 100%;
     }
     
-    /* Stats */
-    .about-stats {
-        grid-template-columns: 1fr;
-    }
-    
     /* Services */
     .services-grid {
         grid-template-columns: 1fr;
@@ -1204,11 +1185,6 @@ body {
     
     .title-sub {
         font-size: 1rem;
-    }
-    
-    .stat-card {
-        flex-direction: column;
-        text-align: center;
     }
     
     .service-card {
