@@ -177,31 +177,50 @@ scrollToTopBtn.addEventListener('click', function() {
 // ===== Contact Form Handling =====
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', function(e) {
-    // 기본 mailto 동작을 허용하되, 사용자에게 피드백 제공
+contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
     const formData = new FormData(this);
     const name = formData.get('name');
     const email = formData.get('email');
     const service = formData.get('service');
     const message = formData.get('message');
-    
-    // 간단한 유효성 검사
+
     if (!name || !email || !service || !message) {
-        e.preventDefault();
         alert('모든 필수 항목을 입력해주세요.');
         return;
     }
-    
-    // 이메일 형식 검사
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-        e.preventDefault();
         alert('올바른 이메일 주소를 입력해주세요.');
         return;
     }
-    
-    // mailto는 브라우저마다 지원이 다를 수 있음을 알림
-    alert('문의가 접수되었습니다. 이메일 클라이언트가 열리지 않는 경우, seong8389@naver.com 으로 직접 연락 부탁드립니다.');
+
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 전송 중...';
+    submitBtn.disabled = true;
+
+    try {
+        const response = await fetch('https://formspree.io/f/mgodnpwe', {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+            alert('문의가 성공적으로 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
+            this.reset();
+        } else {
+            alert('전송에 실패했습니다. seong8389@naver.com 으로 직접 연락 부탁드립니다.');
+        }
+    } catch (error) {
+        alert('전송에 실패했습니다. seong8389@naver.com 으로 직접 연락 부탁드립니다.');
+    } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
 });
 
 // ===== Parallax Effect Removed for Better Readability =====
