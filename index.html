@@ -49,11 +49,13 @@
         </div>
     </nav>
 
-    <!-- Hero Section with YouTube Background -->
+    <!-- Hero Section with Video Background -->
     <section id="home" class="hero">
-        <!-- YouTube Background Video -->
+        <!-- Local Background Video -->
         <div class="video-background">
-            <div id="youtube-player"></div>
+            <video id="hero-video" autoplay muted loop playsinline>
+                <source src="videos/hero-bg.mp4" type="video/mp4">
+            </video>
             <div class="video-overlay"></div>
         </div>
         
@@ -341,8 +343,6 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- YouTube IFrame API -->
-    <script src="https://www.youtube.com/iframe_api"></script>
     
     <!-- AOS Animation -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

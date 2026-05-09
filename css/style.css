@@ -238,7 +238,7 @@ body {
     overflow: hidden;
 }
 
-#youtube-player {
+#hero-video {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -248,6 +248,7 @@ body {
     height: auto;
     transform: translate(-50%, -50%);
     pointer-events: none;
+    object-fit: cover;
 }
 
 .video-overlay {
