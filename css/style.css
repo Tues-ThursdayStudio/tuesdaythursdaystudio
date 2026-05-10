@@ -894,6 +894,14 @@ body {
     padding: 2.5rem;
     box-shadow: var(--shadow-md);
     border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    max-width: 100%;
 }
 
 .form-group {

@@ -132,6 +132,10 @@ contactForm.addEventListener('submit', async function(e) {
 
     const submitBtn = this.querySelector('button[type="submit"]');
     const originalText = submitBtn.innerHTML;
+    const btnWidth = submitBtn.offsetWidth;
+    const btnHeight = submitBtn.offsetHeight;
+    submitBtn.style.width = btnWidth + 'px';
+    submitBtn.style.height = btnHeight + 'px';
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 전송 중...';
     submitBtn.disabled = true;
 
@@ -146,13 +150,15 @@ contactForm.addEventListener('submit', async function(e) {
             alert('문의가 성공적으로 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
             this.reset();
         } else {
-            alert('전송에 실패했습니다. seong8389@naver.com 으로 직접 연락 부탁드립니다.');
+            alert('전송에 실패했습니다. info@tuesdaythursdaystudio.com 으로 직접 연락 부탁드립니다.');
         }
     } catch (error) {
-        alert('전송에 실패했습니다. seong8389@naver.com 으로 직접 연락 부탁드립니다.');
+        alert('전송에 실패했습니다. info@tuesdaythursdaystudio.com 으로 직접 연락 부탁드립니다.');
     } finally {
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
+        submitBtn.style.width = '';
+        submitBtn.style.height = '';
     }
 });
 
