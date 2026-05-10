@@ -282,7 +282,7 @@ function loadPortfolioVideos() {
     function createItem(video, index, isShorts) {
         const item = document.createElement('div');
         item.className = isShorts ? 'portfolio-item portfolio-item--shorts show' : 'portfolio-item show';
-        item.style.animationDelay = `${(index % 12) * 40}ms`;
+        item.style.animationDelay = `${(index % 12) * 15}ms`;
         item.setAttribute('data-category', video.category);
         item.innerHTML = `
             <iframe
