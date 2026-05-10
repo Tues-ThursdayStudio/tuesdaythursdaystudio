@@ -205,7 +205,8 @@ const portfolioData = {
         { id: 'JjfoD9Kp_9I', title: 'IMPACT CIRCLE 결과공유회 스케치', client: '임팩트서클', role: '1인 제작' },
         { id: 'iLFYVQDN3_g', title: '임팩트서클이 SOVAC 2023에 참여했습니다', client: '임팩트서클', role: '1인 제작' },
         { id: '8cSnCOWji-I', title: '2025 모모콘', client: '우리금융그룹', role: '촬영감독으로 참여' },
-        { id: '0Fy_veK8GZc', title: '2024 모모콘', client: '우리금융그룹', role: '촬영감독으로 참여' }
+        { id: '0Fy_veK8GZc', title: '2024 모모콘', client: '우리금융그룹', role: '촬영감독으로 참여' },
+        { id: 'iGol0xYlnbs', title: 'AITRICS | 2026 KIMES', client: 'AITRICS', role: '1인 제작' }
     ],
     promotion: [
         { id: 'yR__nuXqVwg', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT', client: '에버글로우', role: '1인 제작' },
@@ -251,7 +252,7 @@ const portfolioData = {
 };
 
 // ===== Portfolio Loading and Filtering =====
-let currentCategory = 'variety'; // Default to variety (첫 번째 카테고리)
+let currentCategory = 'event';
 
 function loadPortfolioVideos() {
     const portfolioGrid = document.getElementById('portfolioGrid');

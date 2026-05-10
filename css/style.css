@@ -1263,6 +1263,7 @@ body {
     .portfolio-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 0.5rem;
+        padding: 0 3rem;
     }
 
     .portfolio-info {
@@ -1286,6 +1287,172 @@ body {
 
     .section {
         padding: 2rem 0;
+    }
+
+    /* About - 50% 축소 */
+    .about-unified-card {
+        max-width: 460px;
+        padding: 1rem 1.25rem;
+    }
+
+    .profile-header {
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .profile-image {
+        width: 48px;
+        height: 48px;
+    }
+
+    .profile-info h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.1rem;
+    }
+
+    .profile-role {
+        font-size: 0.72rem;
+    }
+
+    .profile-description {
+        font-size: 0.72rem;
+        line-height: 1.5;
+        margin-bottom: 0.6rem;
+    }
+
+    .profile-details {
+        gap: 0.6rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .detail-item {
+        font-size: 0.72rem;
+        gap: 0.4rem;
+    }
+
+    .detail-item i {
+        font-size: 0.8rem;
+    }
+
+    .about-stats-row {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        padding-top: 0.6rem;
+    }
+
+    .about-stat {
+        padding: 0 0.75rem;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .about-stat:first-child {
+        padding-left: 0;
+    }
+
+    .about-stat:last-child {
+        border-right: none;
+        padding-bottom: 0;
+    }
+
+    .about-stat-label {
+        font-size: 0.6rem;
+    }
+
+    .about-stat-value {
+        font-size: 0.75rem;
+    }
+
+    /* Services - 6개 한 줄 */
+    .services-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 0.4rem;
+    }
+
+    .service-card {
+        padding: 0.75rem 0.4rem;
+    }
+
+    .service-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 0.85rem;
+        margin: 0 auto 0.4rem;
+    }
+
+    .service-title {
+        font-size: 0.65rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .service-description {
+        font-size: 0.6rem;
+        line-height: 1.4;
+    }
+
+    /* Portfolio 카테고리 버튼 - 한 줄 */
+    .portfolio-categories {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        gap: 0.35rem;
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.25rem;
+    }
+
+    .category-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.65rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .outsource-label {
+        font-size: 0.55rem;
+    }
+
+    /* Contact - 양쪽 여백 */
+    .contact-content {
+        max-width: 640px;
+        margin: 0 auto;
+        gap: 1.5rem;
+    }
+
+    .contact-info h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .contact-description {
+        font-size: 0.75rem;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+    }
+
+    .contact-item {
+        padding: 0.75rem 1rem;
+        gap: 0.75rem;
+    }
+
+    .contact-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 0.85rem;
+    }
+
+    .contact-text h4 {
+        font-size: 0.8rem;
+        margin-bottom: 0.1rem;
+    }
+
+    .contact-text a {
+        font-size: 0.75rem;
+    }
+
+    .contact-form-wrapper {
+        padding: 1.25rem;
     }
 }
 
