@@ -717,6 +717,11 @@ body {
 
 .portfolio-item.show {
     display: block;
+    opacity: 0;
+    transform: translateY(16px);
+}
+
+.portfolio-item.show.animated {
     animation: portfolioFadeIn 0.4s ease-out both;
 }
 
@@ -1236,7 +1241,7 @@ body {
     }
 
     #hero-video {
-        object-fit: cover;
+        object-fit: contain;
     }
 
     .hero-content {

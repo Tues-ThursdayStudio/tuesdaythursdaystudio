@@ -279,10 +279,19 @@ function loadPortfolioVideos() {
         shorts: '숏폼'
     };
 
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { rootMargin: '0px 0px 200px 0px', threshold: 0 });
+
     function createItem(video, index, isShorts) {
         const item = document.createElement('div');
         item.className = isShorts ? 'portfolio-item portfolio-item--shorts show' : 'portfolio-item show';
-        item.style.animationDelay = `${(index % 12) * 15}ms`;
+        item.style.animationDelay = `${(index % 3) * 30}ms`;
         item.setAttribute('data-category', video.category);
         item.innerHTML = `
             <iframe
@@ -301,6 +310,7 @@ function loadPortfolioVideos() {
                 <p class="portfolio-role">${video.role}</p>
             </div>
         `;
+        observer.observe(item);
         return item;
     }
 
