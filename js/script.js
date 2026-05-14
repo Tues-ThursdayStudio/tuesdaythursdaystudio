@@ -236,12 +236,6 @@ const portfolioData = {
         { id: '51utwEUL064', title: '[Behind] DIVE INTO CREZL(FAN-CONCERT) #1', role: '1인 제작', type: '비하인드 영상' },
         { id: '0y7Lg9dYNt8', title: '[Behind] 청주 단독 콘서트 With CREZL (크레즐)', role: '1인 제작', type: '비하인드 영상' }
     ],
-    '경기도교육청': [
-        { id: 'wBOBW8NNn-4', title: '[경기도교육청 광고 영상] \'하이러닝\'', role: '1인 제작', type: '홍보영상' },
-        { id: 'MbDToX3MwQ8', title: '디지털 시민교육 경기도교육청이 함께 하겠습니다', role: '1인 제작', type: '홍보영상' },
-        { id: 'ndF6rZwg0c8', title: '경기도교육청 광교 신청사에서 새롭게 출발', role: '1인 제작', type: '홍보영상' },
-        { id: 'OmpWk9AE4YQ', title: '따뜻한💖 가르침, 진심으로 감사합니다.', role: '1인 제작', type: '홍보영상' }
-    ],
     '더샵': [
         { id: 'K943B3I1xdI', title: '[THE SHARP X PLEATSMAMA] 지속가능한 미래를 위한 더샵과 플리츠마마의 특별한 만남✨', role: '촬영감독으로 참여', type: '행사 스케치' },
         { id: 'p11_BU6K7So', title: '2024 포스코이앤씨 더샵 신평면 디자인 발표회 현장스케치 | The Home Curator', role: '촬영감독으로 참여', type: '행사 스케치' }
