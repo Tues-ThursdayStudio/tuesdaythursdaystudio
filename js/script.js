@@ -260,39 +260,39 @@ const portfolioData = {
     ],
     'AITRICS': [
         { id: 'iGol0xYlnbs', title: 'AITRICS | 2026 KIMES', role: '1인 제작', type: '행사 스케치' },
-        { id: 'F2yKzZ59CcI', title: 'AITRICS', role: '1인 제작', type: '홍보영상' }
+        { id: 'F2yKzZ59CcI', title: 'AITRICS | 2025 RRS Symposium', role: '1인 제작', type: '홍보영상' }
     ],
     '계룡건설': [
-        { id: 'M2b77Dxp-8M', title: '계룡건설 유튜브 예능 #1', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'JlUQDz_K3vA', title: '계룡건설 유튜브 예능 #2', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'RHUEEb_S_lo', title: '계룡건설 유튜브 예능 #3', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: '8YrZfQJ0nho', title: '계룡건설 숏폼 #1', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
-        { id: 'lx35DQkOBPQ', title: '계룡건설 숏폼 #2', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
-        { id: '7P8VXRYiqzw', title: '계룡건설 숏폼 #3', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
-        { id: 'BurDZ57S7Co', title: '계룡건설 숏폼 #4', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
-        { id: 'YhG6pUMNcKQ', title: '계룡건설 숏폼 #5', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
-        { id: 'pnFJ3pk1M_w', title: '계룡건설 숏폼 #6', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
-        { id: 'VLPG4v2c1Ls', title: '계룡건설 숏폼 #7', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
-        { id: 'J-t_fPozjms', title: '계룡건설 숏폼 #8', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
-        { id: 'OzASnZ525CU', title: '계룡건설 숏폼 #9', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
-        { id: 'tl_ZAY7cxK0', title: '계룡건설 숏폼 #10', role: '촬영감독으로 참여', type: '숏폼', shorts: true }
+        { id: 'M2b77Dxp-8M', title: '건설 현장에서 펼쳐진 RC 중장비 미션 레이싱🏁 | 2025 KYERYONG GRAND PRIX', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'JlUQDz_K3vA', title: "숲'새'권 휴식처 선물 받은 썰 푼다 (feat. 천안 오룡지구) l Making a Resting Place for Birds", role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'RHUEEb_S_lo', title: "서로 다른 두 공간에서 같은 곡을 연주한다면? | 건설 현장 X 본사의 슈베르트 '마왕'♬", role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: '8YrZfQJ0nho', title: '[계룡 가디언] EP.1 음주 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'lx35DQkOBPQ', title: '[계룡 가디언] EP.2 흡연 & 휴대전화 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: '7P8VXRYiqzw', title: '[계룡 가디언] EP.3 보호구 & 안전 시설물 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'BurDZ57S7Co', title: '[계룡 가디언] EP.4 운전원 안전수칙 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'YhG6pUMNcKQ', title: '[계룡 가디언] EP.5 신호수 & 굴착기 안전장치 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'pnFJ3pk1M_w', title: '[계룡 가디언] EP.6 붕괴 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'VLPG4v2c1Ls', title: '[계룡 가디언] EP.7 화재 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'J-t_fPozjms', title: '[계룡 가디언] EP.8 사다리 & 고소작업 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'OzASnZ525CU', title: '[계룡 가디언] EP.9 비계 승하강 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'tl_ZAY7cxK0', title: "🏗️ 드릴과 키보드 소리가 만나 '마왕'이 된다고? 🎹", role: '촬영감독으로 참여', type: '숏폼', shorts: true }
     ],
     '현대해상': [
-        { id: 'nCMKJtOt36E', title: '현대해상 유튜브 예능 #1', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'DCvNSbDtEK8', title: '현대해상 유튜브 예능 #2', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'dHHmwihRXGM', title: '현대해상 유튜브 예능 #3', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'KPmiYgNAoIQ', title: '현대해상 유튜브 예능 #4', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'zO-r6Z7A_iA', title: '현대해상 유튜브 예능 #5', role: '촬영감독으로 참여', type: '유튜브 예능' }
+        { id: 'nCMKJtOt36E', title: '[전국힙할Z도 양양편] 양양 가서 여기 안 가면 손해, 여름보다 핫한 양양 ⛱️', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'DCvNSbDtEK8', title: '[굿앤굿 행복육아 공감육아일기 1화] 28개월 아기와 함께하는 초보 엄마의 육아 성장 스토리🧡', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'dHHmwihRXGM', title: '[전국힙할Z도 군산편] 치..치지직..응답하라 여기는 군산ㅣMZ가 레트로의 성지 군산을 즐기는 방법📸', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'KPmiYgNAoIQ', title: '[전국힙할Z도 춘천편] 나 가을 타나 봐..🍂 춘천에서 힐링 100% 충전하는 법ㅣ 당일치기 춘천 여행코스 6곳', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'zO-r6Z7A_iA', title: '[전국힙할Z도 부산편] 어서오이소~ 부산 토박이가 알려주는 겨울 부산 여행코스🌊ㅣ부산 가볼 만한 곳 BEST 6', role: '촬영감독으로 참여', type: '유튜브 예능' }
     ],
     'FLIB_FILMS': [
-        { id: 'lBXYJVSTMVU', title: 'FLIB FILMS 패션필름 #1', role: '촬영감독으로 참여', type: '패션필름' },
-        { id: '_hn_3TYG4mM', title: 'FLIB FILMS 패션필름 #2', role: '촬영감독으로 참여', type: '패션필름' },
-        { id: 'bc8dlfzHyq8', title: 'FLIB FILMS 숏폼 #1', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
-        { id: 'o1rz-MuXFoQ', title: 'FLIB FILMS 숏폼 #2', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
-        { id: 'ywG7g6ud4iM', title: 'FLIB FILMS 숏폼 #3', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
-        { id: 'vO3BxB_S_1o', title: 'FLIB FILMS 숏폼 #4', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
-        { id: '8qzJ2G2KHtw', title: 'FLIB FILMS 숏폼 #5', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
-        { id: 'TFaLwKCPcz4', title: 'FLIB FILMS 숏폼 #6', role: '촬영감독으로 참여', type: '패션필름', shorts: true }
+        { id: 'lBXYJVSTMVU', title: 'PEOPLEOFTHEWORLD - SFW25FW - PRESENTATION - RUNWAY', role: '촬영감독으로 참여', type: '패션필름' },
+        { id: '_hn_3TYG4mM', title: 'HALUCCINATION - About Human & AI, 패션필름', role: '촬영감독으로 참여', type: '패션필름' },
+        { id: 'bc8dlfzHyq8', title: 'MODEL REBEKA', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
+        { id: 'o1rz-MuXFoQ', title: 'MODEL MIRAI', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
+        { id: 'ywG7g6ud4iM', title: 'DAILY MIRROR - SFW25FW', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
+        { id: 'vO3BxB_S_1o', title: 'SFW 2025 FALL WINTER - DOUCAN BTS TEASER #서울패션위크 #fashionweek #SFW25FW#패션쇼', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
+        { id: '8qzJ2G2KHtw', title: 'SFW25FW - PEOPLEOFTHEWORLD BTS TEASER #서울패션위크#sfw25fw#fashionweek #패션쇼#fashionreels', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
+        { id: 'TFaLwKCPcz4', title: 'PEOPLEOFTHEWORLD - SFW25FW', role: '촬영감독으로 참여', type: '패션필름', shorts: true }
     ]
 };
 
