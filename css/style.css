@@ -142,14 +142,14 @@ body {
 }
 
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 0.625rem;
+    display: block;
+    overflow: hidden;
+    width: 90px;
+    height: 40px;
+    border-radius: 6px;
+    background: white;
     text-decoration: none;
-    color: var(--text-primary);
-    font-weight: 700;
-    font-size: 1.125rem;
-    letter-spacing: 0.02em;
+    flex-shrink: 0;
     transition: var(--transition);
 }
 
@@ -157,12 +157,12 @@ body {
     opacity: 0.8;
 }
 
-.logo-svg {
-    flex-shrink: 0;
-}
-
-.logo-text {
-    font-family: 'Pretendard', sans-serif;
+.logo-img {
+    display: block;
+    width: 250px;
+    height: auto;
+    margin-left: -39px;
+    margin-top: -18px;
 }
 
 .nav-menu {
