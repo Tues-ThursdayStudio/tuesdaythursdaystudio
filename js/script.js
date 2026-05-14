@@ -265,7 +265,40 @@ const portfolioData = {
         { id: 'iY4AZs0_rqQ', title: '임팩트스퀘어 소개영상', role: '1인 제작', type: '홍보영상' }
     ],
     'AITRICS': [
-        { id: 'iGol0xYlnbs', title: 'AITRICS | 2026 KIMES', role: '1인 제작', type: '행사 스케치' }
+        { id: 'iGol0xYlnbs', title: 'AITRICS | 2026 KIMES', role: '1인 제작', type: '행사 스케치' },
+        { id: 'F2yKzZ59CcI', title: 'AITRICS', role: '1인 제작', type: '홍보영상' }
+    ],
+    '계룡건설': [
+        { id: 'M2b77Dxp-8M', title: '계룡건설 유튜브 예능 #1', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'JlUQDz_K3vA', title: '계룡건설 유튜브 예능 #2', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'RHUEEb_S_lo', title: '계룡건설 유튜브 예능 #3', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: '8YrZfQJ0nho', title: '계룡건설 숏폼 #1', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'lx35DQkOBPQ', title: '계룡건설 숏폼 #2', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: '7P8VXRYiqzw', title: '계룡건설 숏폼 #3', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'BurDZ57S7Co', title: '계룡건설 숏폼 #4', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'YhG6pUMNcKQ', title: '계룡건설 숏폼 #5', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'pnFJ3pk1M_w', title: '계룡건설 숏폼 #6', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'VLPG4v2c1Ls', title: '계룡건설 숏폼 #7', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'J-t_fPozjms', title: '계룡건설 숏폼 #8', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'OzASnZ525CU', title: '계룡건설 숏폼 #9', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'tl_ZAY7cxK0', title: '계룡건설 숏폼 #10', role: '촬영감독으로 참여', type: '숏폼', shorts: true }
+    ],
+    '현대해상': [
+        { id: 'nCMKJtOt36E', title: '현대해상 유튜브 예능 #1', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'DCvNSbDtEK8', title: '현대해상 유튜브 예능 #2', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'dHHmwihRXGM', title: '현대해상 유튜브 예능 #3', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'KPmiYgNAoIQ', title: '현대해상 유튜브 예능 #4', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'zO-r6Z7A_iA', title: '현대해상 유튜브 예능 #5', role: '촬영감독으로 참여', type: '유튜브 예능' }
+    ],
+    'FLIB_FILMS': [
+        { id: 'lBXYJVSTMVU', title: 'FLIB FILMS 패션필름 #1', role: '촬영감독으로 참여', type: '패션필름' },
+        { id: '_hn_3TYG4mM', title: 'FLIB FILMS 패션필름 #2', role: '촬영감독으로 참여', type: '패션필름' },
+        { id: 'bc8dlfzHyq8', title: 'FLIB FILMS 숏폼 #1', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
+        { id: 'o1rz-MuXFoQ', title: 'FLIB FILMS 숏폼 #2', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
+        { id: 'ywG7g6ud4iM', title: 'FLIB FILMS 숏폼 #3', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
+        { id: 'vO3BxB_S_1o', title: 'FLIB FILMS 숏폼 #4', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
+        { id: '8qzJ2G2KHtw', title: 'FLIB FILMS 숏폼 #5', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
+        { id: 'TFaLwKCPcz4', title: 'FLIB FILMS 숏폼 #6', role: '촬영감독으로 참여', type: '패션필름', shorts: true }
     ]
 };
 
