@@ -631,3 +631,219 @@ if ('serviceWorker' in navigator) {
         // });
     });
 }
+
+// ===== Service Card Works Filtering =====
+(function () {
+    const typeMap = {
+        '예능 촬영':   ['유튜브 예능'],
+        '강의 촬영':   ['강의 및 인터뷰'],
+        '행사 촬영':   ['행사 스케치'],
+        '홍보영상':    ['홍보영상', '패션필름', '뮤직비디오'],
+        '숏폼 콘텐츠': ['숏폼'],
+        '비하인드 영상': ['비하인드 영상']
+    };
+
+    function getVideos(types) {
+        const seen = new Set();
+        const out  = [];
+        for (const arr of Object.values(portfolioData)) {
+            for (const v of arr) {
+                if (types.includes(v.type) && !seen.has(v.id)) {
+                    seen.add(v.id);
+                    out.push(v);
+                }
+            }
+        }
+        return out;
+    }
+
+    function buildPanel(types) {
+        const panel  = document.createElement('div');
+        panel.className = 'services-works-panel';
+        const videos = getVideos(types);
+
+        if (!videos.length) {
+            const p = document.createElement('p');
+            p.textContent = '해당 콘텐츠가 없습니다.';
+            p.style.cssText = 'color:var(--text-muted);font-size:.85rem;padding:.5rem 0;';
+            panel.appendChild(p);
+        } else {
+            videos.forEach((v, i) => {
+                const a   = document.createElement('a');
+                a.className = 'service-work-btn';
+                a.href    = v.shorts
+                    ? `https://www.youtube.com/shorts/${v.id}`
+                    : `https://www.youtube.com/watch?v=${v.id}`;
+                a.target  = '_blank';
+                a.rel     = 'noopener noreferrer';
+                a.style.animationDelay = `${i * 28}ms`;
+
+                const img     = document.createElement('img');
+                img.className = 'service-work-thumb';
+                img.src       = `https://img.youtube.com/vi/${v.id}/mqdefault.jpg`;
+                img.alt       = '';
+                img.loading   = 'lazy';
+                img.onerror   = function () {
+                    this.style.display = 'none';
+                    a.style.paddingLeft = '1rem';
+                };
+
+                const title     = document.createElement('span');
+                title.className = 'service-work-title';
+                title.textContent = v.title;
+
+                a.appendChild(img);
+                a.appendChild(title);
+                panel.appendChild(a);
+            });
+        }
+        return panel;
+    }
+
+    const STAGGER = 45;
+
+    let active              = null;
+    let panel               = null;
+    let animating           = false;
+    let svcGrid             = null;
+    let originalNextSibling = null;
+
+    function resetInstant() {
+        if (panel) { panel.remove(); panel = null; }
+        svcGrid.classList.remove('has-selection');
+        svcGrid.querySelectorAll('.service-card').forEach(c => {
+            c.classList.remove('hiding', 'collapsed', 'selected', 'deselecting');
+            c.style.cssText = '';
+        });
+        active              = null;
+        originalNextSibling = null;
+        animating           = false;
+    }
+
+    function open(card, types) {
+        animating = true;
+        const cards  = Array.from(svcGrid.querySelectorAll('.service-card'));
+        const others = cards.filter(c => c !== card);
+
+        originalNextSibling = card.nextSibling;
+
+        // Capture initial position before any changes
+        const fromRect = card.getBoundingClientRect();
+
+        // ① Smoke out others in their original GRID positions — no layout yet, no flash
+        others.forEach((c, i) => setTimeout(() => c.classList.add('hiding'), i * STAGGER));
+
+        // ② After smoke is well underway: collapse, switch layout, then FLIP
+        const collapseAt = (others.length - 1) * STAGGER + 380;
+        setTimeout(() => {
+            // Collapse so they vanish from layout
+            others.forEach(c => c.classList.add('collapsed'));
+
+            // Move card to first DOM position and apply flex layout
+            svcGrid.insertBefore(card, svcGrid.firstChild);
+            active = card;
+            svcGrid.classList.add('has-selection');
+            card.classList.add('selected');
+
+            // FLIP: measure final position (forces reflow with new layout)
+            const toRect = card.getBoundingClientRect();
+            const dx = fromRect.left - toRect.left;
+            const dy = fromRect.top  - toRect.top;
+
+            if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) {
+                card.style.transition = 'none';
+                card.style.transform  = `translate(${dx}px, ${dy}px)`;
+                void card.offsetWidth;
+
+                requestAnimationFrame(() => {
+                    card.style.transition = 'transform 0.72s cubic-bezier(0.22, 1, 0.36, 1)';
+                    card.style.animation  = 'svcCardSlideToFirst 0.72s cubic-bezier(0.22, 1, 0.36, 1) forwards';
+                    card.style.transform  = '';
+                    setTimeout(() => {
+                        card.style.transition = '';
+                        card.style.animation  = '';
+                        card.style.transform  = '';
+                    }, 780);
+                });
+            }
+
+            // Show works panel
+            panel = buildPanel(types);
+            svcGrid.appendChild(panel);
+            requestAnimationFrame(() => {
+                panel.classList.add('visible');
+                animating = false;
+            });
+        }, collapseAt);
+    }
+
+    function close() {
+        animating = true;
+
+        // ── Fade out panel & selected card together ───────────────────────
+        if (panel) panel.classList.remove('visible');
+        if (active) active.classList.add('deselecting');
+
+        setTimeout(() => {
+            if (panel) { panel.remove(); panel = null; }
+
+            const prevActive = active;
+
+            // ── Snap layout back while everything is invisible ────────────
+            svcGrid.classList.remove('has-selection');
+            const allCards = Array.from(svcGrid.querySelectorAll('.service-card'));
+            allCards.forEach(c => c.classList.remove('collapsed', 'selected', 'deselecting'));
+
+            // Clear FLIP inline styles
+            if (prevActive) {
+                prevActive.style.transition = 'none';
+                prevActive.style.transform  = '';
+                prevActive.style.animation  = '';
+                // Add 'hiding' so it participates in the staggered fade-in
+                prevActive.classList.add('hiding');
+                void prevActive.offsetWidth;
+                prevActive.style.transition = '';
+            }
+
+            // ── Restore original DOM order ────────────────────────────────
+            if (prevActive) {
+                if (originalNextSibling && originalNextSibling.parentNode === svcGrid) {
+                    svcGrid.insertBefore(prevActive, originalNextSibling);
+                } else {
+                    svcGrid.appendChild(prevActive);
+                }
+            }
+
+            // ── Staggered fade-in of all cards ────────────────────────────
+            const finalCards = Array.from(svcGrid.querySelectorAll('.service-card'));
+            finalCards.forEach((c, i) => {
+                setTimeout(() => requestAnimationFrame(() => c.classList.remove('hiding')), i * STAGGER);
+            });
+
+            setTimeout(() => {
+                active              = null;
+                originalNextSibling = null;
+                animating           = false;
+            }, (finalCards.length - 1) * STAGGER + 650);
+        }, 280);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        svcGrid = document.querySelector('.services-grid');
+        if (!svcGrid) return;
+
+        svcGrid.querySelectorAll('.service-card').forEach(card => {
+            const titleEl = card.querySelector('.service-title');
+            if (!titleEl) return;
+            const types = typeMap[titleEl.textContent.trim()];
+            if (!types) return;
+
+            card.addEventListener('click', () => {
+                if (animating) return;
+                if (active === card)   { close(); }
+                else if (active)       { resetInstant(); setTimeout(() => open(card, types), 20); }
+                else                   { open(card, types); }
+            });
+        });
+    });
+}());
