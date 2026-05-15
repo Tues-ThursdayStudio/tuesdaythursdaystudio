@@ -254,6 +254,9 @@ const portfolioData = {
         { id: '51utwEUL064', title: '[Behind] DIVE INTO CREZL(FAN-CONCERT) #1', role: '1인 제작', type: '비하인드 영상' },
         { id: '0y7Lg9dYNt8', title: '[Behind] 청주 단독 콘서트 With CREZL (크레즐)', role: '1인 제작', type: '비하인드 영상' }
     ],
+    '동서울대 K-POP과': [
+        { id: 'gs9EBBKUTqM', title: '동서울대 K-POPㅣFirst Showcase', role: '촬영감독으로 참여', type: '뮤직비디오' }
+    ],
     '더샵': [
         { id: 'K943B3I1xdI', title: '[THE SHARP X PLEATSMAMA] 지속가능한 미래를 위한 더샵과 플리츠마마의 특별한 만남✨', role: '촬영감독으로 참여', type: '행사 스케치' },
         { id: 'p11_BU6K7So', title: '2024 포스코이앤씨 더샵 신평면 디자인 발표회 현장스케치 | The Home Curator', role: '촬영감독으로 참여', type: '행사 스케치' }
@@ -279,6 +282,12 @@ const portfolioData = {
     'AITRICS': [
         { id: 'iGol0xYlnbs', title: 'AITRICS | 2026 KIMES', role: '1인 제작', type: '행사 스케치' },
         { id: 'F2yKzZ59CcI', title: 'AITRICS | 2025 RRS Symposium', role: '1인 제작', type: '홍보영상' }
+    ],
+    '국토교통부': [
+        { id: 'MjCQusY9MUo', title: '전통과 현대가 공존하는 이곳에서 살으리랏다~ 요즘 대세 은평 한옥마을!', role: '촬영감독으로 참여', type: '유튜브 예능' }
+    ],
+    '금융감독원': [
+        { id: 'zGinkJj8nHM', title: '[도전! 금융벨] 2화 : 저축과 투자, 신용과 위험관리(고등학교 선택과목 "금융과 경제생활")', role: '촬영감독으로 참여', type: '유튜브 예능' }
     ],
     '계룡건설': [
         { id: 'M2b77Dxp-8M', title: '건설 현장에서 펼쳐진 RC 중장비 미션 레이싱🏁 | 2025 KYERYONG GRAND PRIX', role: '촬영감독으로 참여', type: '유튜브 예능' },
