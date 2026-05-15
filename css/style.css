@@ -144,8 +144,8 @@ body {
 .logo {
     display: block;
     overflow: hidden;
-    width: 90px;
-    height: 40px;
+    width: 200px;
+    height: 58px;
     border-radius: 6px;
     text-decoration: none;
     flex-shrink: 0;
@@ -158,10 +158,10 @@ body {
 
 .logo-img {
     display: block;
-    width: 250px;
+    width: 310px;
     height: auto;
     margin-left: -39px;
-    margin-top: -18px;
+    margin-top: -22px;
 }
 
 .nav-menu {
