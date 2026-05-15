@@ -262,6 +262,13 @@ const portfolioData = {
         { id: 'p11_BU6K7So', title: '2024 포스코이앤씨 더샵 신평면 디자인 발표회 현장스케치 | The Home Curator', role: '촬영감독으로 참여', type: '행사 스케치' }
     ],
     '임팩트서클': [
+        {
+            link: 'https://www.impactcircle.co.kr/course',
+            title: '임팩트서클 비즈니스 강의 시리즈',
+            role: '1인 제작',
+            type: '강의 및 인터뷰',
+            thumbnail: 'https://image.thum.io/get/width/640/https://www.impactcircle.co.kr/course'
+        },
         { id: 'JjfoD9Kp_9I', title: 'IMPACT CIRCLE 결과공유회 스케치', role: '1인 제작', type: '행사 스케치' },
         { id: 'iLFYVQDN3_g', title: '임팩트서클이 SOVAC 2023에 참여했습니다', role: '1인 제작', type: '행사 스케치' }
     ],
@@ -349,22 +356,49 @@ function loadPortfolioVideos() {
         const item = document.createElement('div');
         item.className = isShorts ? 'portfolio-item portfolio-item--shorts show' : 'portfolio-item show';
         item.style.animationDelay = `${(index % 3) * 30}ms`;
-        item.innerHTML = `
-            <iframe
-                class="portfolio-video"
-                src="https://www.youtube.com/embed/${video.id}"
-                title="${video.title}"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-                loading="lazy">
-            </iframe>
-            <div class="portfolio-info">
-                <span class="portfolio-badge">${video.type}</span>
-                <h4>${video.title}</h4>
-                <p class="portfolio-role">${video.role}</p>
-            </div>
-        `;
+
+        if (video.link) {
+            // External link card
+            item.innerHTML = `
+                <a class="portfolio-link-wrap" href="${video.link}" target="_blank" rel="noopener noreferrer">
+                    <img class="portfolio-link-thumb" src="${video.thumbnail}" alt="" loading="lazy">
+                    <div class="portfolio-link-overlay">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>사이트 방문</span>
+                    </div>
+                </a>
+                <div class="portfolio-info">
+                    <span class="portfolio-badge">${video.type}</span>
+                    <h4>${video.title}</h4>
+                    <p class="portfolio-role">${video.role}</p>
+                </div>
+            `;
+            const img = item.querySelector('.portfolio-link-thumb');
+            img.onerror = function () {
+                const domain = new URL(video.link).hostname;
+                const fallback = document.createElement('div');
+                fallback.className = 'portfolio-link-no-thumb';
+                fallback.innerHTML = `<i class="fas fa-globe link-icon"></i><span class="link-domain">${domain}</span>`;
+                this.replaceWith(fallback);
+            };
+        } else {
+            item.innerHTML = `
+                <iframe
+                    class="portfolio-video"
+                    src="https://www.youtube.com/embed/${video.id}"
+                    title="${video.title}"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                    loading="lazy">
+                </iframe>
+                <div class="portfolio-info">
+                    <span class="portfolio-badge">${video.type}</span>
+                    <h4>${video.title}</h4>
+                    <p class="portfolio-role">${video.role}</p>
+                </div>
+            `;
+        }
         observer.observe(item);
         return item;
     }
@@ -671,16 +705,18 @@ if ('serviceWorker' in navigator) {
             videos.forEach((v, i) => {
                 const a   = document.createElement('a');
                 a.className = 'service-work-btn';
-                a.href    = v.shorts
-                    ? `https://www.youtube.com/shorts/${v.id}`
-                    : `https://www.youtube.com/watch?v=${v.id}`;
+                a.href    = v.link
+                    ? v.link
+                    : (v.shorts ? `https://www.youtube.com/shorts/${v.id}` : `https://www.youtube.com/watch?v=${v.id}`);
                 a.target  = '_blank';
                 a.rel     = 'noopener noreferrer';
                 a.style.animationDelay = `${i * 28}ms`;
 
                 const img     = document.createElement('img');
                 img.className = 'service-work-thumb';
-                img.src       = `https://img.youtube.com/vi/${v.id}/mqdefault.jpg`;
+                img.src       = v.link
+                    ? (v.thumbnail || `https://www.google.com/s2/favicons?sz=64&domain=${new URL(v.link).hostname}`)
+                    : `https://img.youtube.com/vi/${v.id}/mqdefault.jpg`;
                 img.alt       = '';
                 img.loading   = 'lazy';
                 img.onerror   = function () {
