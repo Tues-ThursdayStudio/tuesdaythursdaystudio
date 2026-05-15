@@ -13,13 +13,31 @@ document.addEventListener('DOMContentLoaded', function() {
 const navbar = document.getElementById('navbar');
 const navLinks = document.querySelectorAll('.nav-link');
 
+let lastScrollY = 0;
+
 window.addEventListener('scroll', function() {
-    if (window.scrollY > 50) {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > 50) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
     }
-    
+
+    // 모바일 가로화면(landscape)에서만 navbar 숨김/표시
+    const isLandscapeMobile = window.innerHeight < 500 && window.innerWidth > window.innerHeight;
+    if (isLandscapeMobile) {
+        if (currentScrollY > lastScrollY && currentScrollY > 60) {
+            navbar.classList.add('nav-hidden');
+        } else {
+            navbar.classList.remove('nav-hidden');
+        }
+    } else {
+        navbar.classList.remove('nav-hidden');
+    }
+
+    lastScrollY = currentScrollY;
+
     // Active section highlighting
     updateActiveNavLink();
 });
