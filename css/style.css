@@ -1120,6 +1120,9 @@ body {
     }
 
     .services-works-panel {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
         transform: translateY(14px);
         transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.22s,
                     transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.22s;
@@ -1127,6 +1130,12 @@ body {
 
     .services-works-panel.visible {
         transform: translateY(0);
+    }
+
+    .service-work-btn {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 }
 
@@ -1150,6 +1159,7 @@ body {
     /* Intro Video - 네비바 바로 아래에 영상 위치 */
     .intro-video-section {
         aspect-ratio: 16/9;
+        margin-top: 86px;
     }
 
     /* Mobile Menu */
@@ -1191,7 +1201,7 @@ body {
     }
 
     .hero-content {
-        padding: 80px 1.5rem 2rem;
+        padding: 1.5rem 1.5rem 1rem;
     }
 
     .hero-title {
@@ -1248,9 +1258,31 @@ body {
         padding-bottom: 0;
     }
 
-    /* Services */
+    /* Services - 3열 2행 */
     .services-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.6rem;
+    }
+
+    .service-card {
+        padding: 1.25rem 0.5rem;
+    }
+
+    .service-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1rem;
+        margin: 0 auto 0.5rem;
+    }
+
+    .service-title {
+        font-size: 0.72rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .service-description {
+        font-size: 0.6rem;
+        line-height: 1.4;
     }
 
     /* Portfolio */
@@ -1333,7 +1365,7 @@ body {
     }
     
     .service-card {
-        padding: 2rem 1.5rem;
+        padding: 1.25rem 0.5rem;
     }
     
     .contact-form-wrapper {
