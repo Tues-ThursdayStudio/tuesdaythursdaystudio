@@ -1111,15 +1111,20 @@ body {
 
 
 @media (max-width: 768px) {
+    /* has-selection: 그리드 유지 (flex 전환 방지 → 카드 늘어남 방지) */
     .services-grid.has-selection {
-        flex-direction: column;
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.6rem;
+        align-items: start;
     }
 
     .service-card.selected {
-        width: 100%;
+        width: auto;
     }
 
     .services-works-panel {
+        grid-column: 1 / -1;
         width: 100%;
         max-width: 100%;
         overflow: hidden;
@@ -1535,6 +1540,23 @@ body {
     .services-grid {
         grid-template-columns: repeat(6, 1fr);
         gap: 0.4rem;
+    }
+
+    .services-grid.has-selection {
+        display: grid !important;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 0.4rem;
+        align-items: start;
+    }
+
+    .services-grid.has-selection .service-card.selected {
+        width: auto;
+    }
+
+    .services-grid.has-selection .services-works-panel {
+        grid-column: 1 / -1;
+        width: 100%;
+        overflow: hidden;
     }
 
     .service-card {

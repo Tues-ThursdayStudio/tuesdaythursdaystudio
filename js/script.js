@@ -816,32 +816,23 @@ if ('serviceWorker' in navigator) {
     function close() {
         animating = true;
 
-        // ── Fade out panel & selected card together ───────────────────────
+        // 패널 페이드아웃, 선택된 카드는 FLIP을 위해 visible 유지
         if (panel) panel.classList.remove('visible');
-        if (active) active.classList.add('deselecting');
 
         setTimeout(() => {
             if (panel) { panel.remove(); panel = null; }
 
             const prevActive = active;
 
-            // ── Snap layout back while everything is invisible ────────────
+            // FLIP 시작점: 레이아웃 리셋 전 카드 위치 캡처
+            const fromRect = prevActive ? prevActive.getBoundingClientRect() : null;
+
+            // 레이아웃 원복
             svcGrid.classList.remove('has-selection');
             const allCards = Array.from(svcGrid.querySelectorAll('.service-card'));
             allCards.forEach(c => c.classList.remove('collapsed', 'selected', 'deselecting'));
 
-            // Clear FLIP inline styles
-            if (prevActive) {
-                prevActive.style.transition = 'none';
-                prevActive.style.transform  = '';
-                prevActive.style.animation  = '';
-                // Add 'hiding' so it participates in the staggered fade-in
-                prevActive.classList.add('hiding');
-                void prevActive.offsetWidth;
-                prevActive.style.transition = '';
-            }
-
-            // ── Restore original DOM order ────────────────────────────────
+            // DOM 순서 복원
             if (prevActive) {
                 if (originalNextSibling && originalNextSibling.parentNode === svcGrid) {
                     svcGrid.insertBefore(prevActive, originalNextSibling);
@@ -850,9 +841,33 @@ if ('serviceWorker' in navigator) {
                 }
             }
 
-            // ── Staggered fade-in of all cards ────────────────────────────
-            const finalCards = Array.from(svcGrid.querySelectorAll('.service-card'));
-            finalCards.forEach((c, i) => {
+            // FLIP: 선택 카드를 열릴 때와 동일한 효과로 원래 위치로 슬라이드
+            if (prevActive && fromRect) {
+                const toRect = prevActive.getBoundingClientRect();
+                const dx = fromRect.left - toRect.left;
+                const dy = fromRect.top  - toRect.top;
+
+                if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) {
+                    prevActive.style.transition = 'none';
+                    prevActive.style.transform  = `translate(${dx}px, ${dy}px)`;
+                    void prevActive.offsetWidth;
+
+                    requestAnimationFrame(() => {
+                        prevActive.style.transition = 'transform 0.72s cubic-bezier(0.22, 1, 0.36, 1)';
+                        prevActive.style.animation  = 'svcCardSlideToFirst 0.72s cubic-bezier(0.22, 1, 0.36, 1) forwards';
+                        prevActive.style.transform  = '';
+                        setTimeout(() => {
+                            prevActive.style.transition = '';
+                            prevActive.style.animation  = '';
+                            prevActive.style.transform  = '';
+                        }, 780);
+                    });
+                }
+            }
+
+            // 나머지 카드들 stagger fade-in (열릴 때와 동일한 효과)
+            const otherCards = allCards.filter(c => c !== prevActive);
+            otherCards.forEach((c, i) => {
                 setTimeout(() => requestAnimationFrame(() => c.classList.remove('hiding')), i * STAGGER);
             });
 
@@ -860,7 +875,7 @@ if ('serviceWorker' in navigator) {
                 active              = null;
                 originalNextSibling = null;
                 animating           = false;
-            }, (finalCards.length - 1) * STAGGER + 650);
+            }, Math.max((otherCards.length - 1) * STAGGER + 650, 800));
         }, 280);
     }
 
