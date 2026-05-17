@@ -1147,10 +1147,9 @@ body {
         font-size: 2rem;
     }
 
-    /* Intro Video - 세로 모드에서 전체 화면 */
+    /* Intro Video - 네비바 바로 아래에 영상 위치 */
     .intro-video-section {
-        aspect-ratio: unset;
-        min-height: 100svh;
+        aspect-ratio: 16/9;
     }
 
     /* Mobile Menu */
@@ -1218,14 +1217,15 @@ body {
         flex-direction: row;
         flex-wrap: wrap;
         width: 100%;
-        gap: 0.75rem;
+        gap: 0.4rem;
         justify-content: center;
     }
 
     .hero-buttons .btn {
-        flex: 1;
-        min-width: 130px;
-        max-width: 200px;
+        flex: 0 0 auto;
+        padding: 0.4rem 0.9rem;
+        font-size: 0.65rem;
+        gap: 0.25rem;
         text-align: center;
         white-space: nowrap;
     }
@@ -1278,7 +1278,7 @@ body {
     }
 
     .portfolio-shorts-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .portfolio-info {
@@ -1303,12 +1303,12 @@ body {
 
 @media (max-width: 480px) {
     .portfolio-grid {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 0.5rem;
     }
 
     .portfolio-shorts-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .portfolio-info {
