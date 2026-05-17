@@ -273,6 +273,8 @@ const portfolioData = {
         { id: 'iLFYVQDN3_g', title: '임팩트서클이 SOVAC 2023에 참여했습니다', role: '1인 제작', type: '행사 스케치' }
     ],
     '우리금융그룹': [
+        { id: '-Tz6XMIJlTQ', title: '⭐광복 80주년⭐ 우리가 몰랐던 우리나라 \'금융 독립\'의 숨겨진 이야기! | 우리금융그룹 X 최태성', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: '2ITEVa277YQ', title: '큰★별쌤 최태성과 함께 떠나는 \'우리1899\' 도슨트 투어 🏦ㅣ 우리금융그룹', role: '촬영감독으로 참여', type: '유튜브 예능' },
         { id: '8cSnCOWji-I', title: '2025 모모콘', role: '촬영감독으로 참여', type: '행사 스케치' },
         { id: '0Fy_veK8GZc', title: '2024 모모콘', role: '촬영감독으로 참여', type: '행사 스케치' }
     ],
@@ -317,6 +319,31 @@ const portfolioData = {
         { id: 'dHHmwihRXGM', title: '[전국힙할Z도 군산편] 치..치지직..응답하라 여기는 군산ㅣMZ가 레트로의 성지 군산을 즐기는 방법📸', role: '촬영감독으로 참여', type: '유튜브 예능' },
         { id: 'KPmiYgNAoIQ', title: '[전국힙할Z도 춘천편] 나 가을 타나 봐..🍂 춘천에서 힐링 100% 충전하는 법ㅣ 당일치기 춘천 여행코스 6곳', role: '촬영감독으로 참여', type: '유튜브 예능' },
         { id: 'zO-r6Z7A_iA', title: '[전국힙할Z도 부산편] 어서오이소~ 부산 토박이가 알려주는 겨울 부산 여행코스🌊ㅣ부산 가볼 만한 곳 BEST 6', role: '촬영감독으로 참여', type: '유튜브 예능' }
+    ],
+    '맥도날드': [
+        { id: 'Nf-ozCscCV4', title: '2025 맥도날드 해피워크 현장 스케치', role: '촬영감독으로 참여', type: '홍보영상' }
+    ],
+    'LG생활건강': [
+        { id: 'rVFAAhDhnIs', title: '생건 Ent 주식회사  숏드라마 [ EP 1 ]', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'VrFoMq7mwBc', title: '생건 Ent 주식회사  숏드라마 [ EP 2 ]', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'hHyQCuqQ188', title: '생건 Ent 주식회사  숏드라마 [ EP 3 ]', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'Q7RX2HxG0o8', title: '⭐  생건 Ent 주식회사  숏드라마 [ EP 4 ]', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: '2rEDvjDLwvQ', title: '생건 Ent 주식회사  숏드라마   [ EP 5 ]', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'FSdF1UsUCrk', title: '⭐  생건 Ent 주식회사  숏드라마 [ EP 6 ]', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'zJnwoOV0Zts', title: '⭐  생건 Ent 주식회사  숏드라마 [ EP 7 ]', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'QavBOQ8EIvk', title: 'LG생활건강 연구원 추천템은 ?', role: '촬영감독으로 참여', type: '유튜브 예능' }
+    ],
+    'LS그룹': [
+        { id: 'A7v5v4jgr0I', title: '이거…혹시 제 소개팅 아니었나요?! (feat.김지유) 😅ㅣLS그룹 아바타 소개팅[처음뵙겠습니다 EP.03]', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'Qti2uQSlZB8', title: '나랑 소개팅 할래 말래! 할래 말래!(feat. 김원훈)ㅣLS그룹 아바타 소개팅 [처음뵙겠습니다 EP.02]', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'Fnq9dXkZl1o', title: '이호창 본부장의 리버스 멘토링👨‍🏫 근데 이제 회식을 곁들인🍻 [용산에 사는 사람들 시즌2 EP.02]', role: '촬영감독으로 참여', type: '유튜브 예능' }
+    ],
+    '대우건설': [
+        { id: 'd9mI0XQXf_0', title: '가을맞이🍂 시크릿 힐링 여행 코스 대. 공. 개✨ | 북한산 체험형 숲속쉼터 | 대우건설', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'aI5-YkIIXCg', title: '🔥 건설대가와 급식대가가 만났다?! 🔥 | 송내역푸르지오센트비엔현장 | 대우건설', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'XaBBxDDHOqQ', title: '정기자의 패기로 신속, 정확하게!😎 | 정대우의 일일기자 | 대우건설', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'soq9IQvo3Qs', title: '아파트 품질관리, 이 기술 모르면 곤란합니다! 건설 퀴즈 도전🔥 | 건설퀴즈쇼 | 대우건설', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'mOH7a8lKIlo', title: '걷다가 쓰러져 본 사람…? 😵 하루 15,000보 챌린지의 결말은?! | 함께으쓱(ESG) | 대우건설', role: '촬영감독으로 참여', type: '유튜브 예능' }
     ],
     'FLIB_FILMS': [
         { id: 'lBXYJVSTMVU', title: 'PEOPLEOFTHEWORLD - SFW25FW - PRESENTATION - RUNWAY', role: '촬영감독으로 참여', type: '패션필름' },
