@@ -890,6 +890,7 @@ if ('serviceWorker' in navigator) {
             if (!types) return;
 
             card.addEventListener('click', () => {
+                if (window.innerWidth <= 768) return;
                 if (animating) return;
                 if (active === card)   { close(); }
                 else if (active)       { resetInstant(); setTimeout(() => open(card, types), 20); }

@@ -1123,6 +1123,22 @@ body {
         width: auto;
     }
 
+    /* 모바일: 버튼 터치 시 크기/위치 변화 방지 */
+    .service-card:hover,
+    .service-card:active {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    .service-card:hover .service-icon,
+    .service-card:active .service-icon {
+        transform: none !important;
+    }
+
+    .service-card.hiding {
+        transform: none !important;
+    }
+
     .services-works-panel {
         grid-column: 1 / -1;
         width: 100%;
