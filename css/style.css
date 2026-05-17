@@ -1134,19 +1134,25 @@ body {
     html {
         font-size: 14px;
     }
-    
+
     .container {
         padding: 0 1.5rem;
     }
-    
+
     .section {
         padding: 3rem 0;
     }
-    
+
     .section-title {
         font-size: 2rem;
     }
-    
+
+    /* Intro Video - 세로 모드에서 전체 화면 */
+    .intro-video-section {
+        aspect-ratio: unset;
+        min-height: 100svh;
+    }
+
     /* Mobile Menu */
     .mobile-menu-toggle {
         display: flex;
