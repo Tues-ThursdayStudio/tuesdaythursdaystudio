@@ -202,15 +202,15 @@ const portfolioData = {
         { id: 'zdv19CZ1ILI', title: '복지가 별거냐? 원이 & 리브 얼굴이 곧 복지;; 대한민국 알고리즘 점령한 역주행 아이돌의 대명사 리센느(with. 숏박스 김원훈 & 개그콘서트 나현영) ㅣ iM파인다이닝 EP.3', role: '촬영감독으로 참여', type: '유튜브 예능' },
         { id: '62CBTVe3SkM', title: '※귀여움 한도 초과※ "어떻게 사람이 다람쥐..?" 개콘 듀오 무장해제 시키는 무공해 인간 가요이 키우기 (with. 숏박스 김원훈&개그콘서트 나현영) ㅣ iM파인다이닝 EP.2', role: '촬영감독으로 참여', type: '유튜브 예능' },
         { id: 'EzHpp37qEzc', title: '"우울한 말상이세요" 고민 상담왔다가 얼평 당하는 박성준 역술가 (with. 숏박스 김원훈& 개그콘서트 나현영)ㅣ iM파인다이닝 EP.1', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'X67EhbIp-BM', title: '※과몰입주의※ 인생 첫 소개팅에 폭주하는 우정잉 ㅣ신개념 연애 프로그램ㅣ소비내역 시그널 우정잉 편', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'HANxkAAarzk', title: '나만큼 결혼에 진심인 사람 있음 나와보라 그래! 결혼무새 박세미, 드디어 시집 갑니다 ㅣ 소비내역 시그널 EP.2', role: '촬영감독으로 참여', type: '유튜브 예능' },
         { id: 'IoGNILv8Ci8', title: '이거 기획한 사람 당장 나와;; 미3누, 30년 인생 최초 헬스장 3대 측정 공개합니다! (일일 PT쌤. 정대진 선수 & 최재상 선수)ㅣ부자 될 MZ들 EP.6', role: '촬영감독으로 참여', type: '유튜브 예능' },
         { id: 'Jdlx0e7nXhU', title: '은행장 개인 카드 털러 대구까지 다녀왔습니다 ㅣ 부자 될 MZ들 EP.5', role: '촬영감독으로 참여', type: '유튜브 예능' },
         { id: 'f-Lg6iT0Qew', title: '올리기만 하면 무조건 터진다?! 유튜버X희극인X배우 조회수 치트키와 함께하는 스케치 코미디 도전기 (feat. 김두현, 최하슬) ㅣ 부자 될 MZ들 EP.4', role: '촬영감독으로 참여', type: '유튜브 예능' },
         { id: 'GPsrh6DH7WI', title: 'EP.3 부자 될 MZ들 ㅣ 저기 내 남친 지나간다. 100만 패션 유튜버 깡스타일리스트와 미미미누의 따라만 해도 여친 생기는 여심저격 남친룩북 공개!', role: '촬영감독으로 참여', type: '유튜브 예능' },
         { id: '3jg_lEe1qMo', title: '미미미누, 래퍼 데뷔 깜짝 발표?! 길거리 피처링남 \'타임피버 - 동창회\' 막차 탑승 ㅣ 부자 될 MZ들 EP.2', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'BV5fTm-RhZw', title: '서울 중구에서, 청담동 그녀를 만나다 (with. 미미미누) ㅣ 부자 될 MZ들 EP.1', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'X67EhbIp-BM', title: '※과몰입주의※ 인생 첫 소개팅에 폭주하는 우정잉 ㅣ신개념 연애 프로그램ㅣ소비내역 시그널 우정잉 편', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'HANxkAAarzk', title: '나만큼 결혼에 진심인 사람 있음 나와보라 그래! 결혼무새 박세미, 드디어 시집 갑니다 ㅣ 소비내역 시그널 EP.2', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'ftSn2BOrLs4', title: '얼굴을 안보고 어떻게 고르냐니까는!! (★쿠키있음★) ㅣ 소비내역 시그널 EP.1 폭스클럽 김지유 소개팅', role: '촬영감독으로 참여', type: '유튜브 예능' }
+        { id: 'ftSn2BOrLs4', title: '얼굴을 안보고 어떻게 고르냐니까는!! (★쿠키있음★) ㅣ 소비내역 시그널 EP.1 폭스클럽 김지유 소개팅', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'BV5fTm-RhZw', title: '서울 중구에서, 청담동 그녀를 만나다 (with. 미미미누) ㅣ 부자 될 MZ들 EP.1', role: '촬영감독으로 참여', type: '유튜브 예능' }
     ],
     '교보생명': [
         { id: 'HL_IzHvPAtE', title: '닥터트윈스 2화', role: '촬영감독으로 참여', type: '유튜브 예능' },
@@ -222,34 +222,34 @@ const portfolioData = {
         { id: 'v7e38QsNkeE', title: '건강보장구역 EP.1 수안보 온천제 편', role: '촬영감독으로 참여', type: '유튜브 예능' }
     ],
     'KT&G 상상플래닛': [
-        { id: 'E6NiNHLP6Yc', title: '[현장스케치] KT&G 상상플래닛 | 𝐏𝐋𝐀𝐍𝐄𝐓 𝐒𝐔𝐌𝐌𝐈𝐓의 현장 속으로 🪐', role: '1인 제작', type: '행사 스케치' },
         { id: 'C21GmrufI6w', title: '국내 거주 외국인의 커리어를 확장하다 | 엑스프리베', role: '1인 제작', type: '강의 및 인터뷰' },
         { id: 'Jmb2QxfU42U', title: '소유가 아닌 경험으로, 캠핑의 진입장벽을 낮추다 | 캠터 정성식', role: '1인 제작', type: '강의 및 인터뷰' },
         { id: 'V10nvw9mad0', title: '홍삼 부산물로 스킨케어 제품을 만드는 이유 | 그리닝 김기현 김수빈 오수진', role: '1인 제작', type: '강의 및 인터뷰' },
+        { id: 'JqelOiRBJEg', title: '온가족 안심 숟가락, [세모녀]는 일상과 함께합니다 | 세모녀 이한결', role: '1인 제작', type: '강의 및 인터뷰' },
         { id: '10SC73vbmKA', title: '전 세대 음악심리치료, [피어나]는 다르게 제공합니다 | 피어나 박혜인', role: '1인 제작', type: '강의 및 인터뷰' },
-        { id: 'EDB_7NpY4a0', title: '수어콘텐츠, [뉴챕터]는 다르게 만듭니다 | 뉴챕터 유동영', role: '1인 제작', type: '강의 및 인터뷰' },
-        { id: 'JqelOiRBJEg', title: '온가족 안심 숟가락, [세모녀]는 일상과 함께합니다 | 세모녀 이한결', role: '1인 제작', type: '강의 및 인터뷰' }
+        { id: 'E6NiNHLP6Yc', title: '[현장스케치] KT&G 상상플래닛 | 𝐏𝐋𝐀𝐍𝐄𝐓 𝐒𝐔𝐌𝐌𝐈𝐓의 현장 속으로 🪐', role: '1인 제작', type: '행사 스케치' },
+        { id: 'EDB_7NpY4a0', title: '수어콘텐츠, [뉴챕터]는 다르게 만듭니다 | 뉴챕터 유동영', role: '1인 제작', type: '강의 및 인터뷰' }
     ],
     '에버글로우': [
+        { id: 'iX485v6AN8U', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #AISHA', role: '1인 제작', type: '숏폼', shorts: true },
+        { id: 'RGGy1VBvjqA', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #ONDA', role: '1인 제작', type: '숏폼', shorts: true },
+        { id: 'Yyep1-txVjI', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #SIHYEON', role: '1인 제작', type: '숏폼', shorts: true },
+        { id: 'PU1_brnxWbo', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #EU', role: '1인 제작', type: '숏폼', shorts: true },
+        { id: 'Zqti4I3fwjA', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #3', role: '1인 제작', type: '숏폼', shorts: true },
+        { id: 'oRQWdH77LbI', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #2', role: '1인 제작', type: '숏폼', shorts: true },
         { id: 'yR__nuXqVwg', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT', role: '1인 제작', type: '홍보영상' },
         { id: 'lK7wOPqhqek', title: "EVERGLOW (에버글로우) 'CODE' Jacket Photo Behind The Scene", role: '1인 제작', type: '비하인드 영상' },
         { id: '_uBgMMeeVdY', title: "EVERGLOW (에버글로우) 'CODE' MV Behind The Scene", role: '1인 제작', type: '비하인드 영상' },
-        { id: 'YXMhLzlvf-4', title: 'EVERGLOW (에버글로우) Profile Behind The Scene', role: '1인 제작', type: '비하인드 영상' },
-        { id: 'oRQWdH77LbI', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #2', role: '1인 제작', type: '숏폼', shorts: true },
-        { id: 'Zqti4I3fwjA', title: '2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #3', role: '1인 제작', type: '숏폼', shorts: true },
-        { id: 'iX485v6AN8U', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #AISHA', role: '1인 제작', type: '숏폼', shorts: true },
-        { id: 'Yyep1-txVjI', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #SIHYEON', role: '1인 제작', type: '숏폼', shorts: true },
-        { id: 'RGGy1VBvjqA', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #ONDA', role: '1인 제작', type: '숏폼', shorts: true },
-        { id: 'PU1_brnxWbo', title: '2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #EU', role: '1인 제작', type: '숏폼', shorts: true }
+        { id: 'YXMhLzlvf-4', title: 'EVERGLOW (에버글로우) Profile Behind The Scene', role: '1인 제작', type: '비하인드 영상' }
     ],
     '크레즐': [
-        { id: '18mFpNcxNew', title: 'CREZL (크레즐) Digital Single \'늦편지\' Official Lyric Video teaser', role: '1인 제작', type: '홍보영상' },
         { id: 'msLsqqGQsP4', title: '[Behind] BACKSTAGE : Logline CONCERT with CREZL(크레즐) #2', role: '1인 제작', type: '비하인드 영상' },
         { id: 'C6i4mv7HsHc', title: '[Behind] BACKSTAGE : Logline CONCERT with CREZL(크레즐) #1', role: '1인 제작', type: '비하인드 영상' },
-        { id: 'nUsRXfySsqw', title: '[Behind] KBS 불후의명곡 with CREZL(크레즐)', role: '1인 제작', type: '비하인드 영상' },
         { id: 'nFOu_TSxFEY', title: '[Behind] KBS 열린음악회 with CREZL(크레즐)', role: '1인 제작', type: '비하인드 영상' },
         { id: 'XDNCNl0KOxo', title: '[Behind] \'HAKUNAMATA:舵\' | Music Video with CREZL(크레즐)', role: '1인 제작', type: '비하인드 영상' },
         { id: 'byZTtzc7pp4', title: '[Behind] \'HAKUNAMATA:舵\' | ALBUM COVER with CREZL(크레즐)', role: '1인 제작', type: '비하인드 영상' },
+        { id: 'nUsRXfySsqw', title: '[Behind] KBS 불후의명곡 with CREZL(크레즐)', role: '1인 제작', type: '비하인드 영상' },
+        { id: '18mFpNcxNew', title: 'CREZL (크레즐) Digital Single \'늦편지\' Official Lyric Video teaser', role: '1인 제작', type: '홍보영상' },
         { id: 'hC0NODJaPug', title: '[Behind] DIVE INTO CREZL(FAN-CONCERT) #2', role: '1인 제작', type: '비하인드 영상' },
         { id: '51utwEUL064', title: '[Behind] DIVE INTO CREZL(FAN-CONCERT) #1', role: '1인 제작', type: '비하인드 영상' },
         { id: '0y7Lg9dYNt8', title: '[Behind] 청주 단독 콘서트 With CREZL (크레즐)', role: '1인 제작', type: '비하인드 영상' }
@@ -262,20 +262,20 @@ const portfolioData = {
         { id: 'p11_BU6K7So', title: '2024 포스코이앤씨 더샵 신평면 디자인 발표회 현장스케치 | The Home Curator', role: '촬영감독으로 참여', type: '행사 스케치' }
     ],
     '임팩트서클': [
+        { id: 'JjfoD9Kp_9I', title: 'IMPACT CIRCLE 결과공유회 스케치', role: '1인 제작', type: '행사 스케치' },
+        { id: 'iLFYVQDN3_g', title: '임팩트서클이 SOVAC 2023에 참여했습니다', role: '1인 제작', type: '행사 스케치' },
         {
             link: 'https://www.impactcircle.co.kr/course',
             title: '임팩트서클 비즈니스 강의 시리즈',
             role: '1인 제작',
             type: '강의 및 인터뷰',
             thumbnail: 'https://image.thum.io/get/width/640/https://www.impactcircle.co.kr/course'
-        },
-        { id: 'JjfoD9Kp_9I', title: 'IMPACT CIRCLE 결과공유회 스케치', role: '1인 제작', type: '행사 스케치' },
-        { id: 'iLFYVQDN3_g', title: '임팩트서클이 SOVAC 2023에 참여했습니다', role: '1인 제작', type: '행사 스케치' }
+        }
     ],
     '우리금융그룹': [
-        { id: '-Tz6XMIJlTQ', title: '⭐광복 80주년⭐ 우리가 몰랐던 우리나라 \'금융 독립\'의 숨겨진 이야기! | 우리금융그룹 X 최태성', role: '촬영감독으로 참여', type: '유튜브 예능' },
         { id: '2ITEVa277YQ', title: '큰★별쌤 최태성과 함께 떠나는 \'우리1899\' 도슨트 투어 🏦ㅣ 우리금융그룹', role: '촬영감독으로 참여', type: '유튜브 예능' },
         { id: '8cSnCOWji-I', title: '2025 모모콘', role: '촬영감독으로 참여', type: '행사 스케치' },
+        { id: '-Tz6XMIJlTQ', title: '⭐광복 80주년⭐ 우리가 몰랐던 우리나라 \'금융 독립\'의 숨겨진 이야기! | 우리금융그룹 X 최태성', role: '촬영감독으로 참여', type: '유튜브 예능' },
         { id: '0Fy_veK8GZc', title: '2024 모모콘', role: '촬영감독으로 참여', type: '행사 스케치' }
     ],
     '성동구사회적경제지원센터': [
@@ -299,39 +299,39 @@ const portfolioData = {
         { id: 'zGinkJj8nHM', title: '[도전! 금융벨] 2화 : 저축과 투자, 신용과 위험관리(고등학교 선택과목 "금융과 경제생활")', role: '촬영감독으로 참여', type: '유튜브 예능' }
     ],
     '계룡건설': [
-        { id: 'M2b77Dxp-8M', title: '건설 현장에서 펼쳐진 RC 중장비 미션 레이싱🏁 | 2025 KYERYONG GRAND PRIX', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'JlUQDz_K3vA', title: "숲'새'권 휴식처 선물 받은 썰 푼다 (feat. 천안 오룡지구) l Making a Resting Place for Birds", role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'RHUEEb_S_lo', title: "서로 다른 두 공간에서 같은 곡을 연주한다면? | 건설 현장 X 본사의 슈베르트 '마왕'♬", role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: '8YrZfQJ0nho', title: '[계룡 가디언] EP.1 음주 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
-        { id: 'lx35DQkOBPQ', title: '[계룡 가디언] EP.2 흡연 & 휴대전화 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
-        { id: '7P8VXRYiqzw', title: '[계룡 가디언] EP.3 보호구 & 안전 시설물 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
-        { id: 'BurDZ57S7Co', title: '[계룡 가디언] EP.4 운전원 안전수칙 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
-        { id: 'YhG6pUMNcKQ', title: '[계룡 가디언] EP.5 신호수 & 굴착기 안전장치 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
-        { id: 'pnFJ3pk1M_w', title: '[계룡 가디언] EP.6 붕괴 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
-        { id: 'VLPG4v2c1Ls', title: '[계룡 가디언] EP.7 화재 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
-        { id: 'J-t_fPozjms', title: '[계룡 가디언] EP.8 사다리 & 고소작업 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'tl_ZAY7cxK0', title: "🏗️ 드릴과 키보드 소리가 만나 '마왕'이 된다고? 🎹", role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'RHUEEb_S_lo', title: "서로 다른 두 공간에서 같은 곡을 연주한다면? | 건설 현장 X 본사의 슈베르트 '마왕'♬", role: '촬영감독으로 참여', type: '홍보영상' },
         { id: 'OzASnZ525CU', title: '[계룡 가디언] EP.9 비계 승하강 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
-        { id: 'tl_ZAY7cxK0', title: "🏗️ 드릴과 키보드 소리가 만나 '마왕'이 된다고? 🎹", role: '촬영감독으로 참여', type: '숏폼', shorts: true }
+        { id: 'J-t_fPozjms', title: '[계룡 가디언] EP.8 사다리 & 고소작업 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'VLPG4v2c1Ls', title: '[계룡 가디언] EP.7 화재 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'pnFJ3pk1M_w', title: '[계룡 가디언] EP.6 붕괴 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'YhG6pUMNcKQ', title: '[계룡 가디언] EP.5 신호수 & 굴착기 안전장치 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'BurDZ57S7Co', title: '[계룡 가디언] EP.4 운전원 안전수칙 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: '7P8VXRYiqzw', title: '[계룡 가디언] EP.3 보호구 & 안전 시설물 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'lx35DQkOBPQ', title: '[계룡 가디언] EP.2 흡연 & 휴대전화 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: '8YrZfQJ0nho', title: '[계룡 가디언] EP.1 음주 #안전캠페인', role: '촬영감독으로 참여', type: '숏폼', shorts: true },
+        { id: 'JlUQDz_K3vA', title: "숲'새'권 휴식처 선물 받은 썰 푼다 (feat. 천안 오룡지구) l Making a Resting Place for Birds", role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'M2b77Dxp-8M', title: '건설 현장에서 펼쳐진 RC 중장비 미션 레이싱🏁 | 2025 KYERYONG GRAND PRIX', role: '촬영감독으로 참여', type: '유튜브 예능' }
     ],
     '현대해상': [
-        { id: 'nCMKJtOt36E', title: '[전국힙할Z도 양양편] 양양 가서 여기 안 가면 손해, 여름보다 핫한 양양 ⛱️', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'DCvNSbDtEK8', title: '[굿앤굿 행복육아 공감육아일기 1화] 28개월 아기와 함께하는 초보 엄마의 육아 성장 스토리🧡', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'dHHmwihRXGM', title: '[전국힙할Z도 군산편] 치..치지직..응답하라 여기는 군산ㅣMZ가 레트로의 성지 군산을 즐기는 방법📸', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'zO-r6Z7A_iA', title: '[전국힙할Z도 부산편] 어서오이소~ 부산 토박이가 알려주는 겨울 부산 여행코스🌊ㅣ부산 가볼 만한 곳 BEST 6', role: '촬영감독으로 참여', type: '유튜브 예능' },
         { id: 'KPmiYgNAoIQ', title: '[전국힙할Z도 춘천편] 나 가을 타나 봐..🍂 춘천에서 힐링 100% 충전하는 법ㅣ 당일치기 춘천 여행코스 6곳', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'zO-r6Z7A_iA', title: '[전국힙할Z도 부산편] 어서오이소~ 부산 토박이가 알려주는 겨울 부산 여행코스🌊ㅣ부산 가볼 만한 곳 BEST 6', role: '촬영감독으로 참여', type: '유튜브 예능' }
+        { id: 'dHHmwihRXGM', title: '[전국힙할Z도 군산편] 치..치지직..응답하라 여기는 군산ㅣMZ가 레트로의 성지 군산을 즐기는 방법📸', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'DCvNSbDtEK8', title: '[굿앤굿 행복육아 공감육아일기 1화] 28개월 아기와 함께하는 초보 엄마의 육아 성장 스토리🧡', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'nCMKJtOt36E', title: '[전국힙할Z도 양양편] 양양 가서 여기 안 가면 손해, 여름보다 핫한 양양 ⛱️', role: '촬영감독으로 참여', type: '유튜브 예능' }
     ],
     '맥도날드': [
         { id: 'Nf-ozCscCV4', title: '2025 맥도날드 해피워크 현장 스케치', role: '촬영감독으로 참여', type: '홍보영상' }
     ],
     'LG생활건강': [
-        { id: 'rVFAAhDhnIs', title: '생건 Ent 주식회사  숏드라마 [ EP 1 ]', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'VrFoMq7mwBc', title: '생건 Ent 주식회사  숏드라마 [ EP 2 ]', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'hHyQCuqQ188', title: '생건 Ent 주식회사  숏드라마 [ EP 3 ]', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'Q7RX2HxG0o8', title: '⭐  생건 Ent 주식회사  숏드라마 [ EP 4 ]', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: '2rEDvjDLwvQ', title: '생건 Ent 주식회사  숏드라마   [ EP 5 ]', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'FSdF1UsUCrk', title: '⭐  생건 Ent 주식회사  숏드라마 [ EP 6 ]', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'QavBOQ8EIvk', title: 'LG생활건강 연구원 추천템은 ?', role: '촬영감독으로 참여', type: '유튜브 예능' },
         { id: 'zJnwoOV0Zts', title: '⭐  생건 Ent 주식회사  숏드라마 [ EP 7 ]', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'QavBOQ8EIvk', title: 'LG생활건강 연구원 추천템은 ?', role: '촬영감독으로 참여', type: '유튜브 예능' }
+        { id: 'FSdF1UsUCrk', title: '⭐  생건 Ent 주식회사  숏드라마 [ EP 6 ]', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: '2rEDvjDLwvQ', title: '생건 Ent 주식회사  숏드라마   [ EP 5 ]', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'Q7RX2HxG0o8', title: '⭐  생건 Ent 주식회사  숏드라마 [ EP 4 ]', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'hHyQCuqQ188', title: '생건 Ent 주식회사  숏드라마 [ EP 3 ]', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'VrFoMq7mwBc', title: '생건 Ent 주식회사  숏드라마 [ EP 2 ]', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'rVFAAhDhnIs', title: '생건 Ent 주식회사  숏드라마 [ EP 1 ]', role: '촬영감독으로 참여', type: '유튜브 예능' }
     ],
     'LS그룹': [
         { id: 'A7v5v4jgr0I', title: '이거…혹시 제 소개팅 아니었나요?! (feat.김지유) 😅ㅣLS그룹 아바타 소개팅[처음뵙겠습니다 EP.03]', role: '촬영감독으로 참여', type: '유튜브 예능' },
@@ -339,21 +339,21 @@ const portfolioData = {
         { id: 'Fnq9dXkZl1o', title: '이호창 본부장의 리버스 멘토링👨‍🏫 근데 이제 회식을 곁들인🍻 [용산에 사는 사람들 시즌2 EP.02]', role: '촬영감독으로 참여', type: '유튜브 예능' }
     ],
     '대우건설': [
-        { id: 'd9mI0XQXf_0', title: '가을맞이🍂 시크릿 힐링 여행 코스 대. 공. 개✨ | 북한산 체험형 숲속쉼터 | 대우건설', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'aI5-YkIIXCg', title: '🔥 건설대가와 급식대가가 만났다?! 🔥 | 송내역푸르지오센트비엔현장 | 대우건설', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'XaBBxDDHOqQ', title: '정기자의 패기로 신속, 정확하게!😎 | 정대우의 일일기자 | 대우건설', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'mOH7a8lKIlo', title: '걷다가 쓰러져 본 사람…? 😵 하루 15,000보 챌린지의 결말은?! | 함께으쓱(ESG) | 대우건설', role: '촬영감독으로 참여', type: '유튜브 예능' },
         { id: 'soq9IQvo3Qs', title: '아파트 품질관리, 이 기술 모르면 곤란합니다! 건설 퀴즈 도전🔥 | 건설퀴즈쇼 | 대우건설', role: '촬영감독으로 참여', type: '유튜브 예능' },
-        { id: 'mOH7a8lKIlo', title: '걷다가 쓰러져 본 사람…? 😵 하루 15,000보 챌린지의 결말은?! | 함께으쓱(ESG) | 대우건설', role: '촬영감독으로 참여', type: '유튜브 예능' }
+        { id: 'XaBBxDDHOqQ', title: '정기자의 패기로 신속, 정확하게!😎 | 정대우의 일일기자 | 대우건설', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'aI5-YkIIXCg', title: '🔥 건설대가와 급식대가가 만났다?! 🔥 | 송내역푸르지오센트비엔현장 | 대우건설', role: '촬영감독으로 참여', type: '유튜브 예능' },
+        { id: 'd9mI0XQXf_0', title: '가을맞이🍂 시크릿 힐링 여행 코스 대. 공. 개✨ | 북한산 체험형 숲속쉼터 | 대우건설', role: '촬영감독으로 참여', type: '유튜브 예능' }
     ],
     'FLIB_FILMS': [
         { id: 'lBXYJVSTMVU', title: 'PEOPLEOFTHEWORLD - SFW25FW - PRESENTATION - RUNWAY', role: '촬영감독으로 참여', type: '패션필름' },
-        { id: '_hn_3TYG4mM', title: 'HALUCCINATION - About Human & AI, 패션필름', role: '촬영감독으로 참여', type: '패션필름' },
         { id: 'bc8dlfzHyq8', title: 'MODEL REBEKA', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
         { id: 'o1rz-MuXFoQ', title: 'MODEL MIRAI', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
+        { id: '_hn_3TYG4mM', title: 'HALUCCINATION - About Human & AI, 패션필름', role: '촬영감독으로 참여', type: '패션필름' },
+        { id: 'TFaLwKCPcz4', title: 'PEOPLEOFTHEWORLD - SFW25FW', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
         { id: 'ywG7g6ud4iM', title: 'DAILY MIRROR - SFW25FW', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
         { id: 'vO3BxB_S_1o', title: 'SFW 2025 FALL WINTER - DOUCAN BTS TEASER #서울패션위크 #fashionweek #SFW25FW#패션쇼', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
-        { id: '8qzJ2G2KHtw', title: 'SFW25FW - PEOPLEOFTHEWORLD BTS TEASER #서울패션위크#sfw25fw#fashionweek #패션쇼#fashionreels', role: '촬영감독으로 참여', type: '패션필름', shorts: true },
-        { id: 'TFaLwKCPcz4', title: 'PEOPLEOFTHEWORLD - SFW25FW', role: '촬영감독으로 참여', type: '패션필름', shorts: true }
+        { id: '8qzJ2G2KHtw', title: 'SFW25FW - PEOPLEOFTHEWORLD BTS TEASER #서울패션위크#sfw25fw#fashionweek #패션쇼#fashionreels', role: '촬영감독으로 참여', type: '패션필름', shorts: true }
     ]
 };
 
