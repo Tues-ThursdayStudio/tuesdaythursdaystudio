@@ -290,7 +290,7 @@ const portfolioData = {
     ],
     'AITRICS': [
         { id: 'iGol0xYlnbs', title: 'AITRICS | 2026 KIMES', role: '1인 제작', type: '행사 스케치' },
-        { id: 'F2yKzZ59CcI', title: 'AITRICS | 2025 RRS Symposium', role: '1인 제작', type: '홍보영상' }
+        { id: 'F2yKzZ59CcI', title: 'AITRICS | 2025 RRS Symposium', role: '1인 제작', type: '행사 스케치' }
     ],
     '국토교통부': [
         { id: 'MjCQusY9MUo', title: '전통과 현대가 공존하는 이곳에서 살으리랏다~ 요즘 대세 은평 한옥마을!', role: '촬영감독으로 참여', type: '유튜브 예능' }
@@ -704,10 +704,20 @@ if ('serviceWorker' in navigator) {
         '비하인드 영상': ['비하인드 영상']
     };
 
-    function getVideos(types) {
+    const subtypeMap = {
+        '예능 촬영': {
+            '스튜디오 예능':  ['아이엠뱅크', '우리금융그룹', 'LS그룹'],
+            '버라이어티 예능': ['교보생명', '현대해상', '대우건설'],
+            '숏드라마':       ['LG생활건강'],
+            '기타 영상':      ['국토교통부', '금융감독원', '계룡건설']
+        }
+    };
+
+    function getVideos(types, companies) {
         const seen = new Set();
         const out  = [];
-        for (const arr of Object.values(portfolioData)) {
+        for (const [key, arr] of Object.entries(portfolioData)) {
+            if (companies && !companies.includes(key)) continue;
             for (const v of arr) {
                 if (types.includes(v.type) && !seen.has(v.id)) {
                     seen.add(v.id);
@@ -718,48 +728,95 @@ if ('serviceWorker' in navigator) {
         return out;
     }
 
-    function buildPanel(types) {
-        const panel  = document.createElement('div');
+    function buildVideoItem(v, i, container) {
+        const a = document.createElement('a');
+        a.className = 'service-work-btn';
+        a.href    = v.link
+            ? v.link
+            : (v.shorts ? `https://www.youtube.com/shorts/${v.id}` : `https://www.youtube.com/watch?v=${v.id}`);
+        a.target  = '_blank';
+        a.rel     = 'noopener noreferrer';
+        a.style.animationDelay = `${i * 28}ms`;
+
+        const img = document.createElement('img');
+        img.className = 'service-work-thumb';
+        img.src       = v.link
+            ? (v.thumbnail || `https://www.google.com/s2/favicons?sz=64&domain=${new URL(v.link).hostname}`)
+            : `https://img.youtube.com/vi/${v.id}/mqdefault.jpg`;
+        img.alt     = '';
+        img.loading = 'lazy';
+        img.onerror = function () {
+            this.style.display = 'none';
+            a.style.paddingLeft = '1rem';
+        };
+
+        const title = document.createElement('span');
+        title.className   = 'service-work-title';
+        title.textContent = v.title;
+
+        a.appendChild(img);
+        a.appendChild(title);
+        container.appendChild(a);
+    }
+
+    function buildPanel(types, serviceTitle) {
+        const panel = document.createElement('div');
         panel.className = 'services-works-panel';
-        const videos = getVideos(types);
 
-        if (!videos.length) {
-            const p = document.createElement('p');
-            p.textContent = '해당 콘텐츠가 없습니다.';
-            p.style.cssText = 'color:var(--text-muted);font-size:.85rem;padding:.5rem 0;';
-            panel.appendChild(p);
-        } else {
-            videos.forEach((v, i) => {
-                const a   = document.createElement('a');
-                a.className = 'service-work-btn';
-                a.href    = v.link
-                    ? v.link
-                    : (v.shorts ? `https://www.youtube.com/shorts/${v.id}` : `https://www.youtube.com/watch?v=${v.id}`);
-                a.target  = '_blank';
-                a.rel     = 'noopener noreferrer';
-                a.style.animationDelay = `${i * 28}ms`;
+        const subtypes = subtypeMap[serviceTitle];
 
-                const img     = document.createElement('img');
-                img.className = 'service-work-thumb';
-                img.src       = v.link
-                    ? (v.thumbnail || `https://www.google.com/s2/favicons?sz=64&domain=${new URL(v.link).hostname}`)
-                    : `https://img.youtube.com/vi/${v.id}/mqdefault.jpg`;
-                img.alt       = '';
-                img.loading   = 'lazy';
-                img.onerror   = function () {
-                    this.style.display = 'none';
-                    a.style.paddingLeft = '1rem';
-                };
+        if (subtypes) {
+            const subtypeNames  = Object.keys(subtypes);
+            let   activeSubtype = subtypeNames[0];
 
-                const title     = document.createElement('span');
-                title.className = 'service-work-title';
-                title.textContent = v.title;
+            const filterBar = document.createElement('div');
+            filterBar.className = 'services-subtype-filter';
 
-                a.appendChild(img);
-                a.appendChild(title);
-                panel.appendChild(a);
+            const videosContainer = document.createElement('div');
+            videosContainer.className = 'services-videos-container';
+
+            function renderVideos(subtype) {
+                videosContainer.innerHTML = '';
+                const videos = getVideos(types, subtypes[subtype]);
+                if (!videos.length) {
+                    const p = document.createElement('p');
+                    p.textContent = '해당 콘텐츠가 없습니다.';
+                    p.style.cssText = 'color:var(--text-muted);font-size:.85rem;padding:.5rem 0;';
+                    videosContainer.appendChild(p);
+                } else {
+                    videos.forEach((v, i) => buildVideoItem(v, i, videosContainer));
+                }
+            }
+
+            subtypeNames.forEach(name => {
+                const btn = document.createElement('button');
+                btn.className   = 'services-subtype-btn' + (name === activeSubtype ? ' active' : '');
+                btn.textContent = name;
+                btn.addEventListener('click', () => {
+                    if (name === activeSubtype) return;
+                    activeSubtype = name;
+                    filterBar.querySelectorAll('.services-subtype-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    renderVideos(name);
+                });
+                filterBar.appendChild(btn);
             });
+
+            renderVideos(activeSubtype);
+            panel.appendChild(filterBar);
+            panel.appendChild(videosContainer);
+        } else {
+            const videos = getVideos(types);
+            if (!videos.length) {
+                const p = document.createElement('p');
+                p.textContent = '해당 콘텐츠가 없습니다.';
+                p.style.cssText = 'color:var(--text-muted);font-size:.85rem;padding:.5rem 0;';
+                panel.appendChild(p);
+            } else {
+                videos.forEach((v, i) => buildVideoItem(v, i, panel));
+            }
         }
+
         return panel;
     }
 
@@ -783,7 +840,7 @@ if ('serviceWorker' in navigator) {
         animating           = false;
     }
 
-    function open(card, types) {
+    function open(card, types, serviceTitle) {
         animating = true;
         const cards  = Array.from(svcGrid.querySelectorAll('.service-card'));
         const others = cards.filter(c => c !== card);
@@ -831,7 +888,7 @@ if ('serviceWorker' in navigator) {
             }
 
             // Show works panel
-            panel = buildPanel(types);
+            panel = buildPanel(types, serviceTitle);
             svcGrid.appendChild(panel);
             requestAnimationFrame(() => {
                 panel.classList.add('visible');
@@ -913,15 +970,16 @@ if ('serviceWorker' in navigator) {
         svcGrid.querySelectorAll('.service-card').forEach(card => {
             const titleEl = card.querySelector('.service-title');
             if (!titleEl) return;
-            const types = typeMap[titleEl.textContent.trim()];
+            const serviceTitle = titleEl.textContent.trim();
+            const types = typeMap[serviceTitle];
             if (!types) return;
 
             card.addEventListener('click', () => {
                 if (window.innerWidth <= 768) return;
                 if (animating) return;
                 if (active === card)   { close(); }
-                else if (active)       { resetInstant(); setTimeout(() => open(card, types), 20); }
-                else                   { open(card, types); }
+                else if (active)       { resetInstant(); setTimeout(() => open(card, types, serviceTitle), 20); }
+                else                   { open(card, types, serviceTitle); }
             });
         });
     });

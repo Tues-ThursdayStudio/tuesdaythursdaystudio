@@ -1791,6 +1791,46 @@ body {
     }
 }
 
+.services-subtype-filter {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.services-subtype-btn {
+    padding: 0.35rem 0.9rem;
+    border: 1px solid rgba(201, 168, 108, 0.25);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Pretendard', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+}
+
+.services-subtype-btn:hover {
+    background: rgba(201, 168, 108, 0.08);
+    border-color: rgba(201, 168, 108, 0.45);
+    color: var(--text-secondary);
+}
+
+.services-subtype-btn.active {
+    background: rgba(201, 168, 108, 0.15);
+    border-color: rgba(201, 168, 108, 0.6);
+    color: var(--gold);
+}
+
+.services-videos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
 /* ===== Animations ===== */
 @keyframes fadeInUp {
     from {
