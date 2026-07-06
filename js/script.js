@@ -321,7 +321,7 @@ const portfolioData = {
         { id: 'nCMKJtOt36E', title: '[전국힙할Z도 양양편] 양양 가서 여기 안 가면 손해, 여름보다 핫한 양양 ⛱️', role: '촬영감독으로 참여', type: '유튜브 예능' }
     ],
     '맥도날드': [
-        { id: 'Nf-ozCscCV4', title: '2025 맥도날드 해피워크 현장 스케치', role: '촬영감독으로 참여', type: '홍보영상' }
+        { id: 'Nf-ozCscCV4', title: '2025 맥도날드 해피워크 현장 스케치', role: '촬영감독으로 참여', type: '행사 스케치' }
     ],
     'LG생활건강': [
         { id: 'QavBOQ8EIvk', title: 'LG생활건강 연구원 추천템은 ?', role: '촬영감독으로 참여', type: '유튜브 예능' },
@@ -827,8 +827,21 @@ if ('serviceWorker' in navigator) {
     let animating           = false;
     let svcGrid             = null;
     let originalNextSibling = null;
+    let animatingTimer      = null;
+
+    function isMobile() { return window.innerWidth <= 768; }
+
+    function safeSetAnimating(val, delay) {
+        if (animatingTimer) { clearTimeout(animatingTimer); animatingTimer = null; }
+        if (delay > 0) {
+            animatingTimer = setTimeout(() => { animating = val; animatingTimer = null; }, delay);
+        } else {
+            animating = val;
+        }
+    }
 
     function resetInstant() {
+        if (animatingTimer) { clearTimeout(animatingTimer); animatingTimer = null; }
         if (panel) { panel.remove(); panel = null; }
         svcGrid.classList.remove('has-selection');
         svcGrid.querySelectorAll('.service-card').forEach(c => {
@@ -842,35 +855,33 @@ if ('serviceWorker' in navigator) {
 
     function open(card, types, serviceTitle) {
         animating = true;
+        const mobile  = isMobile();
+        const stagger = mobile ? 0 : STAGGER;
+        const buffer  = mobile ? 80 : 380;
+
         const cards  = Array.from(svcGrid.querySelectorAll('.service-card'));
         const others = cards.filter(c => c !== card);
 
         originalNextSibling = card.nextSibling;
 
-        // Capture initial position before any changes
         const fromRect = card.getBoundingClientRect();
 
-        // ① Smoke out others in their original GRID positions — no layout yet, no flash
-        others.forEach((c, i) => setTimeout(() => c.classList.add('hiding'), i * STAGGER));
+        others.forEach((c, i) => setTimeout(() => c.classList.add('hiding'), i * stagger));
 
-        // ② After smoke is well underway: collapse, switch layout, then FLIP
-        const collapseAt = (others.length - 1) * STAGGER + 380;
+        const collapseAt = (others.length - 1) * stagger + buffer;
         setTimeout(() => {
-            // Collapse so they vanish from layout
             others.forEach(c => c.classList.add('collapsed'));
 
-            // Move card to first DOM position and apply flex layout
             svcGrid.insertBefore(card, svcGrid.firstChild);
             active = card;
             svcGrid.classList.add('has-selection');
             card.classList.add('selected');
 
-            // FLIP: measure final position (forces reflow with new layout)
             const toRect = card.getBoundingClientRect();
             const dx = fromRect.left - toRect.left;
             const dy = fromRect.top  - toRect.top;
 
-            if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) {
+            if (!mobile && (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5)) {
                 card.style.transition = 'none';
                 card.style.transform  = `translate(${dx}px, ${dy}px)`;
                 void card.offsetWidth;
@@ -887,7 +898,6 @@ if ('serviceWorker' in navigator) {
                 });
             }
 
-            // Show works panel
             panel = buildPanel(types, serviceTitle);
             svcGrid.appendChild(panel);
             requestAnimationFrame(() => {
@@ -899,24 +909,22 @@ if ('serviceWorker' in navigator) {
 
     function close() {
         animating = true;
+        const mobile = isMobile();
 
-        // 패널 페이드아웃, 선택된 카드는 FLIP을 위해 visible 유지
         if (panel) panel.classList.remove('visible');
 
+        const panelDelay = mobile ? 150 : 280;
         setTimeout(() => {
             if (panel) { panel.remove(); panel = null; }
 
             const prevActive = active;
 
-            // FLIP 시작점: 레이아웃 리셋 전 카드 위치 캡처
             const fromRect = prevActive ? prevActive.getBoundingClientRect() : null;
 
-            // 레이아웃 원복
             svcGrid.classList.remove('has-selection');
             const allCards = Array.from(svcGrid.querySelectorAll('.service-card'));
             allCards.forEach(c => c.classList.remove('collapsed', 'selected', 'deselecting'));
 
-            // DOM 순서 복원
             if (prevActive) {
                 if (originalNextSibling && originalNextSibling.parentNode === svcGrid) {
                     svcGrid.insertBefore(prevActive, originalNextSibling);
@@ -925,8 +933,7 @@ if ('serviceWorker' in navigator) {
                 }
             }
 
-            // FLIP: 선택 카드를 열릴 때와 동일한 효과로 원래 위치로 슬라이드
-            if (prevActive && fromRect) {
+            if (!mobile && prevActive && fromRect) {
                 const toRect = prevActive.getBoundingClientRect();
                 const dx = fromRect.left - toRect.left;
                 const dy = fromRect.top  - toRect.top;
@@ -949,18 +956,28 @@ if ('serviceWorker' in navigator) {
                 }
             }
 
-            // 나머지 카드들 stagger fade-in (열릴 때와 동일한 효과)
+            const closeStagger = mobile ? 0 : STAGGER;
             const otherCards = allCards.filter(c => c !== prevActive);
             otherCards.forEach((c, i) => {
-                setTimeout(() => requestAnimationFrame(() => c.classList.remove('hiding')), i * STAGGER);
+                setTimeout(() => requestAnimationFrame(() => c.classList.remove('hiding')), i * closeStagger);
             });
 
+            const finalDelay = mobile
+                ? 200
+                : Math.max((otherCards.length - 1) * STAGGER + 650, 800);
             setTimeout(() => {
                 active              = null;
                 originalNextSibling = null;
                 animating           = false;
-            }, Math.max((otherCards.length - 1) * STAGGER + 650, 800));
-        }, 280);
+            }, finalDelay);
+        }, panelDelay);
+    }
+
+    function handleCardTap(card, types, serviceTitle) {
+        if (animating) return;
+        if (active === card)   { close(); }
+        else if (active)       { resetInstant(); setTimeout(() => open(card, types, serviceTitle), 20); }
+        else                   { open(card, types, serviceTitle); }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -974,11 +991,28 @@ if ('serviceWorker' in navigator) {
             const types = typeMap[serviceTitle];
             if (!types) return;
 
+            let touchStartX = 0;
+            let touchStartY = 0;
+
+            card.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            }, { passive: true });
+
+            let lastTouchHandled = false;
+            card.addEventListener('touchend', (e) => {
+                const t = e.changedTouches[0];
+                const dx = Math.abs(t.clientX - touchStartX);
+                const dy = Math.abs(t.clientY - touchStartY);
+                if (dx > 10 || dy > 10) return; // 스크롤이므로 무시
+                lastTouchHandled = true;
+                handleCardTap(card, types, serviceTitle);
+                setTimeout(() => { lastTouchHandled = false; }, 400);
+            }, { passive: true });
+
             card.addEventListener('click', () => {
-                if (animating) return;
-                if (active === card)   { close(); }
-                else if (active)       { resetInstant(); setTimeout(() => open(card, types, serviceTitle), 20); }
-                else                   { open(card, types, serviceTitle); }
+                if (lastTouchHandled) return;
+                handleCardTap(card, types, serviceTitle);
             });
         });
     });

@@ -1665,6 +1665,8 @@ body {
 /* ===== Service Card Interactive Filtering ===== */
 .service-card {
     cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     transition: var(--transition),
                 opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
                 filter  0.45s ease;
