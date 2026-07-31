@@ -4,12 +4,12 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>화목스튜디오 | Tuesday Thursday Studio — 전문 영상제작</title>
-<meta name="description" content="화목스튜디오 - 전문 영상제작 회사. 예능, 강의, 행사 촬영, 홍보영상 등 다양한 영상 콘텐츠를 제작합니다." />
-<meta name="keywords" content="영상제작, 화목스튜디오, Tuesday Thursday Studio, 예능촬영, 강의촬영, 홍보영상" />
+<meta name="description" content="화목스튜디오 - 웹드라마, 강의 영상, 릴스, 비하인드, 예능 촬영을 주력으로 하는 소규모 영상 제작 스튜디오입니다." />
+<meta name="keywords" content="영상제작, 화목스튜디오, Tuesday Thursday Studio, 웹드라마, 강의영상, 릴스, 비하인드, 예능촬영" />
 <meta name="author" content="화목스튜디오" />
 <meta name="naver-site-verification" content="8fb175c015b43d8a3a56067131782c5965f3e692" />
 <meta property="og:title" content="화목스튜디오 | Tuesday Thursday Studio" />
-<meta property="og:description" content="Framing your vision — 7년, 200개+ 프로젝트." />
+<meta property="og:description" content="Framing your vision — 기획부터 편집까지 한 사람이 맡는 작은 스튜디오." />
 <meta property="og:image" content="/assets/s1_studio.jpg" />
 <meta property="og:type" content="website" />
 <link rel="icon" href="/TTS logo.png" />
@@ -53,6 +53,16 @@
   .stats{display:flex;gap:40px;flex-wrap:wrap;margin-top:32px}
   .stat__n{font-size:30px;font-weight:700;color:var(--gold-pale);line-height:1.1}
   .stat__l{font-size:13px;color:var(--dim);margin-top:6px}
+
+
+  /* services */
+  .svcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:40px}
+  .svc{background:var(--card);border:1px solid #1a1a1a;border-radius:12px;padding:26px 24px;
+       transition:all .25s cubic-bezier(.4,0,.2,1)}
+  .svc:hover{background:var(--card-hi);border-color:var(--gold-deep);transform:translateY(-3px)}
+  .svc__t{font-size:19px;font-weight:700;color:var(--gold-pale);margin-bottom:12px}
+  .svc__d{font-size:15px;color:#ccc;line-height:1.6;margin-bottom:5px}
+  .svc__s{font-size:13.5px;color:var(--dim);line-height:1.6}
 
   /* clients */
   .clients{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:10px;margin-top:40px}
@@ -108,13 +118,49 @@
       <div class="about__name">정성구</div>
       <div class="about__role">대표 / 촬영감독 겸 PD</div>
       <p class="sec__lead">7년간의 영상 제작 경력을 바탕으로 화목스튜디오를 운영하고 있습니다.
-        기획부터 촬영, 편집과 컬러그레이딩까지 한 사람이 끝까지 책임지는 구조로,
-        규모가 크지 않은 프로젝트에서도 방향이 흐트러지지 않게 만듭니다.</p>
+        기획부터 촬영, 편집까지 한 사람이 끝까지 맡는 구조라 중간에 말이 바뀌지 않고,
+        규모가 크지 않은 프로젝트일수록 이 방식이 잘 맞습니다.
+        큰 규모의 조직이 필요한 프로젝트는 정중히 사양하고 있습니다.</p>
       <div class="stats">
         <div><div class="stat__n">7년+</div><div class="stat__l">경력</div></div>
         <div><div class="stat__n">200개+</div><div class="stat__l">참여 프로젝트</div></div>
         <div><div class="stat__n">FX3 · A7M4 · A7C2</div><div class="stat__l">DJI AVATA2 · MINI 4 PRO</div></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== services ===== -->
+<div class="rule"></div>
+<section class="sec" id="services">
+  <div class="sec__eyebrow">Services</div>
+  <h2 class="sec__title">제공 서비스</h2>
+  <p class="sec__lead">아래 다섯 가지를 주력으로 합니다.</p>
+  <div class="svcs">
+    <div class="svc">
+      <h3 class="svc__t">웹드라마</h3>
+      <p class="svc__d">웹드라마 촬영 및 편집</p>
+      <p class="svc__s">작은 규모에서도 흐름이 살아있는 연출</p>
+    </div>
+    <div class="svc">
+      <h3 class="svc__t">강의 영상</h3>
+      <p class="svc__d">온라인 강의 및 교육 콘텐츠 제작</p>
+      <p class="svc__s">전문적이고 명확한 영상 구성</p>
+    </div>
+    <div class="svc">
+      <h3 class="svc__t">릴스 · 쇼츠</h3>
+      <p class="svc__d">릴스, 쇼츠 등 숏폼 영상 제작</p>
+      <p class="svc__s">트렌디하고 임팩트 있는 콘텐츠</p>
+    </div>
+    <div class="svc">
+      <h3 class="svc__t">비하인드 영상</h3>
+      <p class="svc__d">촬영 현장의 생생한 비하인드</p>
+      <p class="svc__s">특별한 순간을 가장 가까이에서 기록</p>
+    </div>
+    <div class="svc">
+      <h3 class="svc__t">예능 촬영</h3>
+      <p class="svc__d">유튜브 예능 콘텐츠 촬영 및 편집</p>
+      <p class="svc__s">생동감 있고 재미있는 영상 제작</p>
     </div>
   </div>
 </section>
@@ -166,8 +212,8 @@
       <div class="cfield"><label for="f-svc">서비스 선택 *</label>
         <select id="f-svc" name="service" required>
           <option value="">선택해주세요</option>
-          <option>예능 촬영</option><option>강의 촬영</option><option>행사 촬영</option>
-          <option>홍보영상</option><option>숏폼 콘텐츠</option><option>비하인드 영상</option>
+          <option>웹드라마</option><option>강의 영상</option><option>릴스 · 쇼츠</option>
+          <option>비하인드 영상</option><option>예능 촬영</option>
           <option>기타</option>
         </select>
       </div>
@@ -193,43 +239,43 @@ mountScrollWorld(document.getElementById('world'), {
   connScroll: 1.0,
   sections: [
     { id:'studio', label:'스튜디오',
-      still:'assets/s1_studio.jpg', clip:'assets/vid/dive1.mp4',
+      still:'assets/s1_studio.jpg', clip:'assets/vid/dive1.mp4', clipMobile:'assets/vid/dive1-m.mp4',
       accent:'#C9A86C', scroll:1.8, linger:0.35,
       eyebrow:'TUESDAY THURSDAY STUDIO',
       title:'Framing your vision',
-      body:'7년, 200개가 넘는 프로젝트를 카메라 뒤에서 만들어 왔습니다.',
+      body:'기획부터 촬영과 편집까지, 한 사람이 끝까지 맡는 작은 스튜디오입니다.',
       tags:['FX3 · A7M4 · A7C2','DJI AVATA2 · MINI 4 PRO'] },
 
-    { id:'shoot', label:'촬영 현장',
-      still:'assets/s2_shoot.jpg', clip:'assets/vid/dive2.mp4',
+    { id:'shoot', label:'웹드라마 · 예능',
+      still:'assets/s2_shoot.jpg', clip:'assets/vid/dive2.mp4', clipMobile:'assets/vid/dive2-m.mp4',
       accent:'#E8D5A3',
-      eyebrow:'예능 · 홍보영상',
-      title:'카메라가 도는 순간',
-      body:'생동감 있는 예능부터 설득력 있는 브랜드 필름까지, 현장에서 완성합니다.',
-      tags:['예능 촬영','홍보영상','비하인드'] },
+      eyebrow:'웹드라마 · 예능 촬영',
+      title:'생동감 있고 재미있게',
+      body:'유튜브 예능 콘텐츠와 웹드라마를 촬영부터 편집까지 맡아 만듭니다.',
+      tags:['웹드라마','예능 촬영','유튜브 콘텐츠'] },
 
-    { id:'lecture', label:'강의 스튜디오',
-      still:'assets/s3_lecture.jpg', clip:'assets/vid/dive3.mp4',
+    { id:'lecture', label:'강의 영상',
+      still:'assets/s3_lecture.jpg', clip:'assets/vid/dive3.mp4', clipMobile:'assets/vid/dive3-m.mp4',
       accent:'#4FB3A8',
-      eyebrow:'강의 · 교육 콘텐츠',
-      title:'명확하게 전달되도록',
-      body:'온라인 강의와 교육 콘텐츠를, 흔들림 없는 구성으로 담아냅니다.',
-      tags:['3카메라','프롬프터','현장 음향'] },
+      eyebrow:'강의 영상',
+      title:'전문적이고 명확하게',
+      body:'온라인 강의와 교육 콘텐츠를, 전달이 흐트러지지 않는 구성으로 담습니다.',
+      tags:['온라인 강의','교육 콘텐츠','3카메라'] },
 
-    { id:'event', label:'행사 · 항공',
-      still:'assets/s4_event.jpg', clip:'assets/vid/dive4.mp4',
+    { id:'reels', label:'릴스 · 비하인드',
+      still:'assets/s4_reels.jpg', clip:'assets/vid/dive4.mp4', clipMobile:'assets/vid/dive4-m.mp4',
       accent:'#C9A86C',
-      eyebrow:'행사 · 항공 촬영',
-      title:'놓치지 않고 기록합니다',
-      body:'무대 위와 하늘 위, 두 시점에서 소중한 순간을 남깁니다.',
-      tags:['행사 스케치','드론 항공','숏폼'] },
+      eyebrow:'릴스 · 비하인드',
+      title:'가장 가까이에서',
+      body:'릴스와 쇼츠, 그리고 촬영 현장의 생생한 비하인드까지 남깁니다.',
+      tags:['릴스 · 쇼츠','비하인드','세로 촬영'] },
 
     { id:'finale', label:'딜리버리',
-      still:'assets/s5_edit.jpg', clip:'assets/vid/dive5.mp4',
+      still:'assets/s5_edit.jpg', clip:'assets/vid/dive5.mp4', clipMobile:'assets/vid/dive5-m.mp4',
       accent:'#E8D5A3', scroll:2.0, linger:0.45,
-      eyebrow:'200개+ 프로젝트',
-      title:'완성해서 건네드립니다',
-      body:'촬영부터 편집과 컬러그레이딩까지, 한 곳에서 끝냅니다.',
+      eyebrow:'7년 · 200개+ 프로젝트',
+      title:'맡겨보세요',
+      body:'규모가 크지 않은 프로젝트일수록, 끝까지 책임지는 사람이 만드는 편이 낫습니다.',
       tags:[],
       cta:{ primary:{ label:'프로젝트 문의', href:'#contact' },
             secondary:{ label:'작업한 곳 보기', href:'#works' } } },
@@ -239,6 +285,13 @@ mountScrollWorld(document.getElementById('world'), {
     'assets/vid/conn2.mp4',
     'assets/vid/conn3.mp4',
     'assets/vid/conn4.mp4',
+  ],
+  // 폰에서는 가벼운 720p + 더 조밀한 키프레임 버전을 씁니다
+  connectorsMobile: [
+    'assets/vid/conn1-m.mp4',
+    'assets/vid/conn2-m.mp4',
+    'assets/vid/conn3-m.mp4',
+    'assets/vid/conn4-m.mp4',
   ],
 });
 </script>
