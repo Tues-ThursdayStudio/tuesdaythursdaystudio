@@ -54,13 +54,15 @@
   /* ══ 엔진이 남기는 고정 레이어 위로 본문을 올린다 ══
      .sw-sky / .sw-copylayer 가 position:fixed 로 화면을 계속 덮기 때문에
      이 래퍼가 없으면 아래 내용이 그 밑에 깔려 흐릿하게 보인다. */
-  #after{position:relative;z-index:45;background:var(--bg)}
+  #after{position:relative;z-index:45;background:transparent}
+  #after > .sec, #after > footer{background:var(--bg)}
   /* 월드 구간을 벗어나면 엔진 오버레이를 완전히 숨긴다 */
-  body.past-world .sw-stage,
-  body.past-world .sw-copylayer,
-  body.past-world .sw-route,
-  body.past-world .sw-hint,
-  body.past-world .sw-sky{opacity:0;visibility:hidden;transition:opacity .4s}
+  .sw-stage,.sw-sky,.sw-route,.sw-hint,.mark{opacity:var(--world-op,1)}
+  body.world-gone .sw-stage,
+  body.world-gone .sw-sky,
+  body.world-gone .sw-route,
+  body.world-gone .sw-hint,
+  body.world-gone .mark{visibility:hidden}
 
 
   /* 본문 구간에서는 상단바에 배경을 깔아 가독성을 확보 */
@@ -150,23 +152,16 @@
     letter-spacing:.26em;text-transform:uppercase;
     color:#fff;
     text-shadow:0 2px 40px rgba(0,0,0,.85),0 1px 8px rgba(0,0,0,.7);
-    transition:opacity .5s ease}
+}
   .mark span{display:block;text-indent:.26em}
-  body.past-world .mark{opacity:0;visibility:hidden}
 
   @media(max-width:860px){
     .mark{left:clamp(20px,6vw,40px);top:auto;bottom:clamp(120px,22vh,190px);transform:none;
       font-size:clamp(24px,7.4vw,40px);letter-spacing:.2em}
   }
 
-  /* 디오라마가 끝날 때 검게 덮어 다음 섹션이 암전에서 올라오게 한다 */
-  .world-out{position:fixed;inset:0;z-index:30;background:#000;opacity:0;
-    pointer-events:none;will-change:opacity}
 
   /* About는 암전에서 떠오르듯 */
-  .hero__bg,.hero__col{transition:opacity .7s ease .1s,transform .7s cubic-bezier(.22,1,.36,1) .1s}
-  body:not(.past-world) .hero__bg{opacity:0}
-  body:not(.past-world) .hero__col{opacity:0;transform:translateY(26px)}
 
   /* ── 레이아웃 ── */
   .wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(20px,5vw,40px)}
@@ -181,9 +176,13 @@
     max-width:36ch;font-weight:400}
 
   /* ── About : 전면 배경 이미지 + 우측 텍스트 ── */
-  .hero{position:relative;isolation:isolate;overflow:hidden;
-    min-height:clamp(680px,92vh,1000px);display:flex;align-items:center;
-    padding-block:clamp(72px,9vw,120px)}
+  /* About을 화면에 붙여두고, 디오라마와 제자리에서 교차 디졸브시킨다.
+     (섹션이 위로 미끄러져 올라오는 '커튼' 움직임을 없애기 위함) */
+  .hero-pin{position:relative;height:200vh}
+  .hero{position:sticky;top:0;height:100vh;min-height:640px;overflow:hidden;
+    display:flex;align-items:center;background:#000;
+    opacity:var(--hero-op,0);will-change:opacity}
+  @supports not (position:sticky){ .hero{position:relative;opacity:1} }
   .hero__bg{position:absolute;inset:0;z-index:-2;
     background-image:image-set(url('assets/about-bg.jpg') 1x);
     background-image:url('assets/about-bg.jpg');
@@ -225,9 +224,9 @@
   .fact__l{margin-top:6px;font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:.05em}
 
   @media(max-width:900px){
+    .hero-pin{height:170vh}
+    .hero{height:100svh}
     .hero__bg{background-image:url('assets/about-bg-m.jpg');background-position:62% center}
-    .hero{min-height:auto;padding-block:clamp(80px,14vw,120px)}
-    .hero__bg{background-position:32% center}
     .hero__scrim{background:
       linear-gradient(0deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.78) 45%, rgba(0,0,0,.62) 100%)}
     .hero__inner{justify-content:flex-start}
@@ -351,12 +350,12 @@
 
 <!-- 스크롤 스크럽 3D 비행 -->
 <div id="world"></div>
-<div class="world-out" aria-hidden="true"></div>
 <div class="mark" aria-hidden="true"><span>Tuesday</span><span>Thursday</span><span>Studio</span></div>
 
 <div id="after">
 
 <!-- ═══ About ═══ -->
+<div class="hero-pin">
 <section class="hero" id="about">
   <div class="hero__bg" aria-hidden="true"></div>
   <div class="hero__scrim" aria-hidden="true"></div>
@@ -383,6 +382,7 @@
     </div>
   </div>
 </section>
+</div><!-- /.hero-pin -->
 
 <!-- ═══ 서비스 ═══ -->
 <section class="sec" id="services"><div class="wrap">
@@ -534,16 +534,34 @@ mountScrollWorld(document.getElementById('world'), SW);
 
 <script>
 /* 월드 구간을 벗어나면 엔진의 고정 오버레이를 숨긴다 */
+/* ══ 디오라마 → About 교차 디졸브 ══
+   About을 화면에 고정해 두고, 스크롤 진행도에 따라
+   디오라마는 서서히 사라지고 About은 서서히 나타난다.
+   섹션이 위로 밀려 올라오는 움직임이 없어 이음새가 보이지 않는다. */
 (function(){
-  var after=document.getElementById('after'); if(!after) return;
-  var on=false;
-  function upd(){
-    var v=after.getBoundingClientRect().top < window.innerHeight*0.55;
-    if(v!==on){ on=v; document.body.classList.toggle('past-world', v); }
+  var pin=document.querySelector('.hero-pin');
+  var after=document.getElementById('after');
+  if(!pin||!after) return;
+  var body=document.body, last=-1, raf=0;
+
+  function apply(){
+    raf=0;
+    var vh=window.innerHeight;
+    var top=pin.getBoundingClientRect().top;
+    // pin 상단이 화면 아래에서 0까지 올라오는 동안 0 → 1
+    var p=1-Math.max(0,Math.min(1,top/vh));
+    var e=p*p*(3-2*p);                       // 부드럽게
+    if(Math.abs(e-last)<0.004) return;
+    last=e;
+    body.style.setProperty('--hero-op', e.toFixed(3));
+    body.style.setProperty('--world-op', (1-e).toFixed(3));
+    body.classList.toggle('world-gone', e>0.995);
+    body.classList.toggle('past-world', e>0.5);
   }
-  addEventListener('scroll', upd, {passive:true});
-  addEventListener('resize', upd);
-  upd();
+  function onScroll(){ if(!raf) raf=requestAnimationFrame(apply); }
+  addEventListener('scroll', onScroll, {passive:true});
+  addEventListener('resize', onScroll);
+  apply();
 })();
 
 /* 포트폴리오 */
@@ -619,93 +637,6 @@ mountScrollWorld(document.getElementById('world'), SW);
 })();
 </script>
 
-<script>
-/* ══ 디오라마 스냅 이동 ══
-   스크롤을 조금만 움직여도 다음 씬으로 완전히 넘어간 뒤 멈춘다.
-   마지막 단계는 About 섹션 상단으로 붙어 '새 페이지 시작'처럼 읽힌다. */
-(function(){
-  var after=document.getElementById('after'), veil=document.querySelector('.world-out');
-  if(!after||!window.SW) return;
-  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function anchors(){
-    var a=[];
-    (SW.sections||[]).forEach(function(x){
-      var g=x._seg; if(g) a.push(g.start+(g.end-g.start)*0.5);
-    });
-    if(!a.length) return null;
-    a.push(after.offsetTop);          // 마지막 정거장 = About 상단
-    return a;
-  }
-  function worldEnd(){ return after.offsetTop; }
-  function inWorld(){ return window.scrollY < worldEnd()-4; }
-
-  /* 마지막 씬 → About 구간에서 서서히 암전 */
-  function paintVeil(){
-    if(!veil) return;
-    var A=anchors(); if(!A){veil.style.opacity=0;return;}
-    var last=A[A.length-2], end=worldEnd(), y=window.scrollY;
-    var p=(y-last)/Math.max(1,end-last);
-    veil.style.opacity=Math.max(0,Math.min(1,p))*0.96;
-  }
-  addEventListener('scroll',paintVeil,{passive:true});
-  addEventListener('resize',paintVeil);
-  paintVeil();
-
-  if(reduce) return;                  /* 모션 최소화 설정이면 기본 스크롤 유지 */
-
-  var busy=false, until=0;
-  function glide(y,ms){
-    busy=true;
-    var y0=window.scrollY, dy=y-y0, t0=performance.now();
-    (function step(t){
-      var p=Math.min(1,(t-t0)/ms);
-      var e=p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;
-      window.scrollTo(0,y0+dy*e);
-      if(p<1) requestAnimationFrame(step);
-      else { busy=false; until=performance.now()+260; }  /* 관성 잔여 입력 차단 */
-    })(performance.now());
-  }
-  function step(dir){
-    var A=anchors(); if(!A) return false;
-    var y=window.scrollY, tol=10, i=-1;
-    if(dir>0){                       /* 현재보다 확실히 아래인 첫 정거장 */
-      for(var k=0;k<A.length;k++){ if(A[k]>y+tol){ i=k; break; } }
-    }else{                           /* 현재보다 확실히 위인 마지막 정거장 */
-      for(var j=A.length-1;j>=0;j--){ if(A[j]<y-tol){ i=j; break; } }
-    }
-    if(i<0) return false;
-    glide(A[i], i===A.length-1?1050:900);
-    return true;
-  }
-  function guard(){ return busy||performance.now()<until; }
-
-  addEventListener('wheel',function(e){
-    if(!inWorld()) return;
-    e.preventDefault();
-    if(guard()) return;
-    step(e.deltaY>0?1:-1);
-  },{passive:false});
-
-  var ty=null;
-  addEventListener('touchstart',function(e){ ty=e.touches[0].clientY; },{passive:true});
-  addEventListener('touchmove',function(e){ if(inWorld()) e.preventDefault(); },{passive:false});
-  addEventListener('touchend',function(e){
-    if(ty===null||!inWorld()) { ty=null; return; }
-    var dy=ty-(e.changedTouches[0].clientY); ty=null;
-    if(Math.abs(dy)<28||guard()) return;
-    step(dy>0?1:-1);
-  },{passive:true});
-
-  addEventListener('keydown',function(e){
-    if(!inWorld()) return;
-    var down=['ArrowDown','PageDown',' ','Spacebar'].indexOf(e.key)>=0;
-    var up=['ArrowUp','PageUp'].indexOf(e.key)>=0;
-    if(!down&&!up) return;
-    e.preventDefault(); if(guard()) return;
-    step(down?1:-1);
-  });
-})();
-</script>
 </body>
 </html>
