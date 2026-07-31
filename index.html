@@ -21,245 +21,307 @@
   @font-face{font-family:'Pretendard';src:url('fonts/Pretendard-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
   @font-face{font-family:'Pretendard';src:url('fonts/Pretendard-Black.woff2') format('woff2');font-weight:900;font-display:swap}
 
-  /* Theme the scroll-world engine. --sw-bg matches the generated scene background. */
   :root, .sw-root{
-    --sw-bg:#080808;
-    --sw-ink:#F0EDE8;
-    --sw-ink-soft:#999999;
-    --sw-accent:#C9A86C;
+    --sw-bg:#080808; --sw-ink:#F5F5F7; --sw-ink-soft:#98989D; --sw-accent:#C9A86C;
     --sw-font-display:'Pretendard',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
     --sw-font-body:'Pretendard',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
 
-    --gold:#C9A86C; --gold-pale:#E8D5A3; --gold-deep:#9E7A47;
-    --teal:#4FB3A8; --ink:#F0EDE8; --muted:#999; --dim:#666;
-    --bg:#080808; --card:#111; --card-hi:#1C1C1C;
+    --ink:#F5F5F7;        /* 본문 */
+    --ink-2:#C7C7CC;      /* 보조 */
+    --ink-3:#8E8E93;      /* 캡션 */
+    --line:rgba(255,255,255,.10);
+    --line-2:rgba(255,255,255,.06);
+    --bg:#000;
+    --surface:#101012;
+    --surface-2:#18181B;
+    --gold:#C9A86C; --gold-lt:#E8D5A3;
+    --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,monospace;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--ink);font-family:'Pretendard',system-ui,sans-serif;font-weight:400;-webkit-font-smoothing:antialiased}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--ink);
+    font-family:'Pretendard',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+    letter-spacing:-.01em}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  ::selection{background:var(--gold);color:#000}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
 
-  /* ---- sections below the flight ---- */
-  .sec{max-width:1120px;margin:0 auto;padding:120px 24px}
-  .sec__eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:14px}
-  .sec__title{font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.02em;margin-bottom:16px}
-  .sec__lead{color:var(--muted);font-size:17px;line-height:1.75;max-width:60ch}
-  .rule{height:1px;background:linear-gradient(90deg,transparent,#222 15%,#222 85%,transparent)}
-
-  /* about */
-  .about{display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:start}
-  .about__photo{width:220px;height:220px;border-radius:14px;object-fit:cover;filter:grayscale(.15)}
-  .about__name{font-size:26px;font-weight:700;margin-bottom:6px}
-  .about__role{color:var(--gold);font-size:15px;margin-bottom:18px}
-  .stats{display:flex;gap:40px;flex-wrap:wrap;margin-top:32px}
-  .stat__n{font-size:30px;font-weight:700;color:var(--gold-pale);line-height:1.1}
-  .stat__l{font-size:13px;color:var(--dim);margin-top:6px}
-
-
-  /* services */
-  .svcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:40px}
-  .svc{background:var(--card);border:1px solid #1a1a1a;border-radius:12px;padding:26px 24px;
-       transition:all .25s cubic-bezier(.4,0,.2,1)}
-  .svc:hover{background:var(--card-hi);border-color:var(--gold-deep);transform:translateY(-3px)}
-  .svc__t{font-size:19px;font-weight:700;color:var(--gold-pale);margin-bottom:12px}
-  .svc__d{font-size:15px;color:#ccc;line-height:1.6;margin-bottom:5px}
-  .svc__s{font-size:13.5px;color:var(--dim);line-height:1.6}
+  /* ══ 엔진이 남기는 고정 레이어 위로 본문을 올린다 ══
+     .sw-sky / .sw-copylayer 가 position:fixed 로 화면을 계속 덮기 때문에
+     이 래퍼가 없으면 아래 내용이 그 밑에 깔려 흐릿하게 보인다. */
+  #after{position:relative;z-index:45;background:var(--bg)}
+  /* 월드 구간을 벗어나면 엔진 오버레이를 완전히 숨긴다 */
+  body.past-world .sw-stage,
+  body.past-world .sw-copylayer,
+  body.past-world .sw-route,
+  body.past-world .sw-hint,
+  body.past-world .sw-sky{opacity:0;visibility:hidden;transition:opacity .4s}
 
 
-  /* 고정 문의 버튼 */
-  .cta-fixed{position:fixed;right:24px;bottom:24px;z-index:60;
-    background:linear-gradient(135deg,#C9A86C 0%,#9E7A47 100%);color:#0a0a0a;
-    padding:15px 26px;border-radius:999px;font-size:15px;font-weight:700;text-decoration:none;
-    box-shadow:0 8px 30px rgba(0,0,0,.5),0 0 0 1px rgba(232,213,163,.25);
-    transition:transform .2s,box-shadow .2s;display:flex;align-items:center;gap:8px}
-  .cta-fixed:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(201,168,108,.35)}
-  @media(max-width:820px){.cta-fixed{right:16px;bottom:16px;padding:13px 20px;font-size:14px}}
+  /* 본문 구간에서는 상단바에 배경을 깔아 가독성을 확보 */
+  body.past-world .sw-topbar{background:rgba(0,0,0,.72);backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid var(--line-2);transition:background .3s}
 
-  /* 포트폴리오 */
-  .pf-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:34px 0 10px}
-  .pf-tab{background:var(--card);border:1px solid #1f1f1f;border-radius:999px;
-    padding:9px 17px;font-family:inherit;font-size:13.5px;color:#aaa;cursor:pointer;
-    transition:all .2s}
-  .pf-tab:hover{border-color:var(--gold-deep);color:var(--gold-pale)}
-  .pf-tab.on{background:var(--gold);border-color:var(--gold);color:#0a0a0a;font-weight:700}
-  .pf-count{font-size:13px;color:var(--dim);margin:16px 0 20px}
-  .pf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:18px}
-  .pf-grid.shorts{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
-  .pf-item{background:var(--card);border:1px solid #1a1a1a;border-radius:12px;overflow:hidden;
-    text-decoration:none;display:block;transition:all .25s cubic-bezier(.4,0,.2,1)}
-  .pf-item:hover{border-color:var(--gold-deep);transform:translateY(-4px);
-    box-shadow:0 12px 34px rgba(0,0,0,.5)}
-  .pf-thumb{position:relative;width:100%;aspect-ratio:16/9;background:#0c0c0c;overflow:hidden}
-  .pf-grid.shorts .pf-thumb{aspect-ratio:9/16}
-  .pf-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-  .pf-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-    background:rgba(0,0,0,.25);opacity:0;transition:opacity .25s}
-  .pf-item:hover .pf-play{opacity:1}
-  .pf-play span{width:52px;height:52px;border-radius:50%;background:rgba(201,168,108,.92);
-    display:flex;align-items:center;justify-content:center;color:#0a0a0a;font-size:19px;padding-left:4px}
-  .pf-body{padding:15px 16px 17px}
-  .pf-badge{display:inline-block;font-size:11.5px;color:var(--gold-pale);
-    border:1px solid #33291a;background:#161208;border-radius:5px;padding:3px 8px;margin-bottom:9px}
-  .pf-title{font-size:14px;color:#ddd;line-height:1.5;margin-bottom:7px;
+  /* ── 레이아웃 ── */
+  .wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(20px,5vw,40px)}
+  .sec{padding-block:clamp(88px,13vw,168px)}
+  .sec + .sec{border-top:1px solid var(--line-2)}
+
+  /* ── 섹션 헤더 ── */
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:20px}
+  .h2{font-size:clamp(34px,5.6vw,60px);font-weight:900;letter-spacing:-.035em;line-height:1.06}
+  .lead{margin-top:20px;font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:var(--ink-2);
+    max-width:36ch;font-weight:400}
+
+  /* ── About ── */
+  .about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
+    gap:clamp(36px,6vw,88px);align-items:center;margin-top:clamp(44px,6vw,72px)}
+  .about__fig{position:relative}
+  .about__photo{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:18px;
+    filter:grayscale(.35) contrast(1.05)}
+  .about__meta{position:absolute;left:0;bottom:0;right:0;padding:22px;
+    background:linear-gradient(0deg,rgba(0,0,0,.88),transparent);border-radius:0 0 18px 18px}
+  .about__name{font-size:24px;font-weight:700;letter-spacing:-.02em}
+  .about__role{margin-top:5px;font-family:var(--mono);font-size:12.5px;color:var(--gold-lt);letter-spacing:.02em}
+  .about__body{font-size:clamp(17px,1.5vw,19px);line-height:1.75;color:var(--ink-2)}
+  .about__body p + p{margin-top:18px}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:38px;
+    background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .fact{background:var(--surface);padding:22px 18px}
+  .fact__n{font-size:clamp(22px,2.4vw,30px);font-weight:900;letter-spacing:-.03em;color:var(--ink)}
+  .fact__l{margin-top:7px;font-family:var(--mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.05em}
+
+  /* ── 서비스 ── */
+  .svcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:1px;margin-top:clamp(40px,5vw,64px);background:var(--line);
+    border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .svc{background:var(--surface);padding:34px 28px 38px;transition:background .3s}
+  .svc:hover{background:var(--surface-2)}
+  .svc__i{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.08em}
+  .svc__t{margin-top:16px;font-size:21px;font-weight:700;letter-spacing:-.02em}
+  .svc__d{margin-top:12px;font-size:15.5px;line-height:1.65;color:var(--ink-2)}
+
+  /* ── 포트폴리오 ── */
+  .pf-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px}
+  .pf-stat{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);letter-spacing:.04em;
+    text-align:right;line-height:1.9}
+  .pf-stat b{color:var(--gold-lt);font-weight:500}
+
+  .seg{display:flex;gap:6px;overflow-x:auto;margin-top:clamp(36px,4.5vw,54px);
+    padding-bottom:6px;scrollbar-width:none}
+  .seg::-webkit-scrollbar{display:none}
+  .seg button{flex:0 0 auto;background:transparent;border:1px solid var(--line);
+    border-radius:999px;padding:10px 18px;font-family:inherit;font-size:14px;font-weight:500;
+    color:var(--ink-2);cursor:pointer;white-space:nowrap;letter-spacing:-.01em;
+    transition:all .22s cubic-bezier(.4,0,.2,1)}
+  .seg button:hover{border-color:rgba(255,255,255,.24);color:var(--ink)}
+  .seg button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#000;font-weight:700}
+  .seg button span{font-family:var(--mono);font-size:11.5px;opacity:.55;margin-left:7px}
+
+  .subseg{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+  .subseg button{background:transparent;border:0;padding:6px 11px;border-radius:8px;
+    font-family:inherit;font-size:13px;color:var(--ink-3);cursor:pointer;transition:all .2s}
+  .subseg button:hover{color:var(--ink);background:rgba(255,255,255,.06)}
+  .subseg button[aria-pressed="true"]{color:var(--gold-lt);background:rgba(201,168,108,.12)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    gap:clamp(20px,2.4vw,30px);margin-top:clamp(34px,4vw,48px)}
+  .grid.is-vertical{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+  .card{display:block;text-decoration:none;border-radius:14px;overflow:hidden;
+    background:var(--surface);border:1px solid var(--line-2);
+    transition:border-color .3s,transform .3s cubic-bezier(.4,0,.2,1)}
+  .card:hover{border-color:rgba(255,255,255,.2);transform:translateY(-3px)}
+  .card__thumb{position:relative;aspect-ratio:16/9;background:#0b0b0d;overflow:hidden}
+  .is-vertical .card__thumb{aspect-ratio:9/16}
+  .card__thumb img{width:100%;height:100%;object-fit:cover;
+    transition:transform .5s cubic-bezier(.4,0,.2,1),opacity .3s}
+  .card:hover .card__thumb img{transform:scale(1.045)}
+  .card__play{position:absolute;left:14px;bottom:14px;width:36px;height:36px;border-radius:50%;
+    background:rgba(0,0,0,.55);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);
+    display:grid;place-items:center;color:#fff;font-size:11px;padding-left:2px;
+    opacity:0;transform:translateY(6px);transition:all .28s}
+  .card:hover .card__play{opacity:1;transform:translateY(0)}
+  .card__body{padding:17px 18px 20px}
+  .card__title{font-size:14.5px;line-height:1.5;color:var(--ink);font-weight:500;
     display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .pf-role{font-size:12.5px;color:var(--dim)}
+  .card__meta{margin-top:11px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+    font-family:var(--mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.02em}
+  .card__meta i{font-style:normal;color:var(--gold-lt)}
+  .card__meta em{font-style:normal;opacity:.4}
+  .pf-empty{margin-top:40px;color:var(--ink-3);font-size:15px}
 
-  /* clients */
-  .clients{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:10px;margin-top:40px}
-  .client{background:var(--card);border:1px solid #1a1a1a;border-radius:10px;padding:20px 16px;text-align:center;
-          font-size:14.5px;color:#bbb;transition:all .25s cubic-bezier(.4,0,.2,1)}
-  .client:hover{background:var(--card-hi);border-color:var(--gold-deep);color:var(--gold-pale);transform:translateY(-2px)}
+  /* ── 문의 ── */
+  .contact{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1fr);
+    gap:clamp(40px,6vw,80px);margin-top:clamp(44px,5vw,64px)}
+  .cinfo{border-top:1px solid var(--line);padding-top:20px;margin-top:26px}
+  .cinfo__k{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+  .cinfo__v{margin-top:9px;font-size:19px;font-weight:500;letter-spacing:-.01em}
+  .cinfo__v a{text-decoration:none}
+  .cinfo__v a:hover{color:var(--gold-lt)}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;
+    color:var(--ink-3);margin-bottom:8px;text-transform:uppercase}
+  .field input,.field select,.field textarea{width:100%;background:var(--surface);
+    border:1px solid var(--line);border-radius:11px;padding:14px 15px;color:var(--ink);
+    font-family:inherit;font-size:15.5px;transition:border-color .2s,background .2s}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;
+    border-color:var(--gold);background:var(--surface-2)}
+  .field textarea{min-height:132px;resize:vertical;line-height:1.6}
+  .btn{width:100%;background:var(--ink);color:#000;border:0;border-radius:11px;
+    padding:16px 28px;font-family:inherit;font-size:16px;font-weight:700;letter-spacing:-.01em;
+    cursor:pointer;transition:opacity .2s,transform .2s}
+  .btn:hover{opacity:.88;transform:translateY(-1px)}
 
-  /* contact */
-  .contact{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
-  .cfield{margin-bottom:18px}
-  .cfield label{display:block;font-size:13px;color:var(--muted);margin-bottom:7px}
-  .cfield input,.cfield select,.cfield textarea{
-    width:100%;background:var(--card);border:1px solid #222;border-radius:9px;padding:13px 14px;
-    color:var(--ink);font-family:inherit;font-size:15px;transition:border-color .2s}
-  .cfield input:focus,.cfield select:focus,.cfield textarea:focus{outline:none;border-color:var(--gold)}
-  .cfield textarea{min-height:130px;resize:vertical}
-  .btn{display:inline-block;background:linear-gradient(135deg,#C9A86C 0%,#9E7A47 100%);color:#0a0a0a;
-       border:none;border-radius:9px;padding:15px 34px;font-family:inherit;font-size:15.5px;font-weight:700;
-       cursor:pointer;transition:transform .2s,box-shadow .2s}
-  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,168,108,.28)}
-  .cinfo{margin-bottom:30px}
-  .cinfo__k{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:7px}
-  .cinfo__v{font-size:19px;color:var(--gold-pale)}
-  .cinfo__v a{color:inherit;text-decoration:none}
-  .cinfo__v a:hover{text-decoration:underline}
+  /* ── 고정 문의 버튼 ── */
+  .cta-fixed{position:fixed;right:clamp(16px,2.4vw,28px);bottom:clamp(16px,2.4vw,28px);z-index:70;
+    display:flex;align-items:center;gap:9px;background:var(--ink);color:#000;
+    padding:14px 24px;border-radius:999px;font-size:15px;font-weight:700;letter-spacing:-.01em;
+    text-decoration:none;box-shadow:0 10px 34px rgba(0,0,0,.55);
+    transition:transform .25s cubic-bezier(.4,0,.2,1),opacity .25s}
+  .cta-fixed:hover{transform:translateY(-2px)}
+  .cta-fixed::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold)}
 
-  footer{border-top:1px solid #1a1a1a;padding:44px 24px;text-align:center;color:var(--dim);font-size:13.5px}
-  footer strong{display:block;color:var(--ink);font-size:16px;font-weight:700;margin-bottom:5px}
-  footer span{display:block;color:var(--muted);font-size:13px;margin-bottom:14px}
+  footer{border-top:1px solid var(--line-2);padding:52px 0 60px;text-align:center}
+  .f-brand{font-size:17px;font-weight:700;letter-spacing:-.02em}
+  .f-sub{margin-top:6px;font-family:var(--mono);font-size:12px;color:var(--ink-3);letter-spacing:.06em}
+  .f-copy{margin-top:22px;font-size:12.5px;color:var(--ink-3)}
 
-  @media(max-width:820px){
-    .sec{padding:80px 20px}
-    .about{grid-template-columns:1fr;gap:28px}
-    .about__photo{width:150px;height:150px}
-    .contact{grid-template-columns:1fr;gap:40px}
+  @media(max-width:880px){
+    .about{grid-template-columns:1fr;gap:34px}
+    .about__photo{aspect-ratio:3/2}
+    .contact{grid-template-columns:1fr}
+    .facts{grid-template-columns:1fr}
+    .pf-head{align-items:flex-start}
+    .pf-stat{text-align:left}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+    html{scroll-behavior:auto}
   }
 </style>
 </head>
 <body>
 <div id="top"></div>
 
-<!-- ===== the scroll-scrubbed camera flight ===== -->
+<!-- 스크롤 스크럽 3D 비행 -->
 <div id="world"></div>
 
-<!-- ===== about ===== -->
-<div class="rule"></div>
-<section class="sec" id="about">
-  <div class="sec__eyebrow">About</div>
-  <h2 class="sec__title">화목스튜디오</h2>
-  <div class="about" style="margin-top:44px">
-    <img class="about__photo" src="images/profile.jpg" alt="정성구 대표" />
+<div id="after">
+
+<!-- ═══ About ═══ -->
+<section class="sec" id="about"><div class="wrap">
+  <div class="eyebrow">About</div>
+  <h2 class="h2">카메라 뒤의 7년</h2>
+
+  <div class="about">
+    <figure class="about__fig">
+      <img class="about__photo" src="images/profile.jpg" alt="정성구 촬영감독" />
+      <figcaption class="about__meta">
+        <div class="about__name">정성구</div>
+        <div class="about__role">촬영감독 · PD / 화목스튜디오</div>
+      </figcaption>
+    </figure>
+
     <div>
-      <div class="about__name">정성구</div>
-      <div class="about__role">대표 / 촬영감독 겸 PD</div>
-      <p class="sec__lead">7년간의 영상 제작 경력을 바탕으로 화목스튜디오를 운영하고 있습니다.
-        기획부터 촬영, 편집까지 한 사람이 끝까지 맡는 구조라 중간에 말이 바뀌지 않고,
-        규모가 크지 않은 프로젝트일수록 이 방식이 잘 맞습니다.
-        큰 규모의 조직이 필요한 프로젝트는 정중히 사양하고 있습니다.</p>
-      <div class="stats">
-        <div><div class="stat__n">7년+</div><div class="stat__l">경력</div></div>
-        <div><div class="stat__n">200개+</div><div class="stat__l">참여 프로젝트</div></div>
-        <div><div class="stat__n">FX3 · A7M4 · A7C2</div><div class="stat__l">DJI AVATA2 · MINI 4 PRO</div></div>
+      <div class="about__body">
+        <p>7년간 영상 제작 현장에 있었습니다. 유튜브 예능부터 웹드라마, 강의 콘텐츠, 브랜드 비하인드까지
+           카메라를 잡았고, 그중 상당수는 기획부터 편집까지 혼자 끝냈습니다.</p>
+        <p>규모가 크든 작든 결국 화면에 남는 건 현장에서의 판단입니다.
+           그 판단을 직접 내리고 책임지는 방식으로 일합니다.</p>
+      </div>
+      <div class="facts">
+        <div class="fact"><div class="fact__n">7년+</div><div class="fact__l">경력</div></div>
+        <div class="fact"><div class="fact__n">107편</div><div class="fact__l">공개 작업</div></div>
+        <div class="fact"><div class="fact__n">22곳</div><div class="fact__l">클라이언트</div></div>
       </div>
     </div>
   </div>
-</section>
+</div></section>
 
-<!-- ===== services ===== -->
-<div class="rule"></div>
-<section class="sec" id="services">
-  <div class="sec__eyebrow">Services</div>
-  <h2 class="sec__title">제공 서비스</h2>
-  <p class="sec__lead">아래 다섯 가지를 주력으로 합니다.</p>
+<!-- ═══ 서비스 ═══ -->
+<section class="sec" id="services"><div class="wrap">
+  <div class="eyebrow">Services</div>
+  <h2 class="h2">이런 걸 만듭니다</h2>
+  <p class="lead">아래 다섯 가지를 주력으로 합니다.</p>
+
   <div class="svcs">
-    <div class="svc">
-      <h3 class="svc__t">웹드라마</h3>
-      <p class="svc__d">웹드라마 촬영 및 편집</p>
-      <p class="svc__s">작은 규모에서도 흐름이 살아있는 연출</p>
-    </div>
-    <div class="svc">
-      <h3 class="svc__t">강의 영상</h3>
-      <p class="svc__d">온라인 강의 및 교육 콘텐츠 제작</p>
-      <p class="svc__s">전문적이고 명확한 영상 구성</p>
-    </div>
-    <div class="svc">
-      <h3 class="svc__t">릴스 · 쇼츠</h3>
-      <p class="svc__d">릴스, 쇼츠 등 숏폼 영상 제작</p>
-      <p class="svc__s">트렌디하고 임팩트 있는 콘텐츠</p>
-    </div>
-    <div class="svc">
-      <h3 class="svc__t">비하인드 영상</h3>
-      <p class="svc__d">촬영 현장의 생생한 비하인드</p>
-      <p class="svc__s">특별한 순간을 가장 가까이에서 기록</p>
-    </div>
-    <div class="svc">
-      <h3 class="svc__t">예능 촬영</h3>
-      <p class="svc__d">유튜브 예능 콘텐츠 촬영 및 편집</p>
-      <p class="svc__s">생동감 있고 재미있는 영상 제작</p>
-    </div>
+    <div class="svc"><div class="svc__i">01</div><h3 class="svc__t">웹드라마</h3>
+      <p class="svc__d">촬영부터 편집까지. 회차가 이어져도 톤이 흔들리지 않게.</p></div>
+    <div class="svc"><div class="svc__i">02</div><h3 class="svc__t">강의 영상</h3>
+      <p class="svc__d">온라인 강의와 교육 콘텐츠. 전문적이고 명확한 구성.</p></div>
+    <div class="svc"><div class="svc__i">03</div><h3 class="svc__t">릴스 · 쇼츠</h3>
+      <p class="svc__d">세로 화면에 맞춰 처음부터 설계하는 숏폼.</p></div>
+    <div class="svc"><div class="svc__i">04</div><h3 class="svc__t">비하인드</h3>
+      <p class="svc__d">촬영 현장의 공기를 가장 가까이에서 기록.</p></div>
+    <div class="svc"><div class="svc__i">05</div><h3 class="svc__t">예능 촬영</h3>
+      <p class="svc__d">유튜브 예능. 생동감 있고 재미있게.</p></div>
   </div>
-</section>
+</div></section>
 
-<!-- ===== portfolio ===== -->
-<div class="rule"></div>
-<section class="sec" id="works">
-  <div class="sec__eyebrow">Works</div>
-  <h2 class="sec__title">포트폴리오</h2>
-  <p class="sec__lead">지금까지 참여한 작업입니다. 썸네일을 누르면 영상으로 이동합니다.</p>
-  <div class="pf-tabs" id="pfTabs"></div>
-  <div class="pf-count" id="pfCount"></div>
-  <div class="pf-grid" id="pfGrid"></div>
-</section>
-
-<!-- ===== contact ===== -->
-<div class="rule"></div>
-<section class="sec" id="contact">
-  <div class="sec__eyebrow">Contact</div>
-  <h2 class="sec__title">문의하기</h2>
-  <div class="contact" style="margin-top:44px">
+<!-- ═══ 포트폴리오 ═══ -->
+<section class="sec" id="works"><div class="wrap">
+  <div class="pf-head">
     <div>
-      <p class="sec__lead" style="margin-bottom:36px">7년간의 경험과 전문성으로 최고의 결과물을 제공합니다.<br />언제든지 편하게 문의해주세요.</p>
+      <div class="eyebrow">Works</div>
+      <h2 class="h2">지금까지의 작업</h2>
+    </div>
+    <div class="pf-stat" id="pfStat"></div>
+  </div>
+
+  <div class="seg" id="segType" role="group" aria-label="유형별 보기"></div>
+  <div class="subseg" id="segClient" role="group" aria-label="클라이언트별 보기"></div>
+  <div class="grid" id="pfGrid"></div>
+  <p class="pf-empty" id="pfEmpty" hidden>해당하는 작업이 없습니다.</p>
+</div></section>
+
+<!-- ═══ 문의 ═══ -->
+<section class="sec" id="contact"><div class="wrap">
+  <div class="eyebrow">Contact</div>
+  <h2 class="h2">프로젝트 문의</h2>
+
+  <div class="contact">
+    <div>
+      <p class="lead" style="margin-top:0">촬영 일정과 예산, 대략적인 방향만 알려주시면
+        가능 여부와 견적을 회신드립니다.</p>
       <div class="cinfo">
-        <div class="cinfo__k">이메일</div>
-        
+        <div class="cinfo__k">Email</div>
         <div class="cinfo__v"><a href="mailto:info@tuesdaythursdaystudio.com">info@tuesdaythursdaystudio.com</a></div>
       </div>
       <div class="cinfo">
-        <div class="cinfo__k">전화</div>
+        <div class="cinfo__k">Phone</div>
         <div class="cinfo__v"><a href="tel:010-2076-8389">010-2076-8389</a></div>
       </div>
     </div>
-    
+
     <form id="inquiry" method="POST" action="https://formspree.io/f/mgodnpwe">
-      <div class="cfield"><label for="f-name">이름 *</label><input id="f-name" name="name" required /></div>
-      <div class="cfield"><label for="f-mail">이메일 *</label><input id="f-mail" name="email" type="email" required /></div>
-      <div class="cfield"><label for="f-tel">연락처</label><input id="f-tel" name="tel" /></div>
-      <div class="cfield"><label for="f-svc">서비스 선택 *</label>
+      <div class="field"><label for="f-name">이름</label><input id="f-name" name="name" required /></div>
+      <div class="field"><label for="f-mail">이메일</label><input id="f-mail" name="email" type="email" required /></div>
+      <div class="field"><label for="f-tel">연락처</label><input id="f-tel" name="tel" /></div>
+      <div class="field"><label for="f-svc">종류</label>
         <select id="f-svc" name="service" required>
           <option value="">선택해주세요</option>
           <option>웹드라마</option><option>강의 영상</option><option>릴스 · 쇼츠</option>
-          <option>비하인드 영상</option><option>예능 촬영</option>
-          <option>기타</option>
+          <option>비하인드 영상</option><option>예능 촬영</option><option>기타</option>
         </select>
       </div>
-      <div class="cfield"><label for="f-msg">프로젝트 내용 *</label><textarea id="f-msg" name="message" required></textarea></div>
-      <button class="btn" type="submit">문의하기</button>
+      <div class="field"><label for="f-msg">내용</label><textarea id="f-msg" name="message" required></textarea></div>
+      <button class="btn" type="submit">문의 보내기</button>
     </form>
   </div>
-</section>
-
-<a class="cta-fixed" href="#contact">프로젝트 문의</a>
+</div></section>
 
 <footer>
-  <strong>화목스튜디오</strong>
-  <span>Tuesday Thursday Studio</span>
-  © 2025 화목스튜디오. All rights reserved.
+  <div class="f-brand">화목스튜디오</div>
+  <div class="f-sub">TUESDAY THURSDAY STUDIO</div>
+  <div class="f-copy">© 2026 화목스튜디오</div>
 </footer>
 
+</div><!-- /#after -->
+
+<a class="cta-fixed" href="#contact">프로젝트 문의</a>
 <script src="scrub-engine.js"></script>
 <script>
 mountScrollWorld(document.getElementById('world'), {
@@ -273,43 +335,43 @@ mountScrollWorld(document.getElementById('world'), {
       still:'assets/s1_studio.jpg', clip:'assets/vid/dive1.mp4', clipMobile:'assets/vid/dive1-m.mp4',
       accent:'#C9A86C', scroll:1.8, linger:0.35,
       eyebrow:'TUESDAY THURSDAY STUDIO',
-      title:'Framing your vision',
-      body:'기획부터 촬영과 편집까지, 한 사람이 끝까지 맡는 작은 스튜디오입니다.',
+      title:'완성된 영상까지',
+      body:'촬영본이 아니라 완성된 영상을 드립니다. 기획·촬영·편집이 한 사람에게서 이어집니다.',
       tags:['FX3 · A7M4 · A7C2','DJI AVATA2 · MINI 4 PRO'] },
 
     { id:'shoot', label:'웹드라마 · 예능',
       still:'assets/s2_shoot.jpg', clip:'assets/vid/dive2.mp4', clipMobile:'assets/vid/dive2-m.mp4',
       accent:'#E8D5A3',
       eyebrow:'웹드라마 · 예능 촬영',
-      title:'생동감 있고 재미있게',
-      body:'유튜브 예능 콘텐츠와 웹드라마를 촬영부터 편집까지 맡아 만듭니다.',
+      title:'회차가 쌓여도 같은 톤',
+      body:'웹드라마와 유튜브 예능. 1화와 10화의 인상이 달라지지 않게 만듭니다.',
       tags:['웹드라마','예능 촬영','유튜브 콘텐츠'] },
 
     { id:'lecture', label:'강의 영상',
       still:'assets/s3_lecture.jpg', clip:'assets/vid/dive3.mp4', clipMobile:'assets/vid/dive3-m.mp4',
       accent:'#4FB3A8',
       eyebrow:'강의 영상',
-      title:'전문적이고 명확하게',
-      body:'온라인 강의와 교육 콘텐츠를, 전달이 흐트러지지 않는 구성으로 담습니다.',
+      title:'끝까지 들리게',
+      body:'강의는 화면보다 전달이 먼저입니다. 3카메라와 현장 음향으로 말이 새지 않게.',
       tags:['온라인 강의','교육 콘텐츠','3카메라'] },
 
     { id:'reels', label:'릴스 · 비하인드',
       still:'assets/s4_reels.jpg', clip:'assets/vid/dive4.mp4', clipMobile:'assets/vid/dive4-m.mp4',
       accent:'#C9A86C',
       eyebrow:'릴스 · 비하인드',
-      title:'가장 가까이에서',
-      body:'릴스와 쇼츠, 그리고 촬영 현장의 생생한 비하인드까지 남깁니다.',
+      title:'세로로 찍습니다',
+      body:'가로 영상을 잘라 쓰지 않습니다. 릴스와 쇼츠는 처음부터 세로로 설계합니다.',
       tags:['릴스 · 쇼츠','비하인드','세로 촬영'] },
 
     { id:'finale', label:'딜리버리',
       still:'assets/s5_edit.jpg', clip:'assets/vid/dive5.mp4', clipMobile:'assets/vid/dive5-m.mp4',
       accent:'#E8D5A3', scroll:2.0, linger:0.45,
-      eyebrow:'7년 · 200개+ 프로젝트',
-      title:'맡겨보세요',
-      body:'규모가 크지 않은 프로젝트일수록, 끝까지 책임지는 사람이 만드는 편이 낫습니다.',
+      eyebrow:'22개 브랜드 · 107편',
+      title:'107편이 답입니다',
+      body:'지금까지 만든 작업이 바로 아래에 있습니다.',
       tags:[],
-      cta:{ primary:{ label:'프로젝트 문의', href:'#contact' },
-            secondary:{ label:'작업한 곳 보기', href:'#works' } } },
+      cta:{ primary:{ label:'작업 보러 가기', href:'#works' },
+            secondary:{ label:'프로젝트 문의', href:'#contact' } } },
   ],
   connectors: [
     'assets/vid/conn1.mp4',
@@ -328,41 +390,89 @@ mountScrollWorld(document.getElementById('world'), {
 </script>
 
 <script>
-const PF = {"아이엠뱅크": [{"id": "zdv19CZ1ILI", "title": "복지가 별거냐? 원이 & 리브 얼굴이 곧 복지;; 대한민국 알고리즘 점령한 역주행 아이돌의 대명사 리센느(with. 숏박스 김원훈 & 개그콘서트 나현영) ㅣ iM파인다이닝 EP.3", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "62CBTVe3SkM", "title": "※귀여움 한도 초과※ \"어떻게 사람이 다람쥐..?\" 개콘 듀오 무장해제 시키는 무공해 인간 가요이 키우기 (with. 숏박스 김원훈&개그콘서트 나현영) ㅣ iM파인다이닝 EP.2", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "EzHpp37qEzc", "title": "\"우울한 말상이세요\" 고민 상담왔다가 얼평 당하는 박성준 역술가 (with. 숏박스 김원훈& 개그콘서트 나현영)ㅣ iM파인다이닝 EP.1", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "X67EhbIp-BM", "title": "※과몰입주의※ 인생 첫 소개팅에 폭주하는 우정잉 ㅣ신개념 연애 프로그램ㅣ소비내역 시그널 우정잉 편", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "HANxkAAarzk", "title": "나만큼 결혼에 진심인 사람 있음 나와보라 그래! 결혼무새 박세미, 드디어 시집 갑니다 ㅣ 소비내역 시그널 EP.2", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "IoGNILv8Ci8", "title": "이거 기획한 사람 당장 나와;; 미3누, 30년 인생 최초 헬스장 3대 측정 공개합니다! (일일 PT쌤. 정대진 선수 & 최재상 선수)ㅣ부자 될 MZ들 EP.6", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "Jdlx0e7nXhU", "title": "은행장 개인 카드 털러 대구까지 다녀왔습니다 ㅣ 부자 될 MZ들 EP.5", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "f-Lg6iT0Qew", "title": "올리기만 하면 무조건 터진다?! 유튜버X희극인X배우 조회수 치트키와 함께하는 스케치 코미디 도전기 (feat. 김두현, 최하슬) ㅣ 부자 될 MZ들 EP.4", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "GPsrh6DH7WI", "title": "EP.3 부자 될 MZ들 ㅣ 저기 내 남친 지나간다. 100만 패션 유튜버 깡스타일리스트와 미미미누의 따라만 해도 여친 생기는 여심저격 남친룩북 공개!", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "3jg_lEe1qMo", "title": "미미미누, 래퍼 데뷔 깜짝 발표?! 길거리 피처링남 '타임피버 - 동창회' 막차 탑승 ㅣ 부자 될 MZ들 EP.2", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "ftSn2BOrLs4", "title": "얼굴을 안보고 어떻게 고르냐니까는!! (★쿠키있음★) ㅣ 소비내역 시그널 EP.1 폭스클럽 김지유 소개팅", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "BV5fTm-RhZw", "title": "서울 중구에서, 청담동 그녀를 만나다 (with. 미미미누) ㅣ 부자 될 MZ들 EP.1", "role": "촬영감독으로 참여", "type": "유튜브 예능"}], "교보생명": [{"id": "HL_IzHvPAtE", "title": "닥터트윈스 2화", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "EIOV_1RHRyE", "title": "닥터트윈스 1화", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "76WrBF0YIpk", "title": "건강보장구역 EP.5 교보문고 편", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "2-HHZ69gQJ4", "title": "건강보장구역 EP.4 성동FP지원단 편", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "k0nwZjly31g", "title": "건강보장구역 EP.3 노들섬 편", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "A52B05L0j0E", "title": "건강보장구역 EP.2 교보생명 편", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "v7e38QsNkeE", "title": "건강보장구역 EP.1 수안보 온천제 편", "role": "촬영감독으로 참여", "type": "유튜브 예능"}], "KT&G 상상플래닛": [{"id": "C21GmrufI6w", "title": "국내 거주 외국인의 커리어를 확장하다 | 엑스프리베", "role": "1인 제작", "type": "강의 및 인터뷰"}, {"id": "Jmb2QxfU42U", "title": "소유가 아닌 경험으로, 캠핑의 진입장벽을 낮추다 | 캠터 정성식", "role": "1인 제작", "type": "강의 및 인터뷰"}, {"id": "V10nvw9mad0", "title": "홍삼 부산물로 스킨케어 제품을 만드는 이유 | 그리닝 김기현 김수빈 오수진", "role": "1인 제작", "type": "강의 및 인터뷰"}, {"id": "JqelOiRBJEg", "title": "온가족 안심 숟가락, [세모녀]는 일상과 함께합니다 | 세모녀 이한결", "role": "1인 제작", "type": "강의 및 인터뷰"}, {"id": "10SC73vbmKA", "title": "전 세대 음악심리치료, [피어나]는 다르게 제공합니다 | 피어나 박혜인", "role": "1인 제작", "type": "강의 및 인터뷰"}, {"id": "E6NiNHLP6Yc", "title": "[현장스케치] KT&G 상상플래닛 | 𝐏𝐋𝐀𝐍𝐄𝐓 𝐒𝐔𝐌𝐌𝐈𝐓의 현장 속으로 🪐", "role": "1인 제작", "type": "행사 스케치"}, {"id": "EDB_7NpY4a0", "title": "수어콘텐츠, [뉴챕터]는 다르게 만듭니다 | 뉴챕터 유동영", "role": "1인 제작", "type": "강의 및 인터뷰"}], "에버글로우": [{"id": "iX485v6AN8U", "title": "2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #AISHA", "role": "1인 제작", "type": "숏폼", "shorts": true}, {"id": "RGGy1VBvjqA", "title": "2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #ONDA", "role": "1인 제작", "type": "숏폼", "shorts": true}, {"id": "Yyep1-txVjI", "title": "2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #SIHYEON", "role": "1인 제작", "type": "숏폼", "shorts": true}, {"id": "PU1_brnxWbo", "title": "2026 EVERGLOW WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #EU", "role": "1인 제작", "type": "숏폼", "shorts": true}, {"id": "Zqti4I3fwjA", "title": "2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #3", "role": "1인 제작", "type": "숏폼", "shorts": true}, {"id": "oRQWdH77LbI", "title": "2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT #2", "role": "1인 제작", "type": "숏폼", "shorts": true}, {"id": "yR__nuXqVwg", "title": "2026 EVERGLOW (에버글로우) WORLD TOUR [RE:CODE] HIGHLIGHT SPOT", "role": "1인 제작", "type": "홍보영상"}, {"id": "lK7wOPqhqek", "title": "EVERGLOW (에버글로우) 'CODE' Jacket Photo Behind The Scene", "role": "1인 제작", "type": "비하인드 영상"}, {"id": "_uBgMMeeVdY", "title": "EVERGLOW (에버글로우) 'CODE' MV Behind The Scene", "role": "1인 제작", "type": "비하인드 영상"}, {"id": "YXMhLzlvf-4", "title": "EVERGLOW (에버글로우) Profile Behind The Scene", "role": "1인 제작", "type": "비하인드 영상"}], "크레즐": [{"id": "msLsqqGQsP4", "title": "[Behind] BACKSTAGE : Logline CONCERT with CREZL(크레즐) #2", "role": "1인 제작", "type": "비하인드 영상"}, {"id": "C6i4mv7HsHc", "title": "[Behind] BACKSTAGE : Logline CONCERT with CREZL(크레즐) #1", "role": "1인 제작", "type": "비하인드 영상"}, {"id": "nFOu_TSxFEY", "title": "[Behind] KBS 열린음악회 with CREZL(크레즐)", "role": "1인 제작", "type": "비하인드 영상"}, {"id": "XDNCNl0KOxo", "title": "[Behind] 'HAKUNAMATA:舵' | Music Video with CREZL(크레즐)", "role": "1인 제작", "type": "비하인드 영상"}, {"id": "byZTtzc7pp4", "title": "[Behind] 'HAKUNAMATA:舵' | ALBUM COVER with CREZL(크레즐)", "role": "1인 제작", "type": "비하인드 영상"}, {"id": "nUsRXfySsqw", "title": "[Behind] KBS 불후의명곡 with CREZL(크레즐)", "role": "1인 제작", "type": "비하인드 영상"}, {"id": "18mFpNcxNew", "title": "CREZL (크레즐) Digital Single '늦편지' Official Lyric Video teaser", "role": "1인 제작", "type": "홍보영상"}, {"id": "hC0NODJaPug", "title": "[Behind] DIVE INTO CREZL(FAN-CONCERT) #2", "role": "1인 제작", "type": "비하인드 영상"}, {"id": "51utwEUL064", "title": "[Behind] DIVE INTO CREZL(FAN-CONCERT) #1", "role": "1인 제작", "type": "비하인드 영상"}, {"id": "0y7Lg9dYNt8", "title": "[Behind] 청주 단독 콘서트 With CREZL (크레즐)", "role": "1인 제작", "type": "비하인드 영상"}], "동서울대 K-POP과": [{"id": "gs9EBBKUTqM", "title": "동서울대 K-POPㅣFirst Showcase", "role": "촬영감독으로 참여", "type": "뮤직비디오"}], "더샵": [{"id": "K943B3I1xdI", "title": "[THE SHARP X PLEATSMAMA] 지속가능한 미래를 위한 더샵과 플리츠마마의 특별한 만남✨", "role": "촬영감독으로 참여", "type": "행사 스케치"}, {"id": "p11_BU6K7So", "title": "2024 포스코이앤씨 더샵 신평면 디자인 발표회 현장스케치 | The Home Curator", "role": "촬영감독으로 참여", "type": "행사 스케치"}], "임팩트서클": [{"id": "JjfoD9Kp_9I", "title": "IMPACT CIRCLE 결과공유회 스케치", "role": "1인 제작", "type": "행사 스케치"}, {"id": "iLFYVQDN3_g", "title": "임팩트서클이 SOVAC 2023에 참여했습니다", "role": "1인 제작", "type": "행사 스케치"}, {"link": "https://www.impactcircle.co.kr/course", "title": "임팩트서클 비즈니스 강의 시리즈", "role": "1인 제작", "type": "강의 및 인터뷰", "thumbnail": "https://image.thum.io/get/width/640/https://www.impactcircle.co.kr/course"}], "우리금융그룹": [{"id": "2ITEVa277YQ", "title": "큰★별쌤 최태성과 함께 떠나는 '우리1899' 도슨트 투어 🏦ㅣ 우리금융그룹", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "8cSnCOWji-I", "title": "2025 모모콘", "role": "촬영감독으로 참여", "type": "행사 스케치"}, {"id": "-Tz6XMIJlTQ", "title": "⭐광복 80주년⭐ 우리가 몰랐던 우리나라 '금융 독립'의 숨겨진 이야기! | 우리금융그룹 X 최태성", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "0Fy_veK8GZc", "title": "2024 모모콘", "role": "촬영감독으로 참여", "type": "행사 스케치"}], "성동구사회적경제지원센터": [{"id": "xo5hQ6dNncM", "title": "[2024 현장사례 아카데미] 환경, 순환 경제, 재활용, 옷을 다시 입다?! #다시입다연구소", "role": "1인 제작", "type": "강의 및 인터뷰"}, {"id": "W--t4Yw4JDM", "title": "[2024 현장사례 아카데미] 사회적 가치로 만들어가는 커뮤니티, #VAKE #베이크 가 추구하는 소셜 임팩트 이야기", "role": "1인 제작", "type": "강의 및 인터뷰"}], "한국심장재단": [{"id": "4WHqwGOEsSI", "title": "2025 심장병 예방을 위한 한걸음 더 걷기대회", "role": "촬영감독으로 참여", "type": "행사 스케치"}], "임팩트스퀘어": [{"id": "iY4AZs0_rqQ", "title": "임팩트스퀘어 소개영상", "role": "1인 제작", "type": "홍보영상"}], "AITRICS": [{"id": "iGol0xYlnbs", "title": "AITRICS | 2026 KIMES", "role": "1인 제작", "type": "행사 스케치"}, {"id": "F2yKzZ59CcI", "title": "AITRICS | 2025 RRS Symposium", "role": "1인 제작", "type": "행사 스케치"}], "국토교통부": [{"id": "MjCQusY9MUo", "title": "전통과 현대가 공존하는 이곳에서 살으리랏다~ 요즘 대세 은평 한옥마을!", "role": "촬영감독으로 참여", "type": "유튜브 예능"}], "금융감독원": [{"id": "zGinkJj8nHM", "title": "[도전! 금융벨] 2화 : 저축과 투자, 신용과 위험관리(고등학교 선택과목 \"금융과 경제생활\")", "role": "촬영감독으로 참여", "type": "유튜브 예능"}], "계룡건설": [{"id": "tl_ZAY7cxK0", "title": "🏗️ 드릴과 키보드 소리가 만나 '마왕'이 된다고? 🎹", "role": "촬영감독으로 참여", "type": "숏폼", "shorts": true}, {"id": "RHUEEb_S_lo", "title": "서로 다른 두 공간에서 같은 곡을 연주한다면? | 건설 현장 X 본사의 슈베르트 '마왕'♬", "role": "촬영감독으로 참여", "type": "홍보영상"}, {"id": "OzASnZ525CU", "title": "[계룡 가디언] EP.9 비계 승하강 #안전캠페인", "role": "촬영감독으로 참여", "type": "숏폼", "shorts": true}, {"id": "J-t_fPozjms", "title": "[계룡 가디언] EP.8 사다리 & 고소작업 #안전캠페인", "role": "촬영감독으로 참여", "type": "숏폼", "shorts": true}, {"id": "VLPG4v2c1Ls", "title": "[계룡 가디언] EP.7 화재 #안전캠페인", "role": "촬영감독으로 참여", "type": "숏폼", "shorts": true}, {"id": "pnFJ3pk1M_w", "title": "[계룡 가디언] EP.6 붕괴 #안전캠페인", "role": "촬영감독으로 참여", "type": "숏폼", "shorts": true}, {"id": "YhG6pUMNcKQ", "title": "[계룡 가디언] EP.5 신호수 & 굴착기 안전장치 #안전캠페인", "role": "촬영감독으로 참여", "type": "숏폼", "shorts": true}, {"id": "BurDZ57S7Co", "title": "[계룡 가디언] EP.4 운전원 안전수칙 #안전캠페인", "role": "촬영감독으로 참여", "type": "숏폼", "shorts": true}, {"id": "7P8VXRYiqzw", "title": "[계룡 가디언] EP.3 보호구 & 안전 시설물 #안전캠페인", "role": "촬영감독으로 참여", "type": "숏폼", "shorts": true}, {"id": "lx35DQkOBPQ", "title": "[계룡 가디언] EP.2 흡연 & 휴대전화 #안전캠페인", "role": "촬영감독으로 참여", "type": "숏폼", "shorts": true}, {"id": "8YrZfQJ0nho", "title": "[계룡 가디언] EP.1 음주 #안전캠페인", "role": "촬영감독으로 참여", "type": "숏폼", "shorts": true}, {"id": "JlUQDz_K3vA", "title": "숲'새'권 휴식처 선물 받은 썰 푼다 (feat. 천안 오룡지구) l Making a Resting Place for Birds", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "M2b77Dxp-8M", "title": "건설 현장에서 펼쳐진 RC 중장비 미션 레이싱🏁 | 2025 KYERYONG GRAND PRIX", "role": "촬영감독으로 참여", "type": "유튜브 예능"}], "현대해상": [{"id": "zO-r6Z7A_iA", "title": "[전국힙할Z도 부산편] 어서오이소~ 부산 토박이가 알려주는 겨울 부산 여행코스🌊ㅣ부산 가볼 만한 곳 BEST 6", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "KPmiYgNAoIQ", "title": "[전국힙할Z도 춘천편] 나 가을 타나 봐..🍂 춘천에서 힐링 100% 충전하는 법ㅣ 당일치기 춘천 여행코스 6곳", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "dHHmwihRXGM", "title": "[전국힙할Z도 군산편] 치..치지직..응답하라 여기는 군산ㅣMZ가 레트로의 성지 군산을 즐기는 방법📸", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "DCvNSbDtEK8", "title": "[굿앤굿 행복육아 공감육아일기 1화] 28개월 아기와 함께하는 초보 엄마의 육아 성장 스토리🧡", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "nCMKJtOt36E", "title": "[전국힙할Z도 양양편] 양양 가서 여기 안 가면 손해, 여름보다 핫한 양양 ⛱️", "role": "촬영감독으로 참여", "type": "유튜브 예능"}], "맥도날드": [{"id": "Nf-ozCscCV4", "title": "2025 맥도날드 해피워크 현장 스케치", "role": "촬영감독으로 참여", "type": "행사 스케치"}], "LG생활건강": [{"id": "QavBOQ8EIvk", "title": "LG생활건강 연구원 추천템은 ?", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "zJnwoOV0Zts", "title": "⭐  생건 Ent 주식회사  숏드라마 [ EP 7 ]", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "FSdF1UsUCrk", "title": "⭐  생건 Ent 주식회사  숏드라마 [ EP 6 ]", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "2rEDvjDLwvQ", "title": "생건 Ent 주식회사  숏드라마   [ EP 5 ]", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "Q7RX2HxG0o8", "title": "⭐  생건 Ent 주식회사  숏드라마 [ EP 4 ]", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "hHyQCuqQ188", "title": "생건 Ent 주식회사  숏드라마 [ EP 3 ]", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "VrFoMq7mwBc", "title": "생건 Ent 주식회사  숏드라마 [ EP 2 ]", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "rVFAAhDhnIs", "title": "생건 Ent 주식회사  숏드라마 [ EP 1 ]", "role": "촬영감독으로 참여", "type": "유튜브 예능"}], "LS그룹": [{"id": "A7v5v4jgr0I", "title": "이거…혹시 제 소개팅 아니었나요?! (feat.김지유) 😅ㅣLS그룹 아바타 소개팅[처음뵙겠습니다 EP.03]", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "Qti2uQSlZB8", "title": "나랑 소개팅 할래 말래! 할래 말래!(feat. 김원훈)ㅣLS그룹 아바타 소개팅 [처음뵙겠습니다 EP.02]", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "Fnq9dXkZl1o", "title": "이호창 본부장의 리버스 멘토링👨‍🏫 근데 이제 회식을 곁들인🍻 [용산에 사는 사람들 시즌2 EP.02]", "role": "촬영감독으로 참여", "type": "유튜브 예능"}], "대우건설": [{"id": "mOH7a8lKIlo", "title": "걷다가 쓰러져 본 사람…? 😵 하루 15,000보 챌린지의 결말은?! | 함께으쓱(ESG) | 대우건설", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "soq9IQvo3Qs", "title": "아파트 품질관리, 이 기술 모르면 곤란합니다! 건설 퀴즈 도전🔥 | 건설퀴즈쇼 | 대우건설", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "XaBBxDDHOqQ", "title": "정기자의 패기로 신속, 정확하게!😎 | 정대우의 일일기자 | 대우건설", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "aI5-YkIIXCg", "title": "🔥 건설대가와 급식대가가 만났다?! 🔥 | 송내역푸르지오센트비엔현장 | 대우건설", "role": "촬영감독으로 참여", "type": "유튜브 예능"}, {"id": "d9mI0XQXf_0", "title": "가을맞이🍂 시크릿 힐링 여행 코스 대. 공. 개✨ | 북한산 체험형 숲속쉼터 | 대우건설", "role": "촬영감독으로 참여", "type": "유튜브 예능"}], "FLIB_FILMS": [{"id": "lBXYJVSTMVU", "title": "PEOPLEOFTHEWORLD - SFW25FW - PRESENTATION - RUNWAY", "role": "촬영감독으로 참여", "type": "패션필름"}, {"id": "bc8dlfzHyq8", "title": "MODEL REBEKA", "role": "촬영감독으로 참여", "type": "패션필름", "shorts": true}, {"id": "o1rz-MuXFoQ", "title": "MODEL MIRAI", "role": "촬영감독으로 참여", "type": "패션필름", "shorts": true}, {"id": "_hn_3TYG4mM", "title": "HALUCCINATION - About Human & AI, 패션필름", "role": "촬영감독으로 참여", "type": "패션필름"}, {"id": "TFaLwKCPcz4", "title": "PEOPLEOFTHEWORLD - SFW25FW", "role": "촬영감독으로 참여", "type": "패션필름", "shorts": true}, {"id": "ywG7g6ud4iM", "title": "DAILY MIRROR - SFW25FW", "role": "촬영감독으로 참여", "type": "패션필름", "shorts": true}, {"id": "vO3BxB_S_1o", "title": "SFW 2025 FALL WINTER - DOUCAN BTS TEASER #서울패션위크 #fashionweek #SFW25FW#패션쇼", "role": "촬영감독으로 참여", "type": "패션필름", "shorts": true}, {"id": "8qzJ2G2KHtw", "title": "SFW25FW - PEOPLEOFTHEWORLD BTS TEASER #서울패션위크#sfw25fw#fashionweek #패션쇼#fashionreels", "role": "촬영감독으로 참여", "type": "패션필름", "shorts": true}]};
+/* 월드 구간을 벗어나면 엔진의 고정 오버레이를 숨긴다 */
 (function(){
-  const tabs=document.getElementById('pfTabs'), grid=document.getElementById('pfGrid'), cnt=document.getElementById('pfCount');
-  const names=Object.keys(PF);
-  const total=names.reduce((a,n)=>a+PF[n].length,0);
-  const all=['전체'].concat(names);
-  let cur='전체';
-
-  function items(){
-    if(cur==='전체') return names.flatMap(n=>PF[n].map(v=>Object.assign({client:n},v)));
-    return PF[cur].map(v=>Object.assign({client:cur},v));
+  var after=document.getElementById('after'); if(!after) return;
+  var on=false;
+  function upd(){
+    var v=after.getBoundingClientRect().top < window.innerHeight*0.55;
+    if(v!==on){ on=v; document.body.classList.toggle('past-world', v); }
   }
+  addEventListener('scroll', upd, {passive:true});
+  addEventListener('resize', upd);
+  upd();
+})();
+
+/* 포트폴리오 */
+(function(){
+  var TYPE_ORDER=['유튜브 예능','숏폼','비하인드 영상','행사 스케치','강의 및 인터뷰','패션필름','홍보영상','뮤직비디오'];
+  var segT=document.getElementById('segType'), segC=document.getElementById('segClient'),
+      grid=document.getElementById('pfGrid'), stat=document.getElementById('pfStat'),
+      empty=document.getElementById('pfEmpty');
+  var items=[], type='전체', client='전체';
+
+  fetch('assets/portfolio.json').then(function(r){return r.json()}).then(function(d){
+    Object.keys(d).forEach(function(c){
+      d[c].forEach(function(v){ items.push(Object.assign({client:c}, v)); });
+    });
+    build(); render();
+  }).catch(function(){ grid.innerHTML='<p class="pf-empty">작업 목록을 불러오지 못했습니다.</p>'; });
+
+  function countBy(key,val){ return items.filter(function(v){return v[key]===val}).length; }
+
+  function build(){
+    var types=TYPE_ORDER.filter(function(t){return countBy('type',t)>0});
+    segT.innerHTML=['전체'].concat(types).map(function(t){
+      var n=t==='전체'?items.length:countBy('type',t);
+      return '<button type="button" data-t="'+t+'" aria-pressed="'+(t==='전체')+'">'+t+'<span>'+n+'</span></button>';
+    }).join('');
+    stat.innerHTML='<b>'+items.length+'</b>편 · <b>22</b>개 클라이언트<br>촬영감독 '+countBy('role','촬영감독으로 참여')+' · 1인 제작 '+countBy('role','1인 제작');
+  }
+
+  function clientsFor(t){
+    var pool=t==='전체'?items:items.filter(function(v){return v.type===t});
+    var seen={},out=[];
+    pool.forEach(function(v){ if(!seen[v.client]){seen[v.client]=1;out.push(v.client);} });
+    return out.sort(function(a,b){
+      return pool.filter(function(v){return v.client===b}).length - pool.filter(function(v){return v.client===a}).length;
+    });
+  }
+
   function render(){
-    const list=items();
-    const shorts=list.length>0 && list.every(v=>v.shorts);
-    grid.className='pf-grid'+(shorts?' shorts':'');
-    cnt.textContent=cur==='전체'?('전체 '+total+'개 작업 · '+names.length+'개 클라이언트'):(cur+' · '+list.length+'개');
-    grid.innerHTML=list.map(v=>{
-      const link=v.link||(v.shorts?('https://www.youtube.com/shorts/'+v.id):('https://www.youtube.com/watch?v='+v.id));
-      const thumb=v.thumbnail||('https://img.youtube.com/vi/'+v.id+'/mqdefault.jpg');
-      return '<a class="pf-item" href="'+link+'" target="_blank" rel="noopener noreferrer">'
-        +'<div class="pf-thumb"><img loading="lazy" src="'+thumb+'" alt=""><div class="pf-play"><span>&#9654;</span></div></div>'
-        +'<div class="pf-body"><span class="pf-badge">'+v.type+'</span>'
-        +'<div class="pf-title">'+v.title.replace(/</g,'&lt;')+'</div>'
-        +'<div class="pf-role">'+v.client+' · '+v.role+'</div></div></a>';
+    segC.innerHTML=['전체'].concat(clientsFor(type)).map(function(c){
+      return '<button type="button" data-c="'+c+'" aria-pressed="'+(c===client)+'">'+(c==='전체'?'모든 클라이언트':c)+'</button>';
+    }).join('');
+
+    var list=items.filter(function(v){
+      return (type==='전체'||v.type===type) && (client==='전체'||v.client===client);
+    });
+    var vertical=list.length>0 && list.every(function(v){return v.shorts});
+    grid.className='grid'+(vertical?' is-vertical':'');
+    empty.hidden=list.length>0;
+
+    grid.innerHTML=list.map(function(v){
+      var link=v.link||(v.shorts?'https://www.youtube.com/shorts/'+v.id:'https://www.youtube.com/watch?v='+v.id);
+      var thumb=v.thumbnail||'https://img.youtube.com/vi/'+v.id+'/mqdefault.jpg';
+      var t=v.title.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+      return '<a class="card" href="'+link+'" target="_blank" rel="noopener noreferrer">'
+        +'<div class="card__thumb"><img loading="lazy" src="'+thumb+'" alt=""><div class="card__play">&#9654;</div></div>'
+        +'<div class="card__body"><div class="card__title">'+t+'</div>'
+        +'<div class="card__meta"><i>'+v.client+'</i><em>/</em>'+v.type+'<em>/</em>'+v.role+'</div></div></a>';
     }).join('');
   }
-  tabs.innerHTML=all.map(n=>'<button class="pf-tab'+(n==='전체'?' on':'')+'" data-n="'+n+'">'+n+'</button>').join('');
-  tabs.addEventListener('click',e=>{
-    const b=e.target.closest('.pf-tab'); if(!b) return;
-    cur=b.dataset.n;
-    tabs.querySelectorAll('.pf-tab').forEach(x=>x.classList.toggle('on',x===b));
+
+  segT.addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    type=b.dataset.t; client='전체';
+    [].forEach.call(segT.children,function(x){x.setAttribute('aria-pressed', x===b)});
     render();
   });
-  render();
+  segC.addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    client=b.dataset.c;
+    [].forEach.call(segC.children,function(x){x.setAttribute('aria-pressed', x===b)});
+    render();
+  });
 })();
 </script>
 </body>
