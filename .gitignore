@@ -1,5 +1,6 @@
 *.mp4
 !hwamok intro loop.mp4
+!assets/vid/*.mp4
 *.mov
 *.avi
 *.psd
