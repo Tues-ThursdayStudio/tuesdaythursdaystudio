@@ -4,12 +4,12 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>화목스튜디오 | Tuesday Thursday Studio — 전문 영상제작</title>
-<meta name="description" content="화목스튜디오 - 웹드라마, 강의 영상, 릴스, 비하인드, 예능 촬영을 주력으로 하는 소규모 영상 제작 스튜디오입니다." />
+<meta name="description" content="화목스튜디오 - 1인 제작부터 팀 작업까지, 예능부터 시네마틱까지. 웹드라마·강의 영상·릴스·비하인드·예능 촬영을 기획하고 제작합니다." />
 <meta name="keywords" content="영상제작, 화목스튜디오, Tuesday Thursday Studio, 웹드라마, 강의영상, 릴스, 비하인드, 예능촬영" />
 <meta name="author" content="화목스튜디오" />
 <meta name="naver-site-verification" content="8fb175c015b43d8a3a56067131782c5965f3e692" />
 <meta property="og:title" content="화목스튜디오 | Tuesday Thursday Studio" />
-<meta property="og:description" content="Framing your vision — 기획부터 편집까지 한 사람이 맡는 작은 스튜디오." />
+<meta property="og:description" content="Framing your vision — 1인 제작에서 팀 작업까지, 예능에서 시네마틱까지." />
 <meta property="og:image" content="/assets/s1_studio.jpg" />
 <meta property="og:type" content="website" />
 <link rel="icon" href="/TTS logo.png" />
@@ -180,14 +180,25 @@
     background-image:url('assets/about-bg.jpg');
     background-size:cover;background-position:28% center;background-repeat:no-repeat}
   /* 우측 텍스트 가독성 확보 — 우하단 불꽃이 밝아 그쪽을 더 눌러준다 */
+  /* 전체는 살짝만 눌러 이미지를 살리고, 가독성은 글자 뒤 패널이 담당한다 */
   .hero__scrim{position:absolute;inset:0;z-index:-1;
     background:
-      linear-gradient(270deg, rgba(0,0,0,.94) 0%, rgba(0,0,0,.86) 26%,
-                              rgba(0,0,0,.55) 50%, rgba(0,0,0,.12) 74%, transparent 100%),
-      linear-gradient(0deg, rgba(0,0,0,.55) 0%, transparent 42%),
-      linear-gradient(180deg, rgba(0,0,0,.5) 0%, transparent 30%)}
+      linear-gradient(270deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.34) 26%,
+                              rgba(0,0,0,.18) 50%, rgba(0,0,0,.04) 74%, transparent 100%),
+      linear-gradient(180deg, rgba(0,0,0,.45) 0%, transparent 26%)}
   .hero__inner{width:100%;display:flex;justify-content:flex-end}
-  .hero__col{width:min(100%,520px)}
+  .hero__col{width:min(100%,540px);
+    background:rgba(8,8,10,.62);backdrop-filter:saturate(125%) blur(22px);
+    -webkit-backdrop-filter:saturate(125%) blur(22px);
+    border:1px solid rgba(255,255,255,.11);border-radius:22px;
+    padding:clamp(30px,3.4vw,46px)}
+  .hero__stmt{margin-top:22px;font-size:clamp(20px,2.05vw,28px);font-weight:500;
+    line-height:1.62;letter-spacing:-.025em;color:var(--ink)}
+  .hero__stmt span{display:block}
+  .hero__stmt span + span{margin-top:4px}
+  .hero__stmt b{font-weight:700;color:var(--gold-lt);white-space:nowrap}
+  @media(max-width:1100px){.hero__stmt .br-lg{display:none}}
+
   .hero__body{margin-top:26px;font-size:clamp(16px,1.4vw,18px);line-height:1.8;color:var(--ink-2)}
   .hero__body p + p{margin-top:16px}
   .hero__who{margin-top:30px;padding-top:22px;border-top:1px solid rgba(255,255,255,.18)}
@@ -195,7 +206,8 @@
   .hero__who span{display:block;margin-top:6px;font-family:var(--mono);font-size:12.5px;
     color:var(--gold-lt);letter-spacing:.03em}
   .hero .facts{margin-top:28px}
-  .hero .fact{background:rgba(10,10,12,.62);backdrop-filter:blur(10px)}
+  .hero .fact{background:rgba(255,255,255,.05)}
+  .hero .facts{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.12)}
 
   .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
     background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);
@@ -211,7 +223,7 @@
     .hero__scrim{background:
       linear-gradient(0deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.78) 45%, rgba(0,0,0,.62) 100%)}
     .hero__inner{justify-content:flex-start}
-    .hero__col{width:100%}
+    .hero__col{width:100%;padding:clamp(24px,6vw,34px);border-radius:18px}
   }
   @media(max-width:520px){
     .facts{grid-template-columns:1fr}
@@ -342,14 +354,12 @@
   <div class="wrap hero__inner">
     <div class="hero__col">
       <div class="eyebrow">About</div>
-      <h2 class="h2">카메라 뒤의 7년</h2>
-
-      <div class="hero__body">
-        <p>7년간 영상 제작 현장에 있었습니다. 유튜브 예능부터 웹드라마, 강의 콘텐츠,
-           브랜드 비하인드까지 카메라를 잡았고, 그중 상당수는 기획부터 편집까지 혼자 끝냈습니다.</p>
-        <p>규모가 크든 작든 결국 화면에 남는 건 현장에서의 판단입니다.
-           그 판단을 직접 내리고 책임지는 방식으로 일합니다.</p>
-      </div>
+      <h2 class="hero__stmt">
+        <span>1인 제작에서 팀 작업까지,</span>
+        <span>예능에서 시네마틱까지,</span>
+        <span>다양한 영상을 기획하고 제작하는<br class="br-lg" />
+        <b>Tuesday&#8209;Thursday&nbsp;Studio</b>입니다.</span>
+      </h2>
 
       <div class="hero__who">
         <strong>정성구</strong>
