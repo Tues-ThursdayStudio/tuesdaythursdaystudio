@@ -64,6 +64,76 @@
   body.past-world .sw-topbar{background:rgba(0,0,0,.72);backdrop-filter:saturate(180%) blur(20px);
     border-bottom:1px solid var(--line-2);transition:background .3s}
 
+
+  /* ═══ 엔진 UI 재정의 ═══
+     scroll-world 엔진은 밝은 배경을 전제로 만들어져 있어
+     흰색이 하드코딩된 부분들이 어두운 배경에서 묻힌다. 전부 다시 칠한다. */
+
+  /* 상단 진행 바 */
+  .sw-scrollbar{height:2px!important;background:rgba(255,255,255,.10)!important}
+  .sw-scrollbar span{background:var(--gold)!important}
+
+  /* 브랜드 — 누를 수 있는 버튼으로 보이게 */
+  .sw-brand{gap:11px!important;padding:9px 18px 9px 12px!important;border-radius:999px!important;
+    background:rgba(0,0,0,.55)!important;backdrop-filter:saturate(180%) blur(18px);
+    border:1px solid rgba(255,255,255,.16)!important;
+    transition:background .25s,border-color .25s,transform .25s}
+  .sw-brand:hover{background:rgba(0,0,0,.75)!important;border-color:rgba(255,255,255,.34)!important;
+    transform:translateY(-1px)}
+  .sw-brand__mark{width:18px!important;height:18px!important;border-radius:50%!important;
+    background:var(--gold)!important;box-shadow:0 0 0 3px rgba(201,168,108,.18)!important}
+  .sw-brand__name{font-size:15px!important;font-weight:700!important;color:#fff!important;
+    letter-spacing:-.02em}
+
+  /* 씬 이동 네비 */
+  .sw-nav{background:rgba(0,0,0,.55)!important;backdrop-filter:saturate(180%) blur(18px);
+    border:1px solid rgba(255,255,255,.14)!important;padding:5px!important}
+  .sw-nav__item{color:rgba(255,255,255,.62)!important;font-size:13px!important;
+    font-weight:500!important;padding:8px 15px!important}
+  .sw-nav__item:hover{color:#fff!important;background:rgba(255,255,255,.10)!important}
+  .sw-nav__item.is-active{background:#fff!important;color:#000!important;font-weight:700!important}
+
+  /* 우측 씬 인디케이터 */
+  .sw-route{padding:20px 12px!important}
+  .sw-route::before{background:rgba(255,255,255,.22)!important;opacity:1!important}
+  .sw-route__dot{width:18px!important;height:18px!important}
+  .sw-route__dot i{width:8px!important;height:8px!important;
+    background:rgba(255,255,255,.42)!important;
+    box-shadow:0 0 0 1px rgba(0,0,0,.5)}
+  .sw-route__dot:hover i{background:#fff!important;transform:scale(1.3)!important}
+  .sw-route__dot.is-active i{background:var(--gold)!important;transform:scale(1.45)!important;
+    box-shadow:0 0 0 5px rgba(201,168,108,.26)!important}
+  .sw-route__label{background:rgba(0,0,0,.82)!important;color:#fff!important;
+    border:1px solid rgba(255,255,255,.18)!important;font-size:12.5px!important;
+    font-weight:600!important;padding:6px 12px!important;backdrop-filter:blur(12px)}
+
+  /* 씬 본문 — 한 줄 유지 */
+  .sw-copy{width:min(46vw,560px)!important}
+  .sw-copy__body{max-width:none!important;white-space:nowrap}
+  .sw-copy__eyebrow{color:var(--gold-lt)!important}
+  .sw-copy__num{color:rgba(255,255,255,.42)!important}
+
+  /* 태그 칩 */
+  .sw-copy__tags li{background:rgba(255,255,255,.09)!important;
+    border:1px solid rgba(255,255,255,.16)!important;color:#fff!important;
+    font-size:12.5px!important;font-weight:500!important;padding:7px 14px!important}
+
+  /* 마지막 씬 버튼 */
+  .sw-btn--primary{background:#fff!important;color:#000!important;font-weight:700!important}
+  .sw-btn--primary:hover{background:var(--gold-lt)!important}
+  .sw-btn--ghost{color:#fff!important;border:1.5px solid rgba(255,255,255,.42)!important;
+    background:rgba(0,0,0,.4)!important;backdrop-filter:blur(12px)}
+  .sw-btn--ghost:hover{border-color:#fff!important;background:rgba(0,0,0,.65)!important}
+
+  /* 스크롤 안내 */
+  .sw-hint{color:rgba(255,255,255,.60)!important}
+  .sw-hint i{border-color:rgba(255,255,255,.42)!important}
+
+  @media(max-width:860px){
+    .sw-copy{width:auto!important}
+    .sw-copy__body{white-space:normal}
+  }
+
   /* ── 레이아웃 ── */
   .wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(20px,5vw,40px)}
   .sec{padding-block:clamp(88px,13vw,168px)}
@@ -326,7 +396,6 @@
 <script>
 mountScrollWorld(document.getElementById('world'), {
   brand: { name: '화목스튜디오', href: '#top' },
-  cta:   { label: '프로젝트 문의', href: '#contact' },
   hint:  '스크롤해서 들어가기',
   diveScroll: 1.6,   // clips are 10s (Kling 3.0) — more scroll distance keeps the glide unhurried
   connScroll: 1.0,
@@ -336,7 +405,7 @@ mountScrollWorld(document.getElementById('world'), {
       accent:'#C9A86C', scroll:1.8, linger:0.35,
       eyebrow:'TUESDAY THURSDAY STUDIO',
       title:'완성된 영상까지',
-      body:'촬영본이 아니라 완성된 영상을 드립니다. 기획·촬영·편집이 한 사람에게서 이어집니다.',
+      body:'촬영본이 아니라 완성된 영상을 드립니다.',
       tags:['FX3 · A7M4 · A7C2','DJI AVATA2 · MINI 4 PRO'] },
 
     { id:'shoot', label:'웹드라마 · 예능',
@@ -344,7 +413,7 @@ mountScrollWorld(document.getElementById('world'), {
       accent:'#E8D5A3',
       eyebrow:'웹드라마 · 예능 촬영',
       title:'회차가 쌓여도 같은 톤',
-      body:'웹드라마와 유튜브 예능. 1화와 10화의 인상이 달라지지 않게 만듭니다.',
+      body:'1화와 10화의 인상이 달라지지 않게.',
       tags:['웹드라마','예능 촬영','유튜브 콘텐츠'] },
 
     { id:'lecture', label:'강의 영상',
@@ -352,7 +421,7 @@ mountScrollWorld(document.getElementById('world'), {
       accent:'#4FB3A8',
       eyebrow:'강의 영상',
       title:'끝까지 들리게',
-      body:'강의는 화면보다 전달이 먼저입니다. 3카메라와 현장 음향으로 말이 새지 않게.',
+      body:'화면보다 전달이 먼저입니다.',
       tags:['온라인 강의','교육 콘텐츠','3카메라'] },
 
     { id:'reels', label:'릴스 · 비하인드',
@@ -360,7 +429,7 @@ mountScrollWorld(document.getElementById('world'), {
       accent:'#C9A86C',
       eyebrow:'릴스 · 비하인드',
       title:'세로로 찍습니다',
-      body:'가로 영상을 잘라 쓰지 않습니다. 릴스와 쇼츠는 처음부터 세로로 설계합니다.',
+      body:'가로 영상을 잘라 쓰지 않습니다.',
       tags:['릴스 · 쇼츠','비하인드','세로 촬영'] },
 
     { id:'finale', label:'딜리버리',
