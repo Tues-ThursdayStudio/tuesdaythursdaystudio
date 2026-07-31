@@ -14,6 +14,9 @@
 <meta property="og:type" content="website" />
 <link rel="icon" href="/TTS logo.png" />
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
 <style>
   @font-face{font-family:'Pretendard';src:url('fonts/Pretendard-Light.woff2') format('woff2');font-weight:300;font-display:swap}
   @font-face{font-family:'Pretendard';src:url('fonts/Pretendard-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
@@ -132,6 +135,28 @@
   @media(max-width:860px){
     .sw-copy{width:auto!important}
     .sw-copy__body{white-space:normal}
+  }
+
+
+  /* ═══ 디오라마 위 워드마크 ═══
+     씬별 문구 레이어는 걷어내고, 고정된 워드마크 하나만 남긴다. */
+  .sw-copylayer{display:none!important}
+
+  .mark{position:fixed;left:clamp(24px,6vw,88px);top:50%;transform:translateY(-50%);
+    z-index:25;pointer-events:none;
+    font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+    font-weight:300;font-style:normal;
+    font-size:clamp(28px,4.4vw,58px);line-height:1.18;
+    letter-spacing:.26em;text-transform:uppercase;
+    color:#fff;
+    text-shadow:0 2px 40px rgba(0,0,0,.85),0 1px 8px rgba(0,0,0,.7);
+    transition:opacity .5s ease}
+  .mark span{display:block;text-indent:.26em}
+  body.past-world .mark{opacity:0;visibility:hidden}
+
+  @media(max-width:860px){
+    .mark{left:clamp(20px,6vw,40px);top:auto;bottom:clamp(120px,22vh,190px);transform:none;
+      font-size:clamp(24px,7.4vw,40px);letter-spacing:.2em}
   }
 
   /* ── 레이아웃 ── */
@@ -278,6 +303,7 @@
 
 <!-- 스크롤 스크럽 3D 비행 -->
 <div id="world"></div>
+<div class="mark" aria-hidden="true"><span>Tuesday</span><span>Thursday</span><span>Studio</span></div>
 
 <div id="after">
 
