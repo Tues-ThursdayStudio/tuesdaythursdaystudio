@@ -1,358 +1,246 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="화목스튜디오 - 전문 영상제작 회사. 예능, 강의, 행사 촬영, 홍보영상 등 다양한 영상 콘텐츠를 제작합니다.">
-    <meta name="keywords" content="영상제작, 화목스튜디오, Tuesday Thursday Studio, 예능촬영, 강의촬영, 홍보영상">
-    <meta name="author" content="화목스튜디오">
-    <title>화목스튜디오 | Tuesday Thursday Studio - 전문 영상제작</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22' fill='none'><circle cx='11' cy='11' r='10' stroke='%23C9A86C' stroke-width='1.5'/><polygon points='8.5,7 15.5,11 8.5,15' fill='%23C9A86C'/></svg>">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- naver search advisor -->
-    <meta name="naver-site-verification" content="8fb175c015b43d8a3a56067131782c5965f3e692" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>화목스튜디오 | Tuesday Thursday Studio — 전문 영상제작</title>
+<meta name="description" content="화목스튜디오 - 전문 영상제작 회사. 예능, 강의, 행사 촬영, 홍보영상 등 다양한 영상 콘텐츠를 제작합니다." />
+<meta name="keywords" content="영상제작, 화목스튜디오, Tuesday Thursday Studio, 예능촬영, 강의촬영, 홍보영상" />
+<meta name="author" content="화목스튜디오" />
+<meta name="naver-site-verification" content="8fb175c015b43d8a3a56067131782c5965f3e692" />
+<meta property="og:title" content="화목스튜디오 | Tuesday Thursday Studio" />
+<meta property="og:description" content="Framing your vision — 7년, 200개+ 프로젝트." />
+<meta property="og:image" content="/assets/s1_studio.jpg" />
+<meta property="og:type" content="website" />
+<link rel="icon" href="/TTS logo.png" />
+
+<style>
+  @font-face{font-family:'Pretendard';src:url('fonts/Pretendard-Light.woff2') format('woff2');font-weight:300;font-display:swap}
+  @font-face{font-family:'Pretendard';src:url('fonts/Pretendard-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+  @font-face{font-family:'Pretendard';src:url('fonts/Pretendard-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+  @font-face{font-family:'Pretendard';src:url('fonts/Pretendard-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+  @font-face{font-family:'Pretendard';src:url('fonts/Pretendard-Black.woff2') format('woff2');font-weight:900;font-display:swap}
+
+  /* Theme the scroll-world engine. --sw-bg matches the generated scene background. */
+  :root, .sw-root{
+    --sw-bg:#080808;
+    --sw-ink:#F0EDE8;
+    --sw-ink-soft:#999999;
+    --sw-accent:#C9A86C;
+    --sw-font-display:'Pretendard',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    --sw-font-body:'Pretendard',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+
+    --gold:#C9A86C; --gold-pale:#E8D5A3; --gold-deep:#9E7A47;
+    --teal:#4FB3A8; --ink:#F0EDE8; --muted:#999; --dim:#666;
+    --bg:#080808; --card:#111; --card-hi:#1C1C1C;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Pretendard',system-ui,sans-serif;font-weight:400;-webkit-font-smoothing:antialiased}
+
+  /* ---- sections below the flight ---- */
+  .sec{max-width:1120px;margin:0 auto;padding:120px 24px}
+  .sec__eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:14px}
+  .sec__title{font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.02em;margin-bottom:16px}
+  .sec__lead{color:var(--muted);font-size:17px;line-height:1.75;max-width:60ch}
+  .rule{height:1px;background:linear-gradient(90deg,transparent,#222 15%,#222 85%,transparent)}
+
+  /* about */
+  .about{display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:start}
+  .about__photo{width:220px;height:220px;border-radius:14px;object-fit:cover;filter:grayscale(.15)}
+  .about__name{font-size:26px;font-weight:700;margin-bottom:6px}
+  .about__role{color:var(--gold);font-size:15px;margin-bottom:18px}
+  .stats{display:flex;gap:40px;flex-wrap:wrap;margin-top:32px}
+  .stat__n{font-size:30px;font-weight:700;color:var(--gold-pale);line-height:1.1}
+  .stat__l{font-size:13px;color:var(--dim);margin-top:6px}
+
+  /* clients */
+  .clients{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:10px;margin-top:40px}
+  .client{background:var(--card);border:1px solid #1a1a1a;border-radius:10px;padding:20px 16px;text-align:center;
+          font-size:14.5px;color:#bbb;transition:all .25s cubic-bezier(.4,0,.2,1)}
+  .client:hover{background:var(--card-hi);border-color:var(--gold-deep);color:var(--gold-pale);transform:translateY(-2px)}
+
+  /* contact */
+  .contact{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .cfield{margin-bottom:18px}
+  .cfield label{display:block;font-size:13px;color:var(--muted);margin-bottom:7px}
+  .cfield input,.cfield select,.cfield textarea{
+    width:100%;background:var(--card);border:1px solid #222;border-radius:9px;padding:13px 14px;
+    color:var(--ink);font-family:inherit;font-size:15px;transition:border-color .2s}
+  .cfield input:focus,.cfield select:focus,.cfield textarea:focus{outline:none;border-color:var(--gold)}
+  .cfield textarea{min-height:130px;resize:vertical}
+  .btn{display:inline-block;background:linear-gradient(135deg,#C9A86C 0%,#9E7A47 100%);color:#0a0a0a;
+       border:none;border-radius:9px;padding:15px 34px;font-family:inherit;font-size:15.5px;font-weight:700;
+       cursor:pointer;transition:transform .2s,box-shadow .2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,168,108,.28)}
+  .cinfo{margin-bottom:30px}
+  .cinfo__k{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:7px}
+  .cinfo__v{font-size:19px;color:var(--gold-pale)}
+  .cinfo__v a{color:inherit;text-decoration:none}
+  .cinfo__v a:hover{text-decoration:underline}
+
+  footer{border-top:1px solid #1a1a1a;padding:44px 24px;text-align:center;color:var(--dim);font-size:13.5px}
+  footer strong{display:block;color:var(--ink);font-size:16px;font-weight:700;margin-bottom:5px}
+  footer span{display:block;color:var(--muted);font-size:13px;margin-bottom:14px}
+
+  @media(max-width:820px){
+    .sec{padding:80px 20px}
+    .about{grid-template-columns:1fr;gap:28px}
+    .about__photo{width:150px;height:150px}
+    .contact{grid-template-columns:1fr;gap:40px}
+  }
+</style>
 </head>
 <body>
+<div id="top"></div>
+
+<!-- ===== the scroll-scrubbed camera flight ===== -->
+<div id="world"></div>
+
+<!-- ===== about ===== -->
+<div class="rule"></div>
+<section class="sec" id="about">
+  <div class="sec__eyebrow">About</div>
+  <h2 class="sec__title">화목스튜디오</h2>
+  <div class="about" style="margin-top:44px">
+    <img class="about__photo" src="images/profile.jpg" alt="정성구 대표" />
+    <div>
+      <div class="about__name">정성구</div>
+      <div class="about__role">대표 / 촬영감독 겸 PD</div>
+      <p class="sec__lead">7년간의 영상 제작 경력을 바탕으로 화목스튜디오를 운영하고 있습니다.
+        기획부터 촬영, 편집과 컬러그레이딩까지 한 사람이 끝까지 책임지는 구조로,
+        규모가 크지 않은 프로젝트에서도 방향이 흐트러지지 않게 만듭니다.</p>
+      <div class="stats">
+        <div><div class="stat__n">7년+</div><div class="stat__l">경력</div></div>
+        <div><div class="stat__n">200개+</div><div class="stat__l">참여 프로젝트</div></div>
+        <div><div class="stat__n">FX3 · A7M4 · A7C2</div><div class="stat__l">DJI AVATA2 · MINI 4 PRO</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== clients ===== -->
+<div class="rule"></div>
+<section class="sec" id="works">
+  <div class="sec__eyebrow">Works</div>
+  <h2 class="sec__title">함께한 곳들</h2>
+  <p class="sec__lead">기업, 금융, 공공, 임팩트 영역에 걸쳐 작업해 왔습니다.</p>
+  <div class="clients">
+    <div class="client">계룡건설</div><div class="client">교보생명</div>
+    <div class="client">국토교통부</div><div class="client">금융감독원</div>
+    <div class="client">대우건설</div><div class="client">동서울대 K-POP과</div>
+    <div class="client">더샵</div><div class="client">맥도날드</div>
+    <div class="client">성동구사회적경제지원센터</div><div class="client">아이엠뱅크</div>
+    <div class="client">에버글로우</div><div class="client">우리금융그룹</div>
+    <div class="client">임팩트서클</div><div class="client">임팩트스퀘어</div>
+    <div class="client">크레즐</div><div class="client">한국심장재단</div>
+    <div class="client">현대해상</div><div class="client">AITRICS</div>
+    <div class="client">FLIB FILMS</div><div class="client">KT&amp;G 상상플래닛</div>
+    <div class="client">LG생활건강</div><div class="client">LS그룹</div>
+  </div>
+</section>
+
+<!-- ===== contact ===== -->
+<div class="rule"></div>
+<section class="sec" id="contact">
+  <div class="sec__eyebrow">Contact</div>
+  <h2 class="sec__title">문의하기</h2>
+  <div class="contact" style="margin-top:44px">
+    <div>
+      <p class="sec__lead" style="margin-bottom:36px">7년간의 경험과 전문성으로 최고의 결과물을 제공합니다.<br />언제든지 편하게 문의해주세요.</p>
+      <div class="cinfo">
+        <div class="cinfo__k">이메일</div>
+        
+        <div class="cinfo__v"><a href="mailto:info@tuesdaythursdaystudio.com">info@tuesdaythursdaystudio.com</a></div>
+      </div>
+      <div class="cinfo">
+        <div class="cinfo__k">전화</div>
+        <div class="cinfo__v"><a href="tel:010-2076-8389">010-2076-8389</a></div>
+      </div>
+    </div>
     
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="#home" class="logo">
-                    <img src="TTS%20logo.png" alt="화목스튜디오 로고" class="logo-img">
-                </a>
-                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="메뉴 열기">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="#about" class="nav-link active">About</a></li>
-                    <li><a href="#services" class="nav-link">Services</a></li>
-                    <li><a href="#portfolio" class="nav-link">Works</a></li>
-                    <li><a href="#contact" class="nav-link">문의</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <form id="inquiry" method="POST" action="https://formspree.io/f/mgodnpwe">
+      <div class="cfield"><label for="f-name">이름 *</label><input id="f-name" name="name" required /></div>
+      <div class="cfield"><label for="f-mail">이메일 *</label><input id="f-mail" name="email" type="email" required /></div>
+      <div class="cfield"><label for="f-tel">연락처</label><input id="f-tel" name="tel" /></div>
+      <div class="cfield"><label for="f-svc">서비스 선택 *</label>
+        <select id="f-svc" name="service" required>
+          <option value="">선택해주세요</option>
+          <option>예능 촬영</option><option>강의 촬영</option><option>행사 촬영</option>
+          <option>홍보영상</option><option>숏폼 콘텐츠</option><option>비하인드 영상</option>
+          <option>기타</option>
+        </select>
+      </div>
+      <div class="cfield"><label for="f-msg">프로젝트 내용 *</label><textarea id="f-msg" name="message" required></textarea></div>
+      <button class="btn" type="submit">문의하기</button>
+    </form>
+  </div>
+</section>
 
-    <!-- Intro Video + Hero Overlay -->
-    <section id="home" class="intro-video-section">
-        <video autoplay muted loop playsinline>
-            <source src="hwamok%20intro%20loop.mp4" type="video/mp4">
-        </video>
-        <div class="intro-video-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-text" data-aos="fade-up" data-aos-duration="1400">
-                <h1 class="brand-title">Tuesday Thursday Studio</h1>
-                <div class="brand-divider"></div>
-                <p class="brand-tagline">Framing your vision</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">
-                        <i class="fas fa-envelope"></i> 프로젝트 문의
-                    </a>
-                    <a href="#portfolio" class="btn btn-secondary">
-                        <i class="fas fa-play-circle"></i> 포트폴리오
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+<footer>
+  <strong>화목스튜디오</strong>
+  <span>Tuesday Thursday Studio</span>
+  © 2025 화목스튜디오. All rights reserved.
+</footer>
 
-    <!-- About Section -->
-    <section id="about" class="about section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <p class="section-subtitle">About</p>
-                <h2 class="section-title">화목스튜디오</h2>
-            </div>
-            
-            <div class="about-unified-card" data-aos="fade-up">
-                <div class="profile-header">
-                    <div class="profile-image">
-                        <img src="images/profile.jpg" alt="정성구 대표">
-                    </div>
-                    <div class="profile-info">
-                        <h3>정성구</h3>
-                        <p class="profile-role">대표 / 촬영감독 겸 PD</p>
-                    </div>
-                </div>
+<script src="scrub-engine.js"></script>
+<script>
+mountScrollWorld(document.getElementById('world'), {
+  brand: { name: '화목스튜디오', href: '#top' },
+  cta:   { label: '프로젝트 문의', href: '#contact' },
+  hint:  '스크롤해서 들어가기',
+  diveScroll: 1.6,   // clips are 10s (Kling 3.0) — more scroll distance keeps the glide unhurried
+  connScroll: 1.0,
+  sections: [
+    { id:'studio', label:'스튜디오',
+      still:'assets/s1_studio.jpg', clip:'assets/vid/dive1.mp4',
+      accent:'#C9A86C', scroll:1.8, linger:0.35,
+      eyebrow:'TUESDAY THURSDAY STUDIO',
+      title:'Framing your vision',
+      body:'7년, 200개가 넘는 프로젝트를 카메라 뒤에서 만들어 왔습니다.',
+      tags:['FX3 · A7M4 · A7C2','DJI AVATA2 · MINI 4 PRO'] },
 
-                <p class="profile-description">
-                    7년간의 영상 제작 경력을 바탕으로 화목스튜디오를 운영하고 있습니다.
-                </p>
+    { id:'shoot', label:'촬영 현장',
+      still:'assets/s2_shoot.jpg', clip:'assets/vid/dive2.mp4',
+      accent:'#E8D5A3',
+      eyebrow:'예능 · 홍보영상',
+      title:'카메라가 도는 순간',
+      body:'생동감 있는 예능부터 설득력 있는 브랜드 필름까지, 현장에서 완성합니다.',
+      tags:['예능 촬영','홍보영상','비하인드'] },
 
-                <div class="profile-details">
-                    <div class="detail-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>info@tuesdaythursdaystudio.com</span>
-                    </div>
-                    <div class="detail-item">
-                        <i class="fas fa-phone"></i>
-                        <span>010-2076-8389</span>
-                    </div>
-                </div>
+    { id:'lecture', label:'강의 스튜디오',
+      still:'assets/s3_lecture.jpg', clip:'assets/vid/dive3.mp4',
+      accent:'#4FB3A8',
+      eyebrow:'강의 · 교육 콘텐츠',
+      title:'명확하게 전달되도록',
+      body:'온라인 강의와 교육 콘텐츠를, 흔들림 없는 구성으로 담아냅니다.',
+      tags:['3카메라','프롬프터','현장 음향'] },
 
-                <div class="about-stats-row">
-                    <div class="about-stat">
-                        <span class="about-stat-label">경력</span>
-                        <span class="about-stat-value">7년+</span>
-                    </div>
-                    <div class="about-stat">
-                        <span class="about-stat-label">참여 프로젝트</span>
-                        <span class="about-stat-value">200개+</span>
-                    </div>
-                    <div class="about-stat">
-                        <span class="about-stat-label">장비</span>
-                        <span class="about-stat-value">FX3, A7M4, A7C2,<br>DJI AVATA2, DJI MINI 4 PRO</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    { id:'event', label:'행사 · 항공',
+      still:'assets/s4_event.jpg', clip:'assets/vid/dive4.mp4',
+      accent:'#C9A86C',
+      eyebrow:'행사 · 항공 촬영',
+      title:'놓치지 않고 기록합니다',
+      body:'무대 위와 하늘 위, 두 시점에서 소중한 순간을 남깁니다.',
+      tags:['행사 스케치','드론 항공','숏폼'] },
 
-    <!-- Services Section -->
-    <section id="services" class="services section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <p class="section-subtitle">Services</p>
-                <h2 class="section-title">제공 서비스</h2>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-icon">
-                        <i class="fas fa-tv"></i>
-                    </div>
-                    <h3 class="service-title">예능 촬영</h3>
-                    <p class="service-description">
-                        유튜브 예능 콘텐츠 촬영 및 편집<br>
-                        생동감 있고 재미있는 영상 제작
-                    </p>
-                </div>
-                
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-icon">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                    </div>
-                    <h3 class="service-title">강의 촬영</h3>
-                    <p class="service-description">
-                        온라인 강의 및 교육 콘텐츠 제작<br>
-                        전문적이고 명확한 영상 구성
-                    </p>
-                </div>
-                
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-icon">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <h3 class="service-title">행사 촬영</h3>
-                    <p class="service-description">
-                        각종 행사 스케치 촬영 및 편집<br>
-                        소중한 순간을 놓치지 않고 기록
-                    </p>
-                </div>
-                
-                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="service-icon">
-                        <i class="fas fa-bullhorn"></i>
-                    </div>
-                    <h3 class="service-title">홍보영상</h3>
-                    <p class="service-description">
-                        기업 및 제품 홍보영상 제작<br>
-                        감성적이고 설득력 있는 스토리텔링
-                    </p>
-                </div>
-                
-                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3 class="service-title">숏폼 콘텐츠</h3>
-                    <p class="service-description">
-                        릴스, 쇼츠 등 숏폼 영상 제작<br>
-                        트렌디하고 임팩트 있는 콘텐츠
-                    </p>
-                </div>
-                
-                <div class="service-card" data-aos="fade-up" data-aos-delay="600">
-                    <div class="service-icon">
-                        <i class="fas fa-film"></i>
-                    </div>
-                    <h3 class="service-title">비하인드 영상</h3>
-                    <p class="service-description">
-                        촬영 현장의 생생한 비하인드<br>
-                        특별한 순간을 가장 가까이에서 기록
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <p class="section-subtitle">Works</p>
-                <h2 class="section-title">콘텐츠</h2>
-            </div>
-            
-            <div class="portfolio-layout">
-                <!-- Portfolio Categories -->
-                <div class="portfolio-categories">
-                    <button class="category-btn" data-category="계룡건설">계룡건설</button>
-                    <button class="category-btn" data-category="교보생명">교보생명</button>
-                    <button class="category-btn" data-category="국토교통부">국토교통부</button>
-                    <button class="category-btn" data-category="금융감독원">금융감독원</button>
-                    <button class="category-btn" data-category="대우건설">대우건설</button>
-                    <button class="category-btn" data-category="동서울대 K-POP과">동서울대 K-POP과</button>
-                    <button class="category-btn" data-category="더샵">더샵</button>
-                    <button class="category-btn" data-category="맥도날드">맥도날드</button>
-                    <button class="category-btn" data-category="성동구사회적경제지원센터">성동구사회적경제지원센터</button>
-                    <button class="category-btn active" data-category="아이엠뱅크">아이엠뱅크</button>
-                    <button class="category-btn" data-category="에버글로우">에버글로우</button>
-                    <button class="category-btn" data-category="우리금융그룹">우리금융그룹</button>
-                    <button class="category-btn" data-category="임팩트서클">임팩트서클</button>
-                    <button class="category-btn" data-category="임팩트스퀘어">임팩트스퀘어</button>
-                    <button class="category-btn" data-category="크레즐">크레즐</button>
-                    <button class="category-btn" data-category="한국심장재단">한국심장재단</button>
-                    <button class="category-btn" data-category="현대해상">현대해상</button>
-                    <button class="category-btn" data-category="AITRICS">AITRICS</button>
-                    <button class="category-btn" data-category="FLIB_FILMS">FLIB FILMS</button>
-                    <button class="category-btn" data-category="KT&G 상상플래닛">KT&G 상상플래닛</button>
-                    <button class="category-btn" data-category="LG생활건강">LG생활건강</button>
-                    <button class="category-btn" data-category="LS그룹">LS그룹</button>
-                </div>
-
-                <!-- Portfolio Grid -->
-                <div id="portfolioGrid" class="portfolio-grid">
-                    <!-- YouTube videos will be dynamically loaded -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <p class="section-subtitle">Contact</p>
-                <h2 class="section-title">문의하기</h2>
-            </div>
-            
-            <div class="contact-content">
-                <div class="contact-info" data-aos="fade-right">
-                    <h3>화목스튜디오에 프로젝트를 맡겨보세요</h3>
-                    <p class="contact-description">
-                        7년간의 경험과 전문성으로 최고의 결과물을 제공합니다.<br>
-                        언제든지 편하게 문의해주세요.
-                    </p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>이메일</h4>
-                                <a href="mailto:info@tuesdaythursdaystudio.com">info@tuesdaythursdaystudio.com</a>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>전화</h4>
-                                <a href="tel:010-2076-8389">010-2076-8389</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form-wrapper" data-aos="fade-left">
-                    <form class="contact-form" id="contactForm" action="https://formspree.io/f/mgodnpwe" method="POST">
-                        <div class="form-group">
-                            <label for="name">이름 *</label>
-                            <input type="text" id="name" name="name" required placeholder="홍길동">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">이메일 *</label>
-                            <input type="email" id="email" name="email" required placeholder="example@email.com">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">연락처</label>
-                            <input type="tel" id="phone" name="phone" placeholder="010-0000-0000">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="service">서비스 선택 *</label>
-                            <select id="service" name="service" required>
-                                <option value="">선택해주세요</option>
-                                <option value="예능">예능 촬영</option>
-                                <option value="강의">강의 촬영</option>
-                                <option value="행사">행사 촬영</option>
-                                <option value="홍보영상">홍보영상</option>
-                                <option value="숏폼">숏폼 콘텐츠</option>
-                                <option value="비하인드 영상">비하인드 영상</option>
-                                <option value="기타">기타</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">프로젝트 내용 *</label>
-                            <textarea id="message" name="message" rows="5" required placeholder="프로젝트에 대해 자세히 알려주세요"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary btn-full">
-                            <i class="fas fa-paper-plane"></i> 문의하기
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <svg width="20" height="20" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="11" cy="11" r="10" stroke="#C9A86C" stroke-width="1.5"/>
-                        <polygon points="8.5,7 15.5,11 8.5,15" fill="#C9A86C"/>
-                    </svg>
-                    <span class="logo-text">화목스튜디오</span>
-                </div>
-                <p class="footer-text">Tuesday Thursday Studio</p>
-                <p class="footer-copyright">© 2025 화목스튜디오. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scroll to Top Button -->
-    <button id="scrollToTop" class="scroll-to-top" aria-label="맨 위로">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    
-    <!-- AOS Animation -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Custom JavaScript -->
-    <script src="js/script.js"></script>
+    { id:'finale', label:'딜리버리',
+      still:'assets/s5_edit.jpg', clip:'assets/vid/dive5.mp4',
+      accent:'#E8D5A3', scroll:2.0, linger:0.45,
+      eyebrow:'200개+ 프로젝트',
+      title:'완성해서 건네드립니다',
+      body:'촬영부터 편집과 컬러그레이딩까지, 한 곳에서 끝냅니다.',
+      tags:[],
+      cta:{ primary:{ label:'프로젝트 문의', href:'#contact' },
+            secondary:{ label:'작업한 곳 보기', href:'#works' } } },
+  ],
+  connectors: [
+    'assets/vid/conn1.mp4',
+    'assets/vid/conn2.mp4',
+    'assets/vid/conn3.mp4',
+    'assets/vid/conn4.mp4',
+  ],
+});
+</script>
 </body>
 </html>
