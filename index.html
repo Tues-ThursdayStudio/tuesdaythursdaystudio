@@ -171,23 +171,51 @@
   .lead{margin-top:20px;font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:var(--ink-2);
     max-width:36ch;font-weight:400}
 
-  /* ── About ── */
-  .about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
-    gap:clamp(36px,6vw,88px);align-items:center;margin-top:clamp(44px,6vw,72px)}
-  .about__fig{position:relative}
-  .about__photo{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:18px;
-    filter:grayscale(.35) contrast(1.05)}
-  .about__meta{position:absolute;left:0;bottom:0;right:0;padding:22px;
-    background:linear-gradient(0deg,rgba(0,0,0,.88),transparent);border-radius:0 0 18px 18px}
-  .about__name{font-size:24px;font-weight:700;letter-spacing:-.02em}
-  .about__role{margin-top:5px;font-family:var(--mono);font-size:12.5px;color:var(--gold-lt);letter-spacing:.02em}
-  .about__body{font-size:clamp(17px,1.5vw,19px);line-height:1.75;color:var(--ink-2)}
-  .about__body p + p{margin-top:18px}
-  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:38px;
-    background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-  .fact{background:var(--surface);padding:22px 18px}
-  .fact__n{font-size:clamp(22px,2.4vw,30px);font-weight:900;letter-spacing:-.03em;color:var(--ink)}
-  .fact__l{margin-top:7px;font-family:var(--mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.05em}
+  /* ── About : 전면 배경 이미지 + 우측 텍스트 ── */
+  .hero{position:relative;isolation:isolate;overflow:hidden;
+    min-height:clamp(680px,92vh,1000px);display:flex;align-items:center;
+    padding-block:clamp(72px,9vw,120px)}
+  .hero__bg{position:absolute;inset:0;z-index:-2;
+    background-image:image-set(url('assets/about-bg.jpg') 1x);
+    background-image:url('assets/about-bg.jpg');
+    background-size:cover;background-position:28% center;background-repeat:no-repeat}
+  /* 우측 텍스트 가독성 확보 — 우하단 불꽃이 밝아 그쪽을 더 눌러준다 */
+  .hero__scrim{position:absolute;inset:0;z-index:-1;
+    background:
+      linear-gradient(270deg, rgba(0,0,0,.94) 0%, rgba(0,0,0,.86) 26%,
+                              rgba(0,0,0,.55) 50%, rgba(0,0,0,.12) 74%, transparent 100%),
+      linear-gradient(0deg, rgba(0,0,0,.55) 0%, transparent 42%),
+      linear-gradient(180deg, rgba(0,0,0,.5) 0%, transparent 30%)}
+  .hero__inner{width:100%;display:flex;justify-content:flex-end}
+  .hero__col{width:min(100%,520px)}
+  .hero__body{margin-top:26px;font-size:clamp(16px,1.4vw,18px);line-height:1.8;color:var(--ink-2)}
+  .hero__body p + p{margin-top:16px}
+  .hero__who{margin-top:30px;padding-top:22px;border-top:1px solid rgba(255,255,255,.18)}
+  .hero__who strong{display:block;font-size:21px;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+  .hero__who span{display:block;margin-top:6px;font-family:var(--mono);font-size:12.5px;
+    color:var(--gold-lt);letter-spacing:.03em}
+  .hero .facts{margin-top:28px}
+  .hero .fact{background:rgba(10,10,12,.62);backdrop-filter:blur(10px)}
+
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);
+    border-radius:14px;overflow:hidden}
+  .fact{background:var(--surface);padding:20px 16px}
+  .fact__n{font-size:clamp(21px,2.2vw,27px);font-weight:900;letter-spacing:-.03em;color:var(--ink)}
+  .fact__l{margin-top:6px;font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:.05em}
+
+  @media(max-width:900px){
+    .hero__bg{background-image:url('assets/about-bg-m.jpg')}
+    .hero{min-height:auto;padding-block:clamp(80px,14vw,120px)}
+    .hero__bg{background-position:32% center}
+    .hero__scrim{background:
+      linear-gradient(0deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.78) 45%, rgba(0,0,0,.62) 100%)}
+    .hero__inner{justify-content:flex-start}
+    .hero__col{width:100%}
+  }
+  @media(max-width:520px){
+    .facts{grid-template-columns:1fr}
+  }
 
   /* ── 서비스 ── */
   .svcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
@@ -308,26 +336,26 @@
 <div id="after">
 
 <!-- ═══ About ═══ -->
-<section class="sec" id="about"><div class="wrap">
-  <div class="eyebrow">About</div>
-  <h2 class="h2">카메라 뒤의 7년</h2>
+<section class="hero" id="about">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="hero__scrim" aria-hidden="true"></div>
+  <div class="wrap hero__inner">
+    <div class="hero__col">
+      <div class="eyebrow">About</div>
+      <h2 class="h2">카메라 뒤의 7년</h2>
 
-  <div class="about">
-    <figure class="about__fig">
-      <img class="about__photo" src="images/profile.jpg" alt="정성구 촬영감독" />
-      <figcaption class="about__meta">
-        <div class="about__name">정성구</div>
-        <div class="about__role">촬영감독 · PD / 화목스튜디오</div>
-      </figcaption>
-    </figure>
-
-    <div>
-      <div class="about__body">
-        <p>7년간 영상 제작 현장에 있었습니다. 유튜브 예능부터 웹드라마, 강의 콘텐츠, 브랜드 비하인드까지
-           카메라를 잡았고, 그중 상당수는 기획부터 편집까지 혼자 끝냈습니다.</p>
+      <div class="hero__body">
+        <p>7년간 영상 제작 현장에 있었습니다. 유튜브 예능부터 웹드라마, 강의 콘텐츠,
+           브랜드 비하인드까지 카메라를 잡았고, 그중 상당수는 기획부터 편집까지 혼자 끝냈습니다.</p>
         <p>규모가 크든 작든 결국 화면에 남는 건 현장에서의 판단입니다.
            그 판단을 직접 내리고 책임지는 방식으로 일합니다.</p>
       </div>
+
+      <div class="hero__who">
+        <strong>정성구</strong>
+        <span>촬영감독 · PD / 화목스튜디오</span>
+      </div>
+
       <div class="facts">
         <div class="fact"><div class="fact__n">7년+</div><div class="fact__l">경력</div></div>
         <div class="fact"><div class="fact__n">107편</div><div class="fact__l">공개 작업</div></div>
@@ -335,7 +363,7 @@
       </div>
     </div>
   </div>
-</div></section>
+</section>
 
 <!-- ═══ 서비스 ═══ -->
 <section class="sec" id="services"><div class="wrap">
