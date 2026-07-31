@@ -159,6 +159,15 @@
       font-size:clamp(24px,7.4vw,40px);letter-spacing:.2em}
   }
 
+  /* 디오라마가 끝날 때 검게 덮어 다음 섹션이 암전에서 올라오게 한다 */
+  .world-out{position:fixed;inset:0;z-index:30;background:#000;opacity:0;
+    pointer-events:none;will-change:opacity}
+
+  /* About는 암전에서 떠오르듯 */
+  .hero__bg,.hero__col{transition:opacity .7s ease .1s,transform .7s cubic-bezier(.22,1,.36,1) .1s}
+  body:not(.past-world) .hero__bg{opacity:0}
+  body:not(.past-world) .hero__col{opacity:0;transform:translateY(26px)}
+
   /* ── 레이아웃 ── */
   .wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(20px,5vw,40px)}
   .sec{padding-block:clamp(88px,13vw,168px)}
@@ -178,20 +187,17 @@
   .hero__bg{position:absolute;inset:0;z-index:-2;
     background-image:image-set(url('assets/about-bg.jpg') 1x);
     background-image:url('assets/about-bg.jpg');
-    background-size:cover;background-position:28% center;background-repeat:no-repeat}
+    background-size:cover;background-position:100% center;background-repeat:no-repeat}
   /* 우측 텍스트 가독성 확보 — 우하단 불꽃이 밝아 그쪽을 더 눌러준다 */
   /* 전체는 살짝만 눌러 이미지를 살리고, 가독성은 글자 뒤 패널이 담당한다 */
   .hero__scrim{position:absolute;inset:0;z-index:-1;
     background:
-      linear-gradient(270deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.34) 26%,
-                              rgba(0,0,0,.18) 50%, rgba(0,0,0,.04) 74%, transparent 100%),
-      linear-gradient(180deg, rgba(0,0,0,.45) 0%, transparent 26%)}
+      linear-gradient(270deg, rgba(0,0,0,.78) 0%, rgba(0,0,0,.66) 26%,
+                              rgba(0,0,0,.38) 50%, rgba(0,0,0,.09) 74%, transparent 100%),
+      linear-gradient(180deg, rgba(0,0,0,.42) 0%, transparent 24%)}
   .hero__inner{width:100%;display:flex;justify-content:flex-end}
   .hero__col{width:min(100%,540px);
-    background:rgba(8,8,10,.62);backdrop-filter:saturate(125%) blur(22px);
-    -webkit-backdrop-filter:saturate(125%) blur(22px);
-    border:1px solid rgba(255,255,255,.11);border-radius:22px;
-    padding:clamp(30px,3.4vw,46px)}
+    text-shadow:0 1px 3px rgba(0,0,0,.85),0 2px 22px rgba(0,0,0,.6)}
   .hero__stmt{margin-top:22px;font-size:clamp(20px,2.05vw,28px);font-weight:500;
     line-height:1.62;letter-spacing:-.025em;color:var(--ink)}
   .hero__stmt span{display:block}
@@ -206,8 +212,10 @@
   .hero__who span{display:block;margin-top:6px;font-family:var(--mono);font-size:12.5px;
     color:var(--gold-lt);letter-spacing:.03em}
   .hero .facts{margin-top:28px}
-  .hero .fact{background:rgba(255,255,255,.05)}
-  .hero .facts{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.12)}
+  .hero .facts{background:transparent;border:0;border-top:1px solid rgba(255,255,255,.20);
+    border-radius:0;gap:0;padding-top:22px}
+  .hero .fact{background:transparent;padding:0 18px 0 0}
+  .hero .fact + .fact{padding-left:22px;border-left:1px solid rgba(255,255,255,.15)}
 
   .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
     background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);
@@ -217,13 +225,13 @@
   .fact__l{margin-top:6px;font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:.05em}
 
   @media(max-width:900px){
-    .hero__bg{background-image:url('assets/about-bg-m.jpg')}
+    .hero__bg{background-image:url('assets/about-bg-m.jpg');background-position:62% center}
     .hero{min-height:auto;padding-block:clamp(80px,14vw,120px)}
     .hero__bg{background-position:32% center}
     .hero__scrim{background:
       linear-gradient(0deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.78) 45%, rgba(0,0,0,.62) 100%)}
     .hero__inner{justify-content:flex-start}
-    .hero__col{width:100%;padding:clamp(24px,6vw,34px);border-radius:18px}
+    .hero__col{width:100%}
   }
   @media(max-width:520px){
     .facts{grid-template-columns:1fr}
@@ -343,6 +351,7 @@
 
 <!-- 스크롤 스크럽 3D 비행 -->
 <div id="world"></div>
+<div class="world-out" aria-hidden="true"></div>
 <div class="mark" aria-hidden="true"><span>Tuesday</span><span>Thursday</span><span>Studio</span></div>
 
 <div id="after">
@@ -458,7 +467,7 @@
 <a class="cta-fixed" href="#contact">프로젝트 문의</a>
 <script src="scrub-engine.js"></script>
 <script>
-mountScrollWorld(document.getElementById('world'), {
+var SW = {
   brand: { name: '화목스튜디오', href: '#top' },
   hint:  '스크롤해서 들어가기',
   diveScroll: 1.6,   // clips are 10s (Kling 3.0) — more scroll distance keeps the glide unhurried
@@ -519,7 +528,8 @@ mountScrollWorld(document.getElementById('world'), {
     'assets/vid/conn3-m.mp4',
     'assets/vid/conn4-m.mp4',
   ],
-});
+};
+mountScrollWorld(document.getElementById('world'), SW);
 </script>
 
 <script>
@@ -605,6 +615,95 @@ mountScrollWorld(document.getElementById('world'), {
     client=b.dataset.c;
     [].forEach.call(segC.children,function(x){x.setAttribute('aria-pressed', x===b)});
     render();
+  });
+})();
+</script>
+
+<script>
+/* ══ 디오라마 스냅 이동 ══
+   스크롤을 조금만 움직여도 다음 씬으로 완전히 넘어간 뒤 멈춘다.
+   마지막 단계는 About 섹션 상단으로 붙어 '새 페이지 시작'처럼 읽힌다. */
+(function(){
+  var after=document.getElementById('after'), veil=document.querySelector('.world-out');
+  if(!after||!window.SW) return;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function anchors(){
+    var a=[];
+    (SW.sections||[]).forEach(function(x){
+      var g=x._seg; if(g) a.push(g.start+(g.end-g.start)*0.5);
+    });
+    if(!a.length) return null;
+    a.push(after.offsetTop);          // 마지막 정거장 = About 상단
+    return a;
+  }
+  function worldEnd(){ return after.offsetTop; }
+  function inWorld(){ return window.scrollY < worldEnd()-4; }
+
+  /* 마지막 씬 → About 구간에서 서서히 암전 */
+  function paintVeil(){
+    if(!veil) return;
+    var A=anchors(); if(!A){veil.style.opacity=0;return;}
+    var last=A[A.length-2], end=worldEnd(), y=window.scrollY;
+    var p=(y-last)/Math.max(1,end-last);
+    veil.style.opacity=Math.max(0,Math.min(1,p))*0.96;
+  }
+  addEventListener('scroll',paintVeil,{passive:true});
+  addEventListener('resize',paintVeil);
+  paintVeil();
+
+  if(reduce) return;                  /* 모션 최소화 설정이면 기본 스크롤 유지 */
+
+  var busy=false, until=0;
+  function glide(y,ms){
+    busy=true;
+    var y0=window.scrollY, dy=y-y0, t0=performance.now();
+    (function step(t){
+      var p=Math.min(1,(t-t0)/ms);
+      var e=p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;
+      window.scrollTo(0,y0+dy*e);
+      if(p<1) requestAnimationFrame(step);
+      else { busy=false; until=performance.now()+260; }  /* 관성 잔여 입력 차단 */
+    })(performance.now());
+  }
+  function step(dir){
+    var A=anchors(); if(!A) return false;
+    var y=window.scrollY, tol=10, i=-1;
+    if(dir>0){                       /* 현재보다 확실히 아래인 첫 정거장 */
+      for(var k=0;k<A.length;k++){ if(A[k]>y+tol){ i=k; break; } }
+    }else{                           /* 현재보다 확실히 위인 마지막 정거장 */
+      for(var j=A.length-1;j>=0;j--){ if(A[j]<y-tol){ i=j; break; } }
+    }
+    if(i<0) return false;
+    glide(A[i], i===A.length-1?1050:900);
+    return true;
+  }
+  function guard(){ return busy||performance.now()<until; }
+
+  addEventListener('wheel',function(e){
+    if(!inWorld()) return;
+    e.preventDefault();
+    if(guard()) return;
+    step(e.deltaY>0?1:-1);
+  },{passive:false});
+
+  var ty=null;
+  addEventListener('touchstart',function(e){ ty=e.touches[0].clientY; },{passive:true});
+  addEventListener('touchmove',function(e){ if(inWorld()) e.preventDefault(); },{passive:false});
+  addEventListener('touchend',function(e){
+    if(ty===null||!inWorld()) { ty=null; return; }
+    var dy=ty-(e.changedTouches[0].clientY); ty=null;
+    if(Math.abs(dy)<28||guard()) return;
+    step(dy>0?1:-1);
+  },{passive:true});
+
+  addEventListener('keydown',function(e){
+    if(!inWorld()) return;
+    var down=['ArrowDown','PageDown',' ','Spacebar'].indexOf(e.key)>=0;
+    var up=['ArrowUp','PageUp'].indexOf(e.key)>=0;
+    if(!down&&!up) return;
+    e.preventDefault(); if(guard()) return;
+    step(down?1:-1);
   });
 })();
 </script>
