@@ -119,8 +119,9 @@
     line-height:1.7!important}
 
   /* 씬 본문 — 한 줄 유지 */
-  .sw-copy{width:min(46vw,560px)!important}
-  .sw-copy__body{max-width:none!important;white-space:nowrap}
+  .sw-copy{width:min(52vw,620px)!important}
+  .sw-copy__title{word-break:keep-all}
+  .sw-copy__body{max-width:none!important}
   .sw-copy__eyebrow{color:var(--gold-lt)!important}
   .sw-copy__num{color:rgba(255,255,255,.42)!important}
 
@@ -142,7 +143,6 @@
 
   @media(max-width:860px){
     .sw-copy{width:auto!important}
-    .sw-copy__body{white-space:normal}
   }
 
 
@@ -502,15 +502,15 @@ var SW = {
       accent:'#C9A86C', scroll:1.8, linger:0.35,
       eyebrow:'스튜디오 장비',
       title:'어떤 촬영이든 가능한 장비 구비',
-      body:'SONY FX3 · DJI AVATA2 · DJI RS4 · DJI OSMO POCKET 3 등',
+      body:'SONY FX3, DJI AVATA2, DJI RS4, DJI OSMO POCKET 4P 등',
       tags:['시네마 카메라','드론','짐벌'] },
 
     { id:'shoot', label:'예능 · 드라마',
       still:'assets/s2_shoot.jpg', clip:'assets/vid/dive2.mp4', clipMobile:'assets/vid/dive2-m.mp4',
       accent:'#E8D5A3',
       eyebrow:'예능 · 드라마',
-      title:'1인부터 4인까지, 팀 단위 촬영',
-      body:'7년 차 이상의 촬영감독으로 구성합니다.',
+      title:'1인에서 4인까지, 7년 차 이상의 촬영감독들로 이뤄진 팀 촬영',
+      body:'',
       tags:['멀티캠','팀 구성','현장 연출'] },
 
     { id:'lecture', label:'강의 · 인터뷰',
@@ -518,15 +518,15 @@ var SW = {
       accent:'#4FB3A8',
       eyebrow:'강의 · 인터뷰',
       title:'전문화된 조명과 녹음 시스템',
-      body:'말이 새지 않고 화면이 흔들리지 않게.',
+      body:'',
       tags:['3카메라','전용 조명','현장 음향'] },
 
     { id:'reels', label:'비하인드 · 숏폼',
       still:'assets/s4_reels.jpg', clip:'assets/vid/dive4.mp4', clipMobile:'assets/vid/dive4-m.mp4',
       accent:'#C9A86C',
       eyebrow:'비하인드 · 숏폼',
-      title:'트렌드를 반영한 촬영과 편집',
-      body:'세로 화면을 전제로 처음부터 설계합니다.',
+      title:'트랜디한 촬영과 편집 스타일',
+      body:'',
       tags:['세로 촬영','숏폼 편집','브이로그'] },
 
     { id:'finale', label:'딜리버리',
@@ -534,7 +534,7 @@ var SW = {
       accent:'#E8D5A3', scroll:2.0, linger:0.45,
       eyebrow:'딜리버리',
       title:'빠른 제작과 피드백 반영',
-      body:'수정 요청은 미루지 않고 바로 반영합니다.',
+      body:'',
       tags:['편집','컬러그레이딩','납품'],
       cta:{ primary:{ label:'작업 보러 가기', href:'#works' },
             secondary:{ label:'프로젝트 문의', href:'#contact' } } },
