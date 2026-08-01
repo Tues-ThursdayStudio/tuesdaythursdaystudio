@@ -58,11 +58,25 @@
   #after{position:relative;z-index:45;background:transparent}
   #after > .sec, #after > footer{background:var(--bg)}
   /* 월드 구간을 벗어나면 엔진 오버레이를 완전히 숨긴다 */
-  .sw-stage,.sw-sky,.sw-route,.sw-hint,.mark{opacity:var(--world-op,1)}
+  /* .sw-copylayer가 빠져 있어서 About으로 넘어간 뒤에도 씬 문구 레이어가
+     남아 있었다. 디오라마와 같이 사라져야 한다. */
+  .sw-stage,.sw-sky,.sw-route,.sw-hint,.mark,.sw-copylayer{opacity:var(--world-op,1)}
+
+  /* ══ 씬 문구는 CSS 변수 하나로만 제어한다 ══
+     엔진도 스크롤마다 인라인 opacity/transform을 쓰기 때문에, 커스텀 스크립트와
+     같은 속성을 번갈아 쓰면 프레임이 튄다(실제 발생). 스타일시트 !important는
+     엔진의 '보통' 인라인 값을 이기므로, 엔진의 쓰기는 무시되고 아래 변수만
+     진짜 값이 된다. 쓰는 주체가 하나가 되어 깜빡임이 사라진다. */
+  .sw-copy{
+    opacity:var(--copy-op,0)!important;
+    transform:translateY(var(--copy-shift,0px))!important;
+    pointer-events:none!important;
+    will-change:opacity,transform}
   body.world-gone .sw-stage,
   body.world-gone .sw-sky,
   body.world-gone .sw-route,
   body.world-gone .sw-hint,
+  body.world-gone .sw-copylayer,
   body.world-gone .mark{visibility:hidden}
 
 
@@ -776,7 +790,14 @@ mountScrollWorld(document.getElementById('world'), SW);
    원하는 동작은 "다이브 첫 프레임 = 문구 100%" 이므로 직접 계산한다.
 
    타이밍: 씬 시작 전 커넥터 구간에서 떠오르며 페이드 인 →
-           씬 시작점에서 100% → 다이브가 진행되며 위로 흐르며 페이드 아웃. */
+           씬 시작점에서 100% → 다이브가 진행되며 위로 흐르며 페이드 아웃.
+
+   ⚠ 예전에는 엔진이 쓴 인라인 opacity를 스크롤 직후 260ms 동안만 되덮어썼다.
+   그래서 (a) 스크롤 중 두 값이 번갈아 적용되며 프레임이 튀고,
+   (b) 루프가 멈춘 뒤 엔진이 마지막 씬 문구를 다시 100%로 올려
+   About을 보는 중에 딜리버리 문구가 좌하단에 깜빡였다.
+   이제는 CSS 변수 --copy-op / --copy-shift 만 쓴다. 스타일시트의 !important가
+   엔진의 인라인 값을 무효화하므로 쓰는 주체가 하나뿐이고, 되덮어쓸 일이 없다. */
 (function(){
   if(!window.SW) return;
   var layer=document.querySelector('.sw-copylayer');
@@ -785,11 +806,14 @@ mountScrollWorld(document.getElementById('world'), SW);
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   var IN   = 0.55;   /* 씬 길이 대비, 시작 전 페이드인에 쓰는 거리 */
-  var HOLD = 0.16;   /* 시작 직후 100%로 머무는 구리 */
+  var HOLD = 0.16;   /* 시작 직후 100%로 머무는 구간 */
   var OUT  = 0.62;   /* 그 뒤 사라지기까지의 거리 */
   var RISE = 9;      /* 위로 흐르는 폭(vh) */
 
   function ease(t){ return t<0?0:t>1?1:t*t*(3-2*t); }
+
+  /* 직전 값과 같으면 쓰지 않는다 — 불필요한 스타일 무효화를 줄여 스크롤이 더 매끄럽다 */
+  var prevOp=[], prevSh=[];
 
   function paint(){
     var y=window.scrollY;
@@ -806,30 +830,27 @@ mountScrollWorld(document.getElementById('world'), SW);
       else if(d < HOLD+OUT){                 /* 스크롤 따라 위로 흐르며 사라짐 */
         var u=(d-HOLD)/OUT; op=1-ease(u); shift=-RISE*ease(u);
       }
-      else { op=0; shift=-RISE; }
+      else { op=0; shift=-RISE; }            /* 구간을 지나면 확실히 0 */
 
       var c=copies[i];
-      c.style.setProperty('opacity', op.toFixed(3), 'important');
-      c.style.setProperty('transform', reduce?'none':'translateY('+shift.toFixed(2)+'vh)', 'important');
-      c.style.pointerEvents = op>0.5 ? 'auto' : 'none';
+      var o=op.toFixed(3), sh=(reduce?0:shift).toFixed(2)+'vh';
+      if(prevOp[i]!==o){ c.style.setProperty('--copy-op', o); prevOp[i]=o; }
+      if(prevSh[i]!==sh){ c.style.setProperty('--copy-shift', sh); prevSh[i]=sh; }
     }
   }
-  /* 엔진이 스크롤마다 값을 되돌려 쓰므로, 스크롤 직후 잠깐 동안만
-     매 프레임 덮어쓴다. 멈춰 있을 때는 루프를 돌리지 않는다. */
-  var until=0, running=false;
-  function loop(){
-    paint();
-    if(performance.now()<until) requestAnimationFrame(loop);
-    else running=false;
+
+  /* 엔진과 동일하게 스크롤당 한 프레임만 그린다. 상시 rAF 루프가 필요 없다. */
+  var ticking=false;
+  function onScroll(){
+    if(ticking) return;
+    ticking=true;
+    requestAnimationFrame(function(){ paint(); ticking=false; });
   }
-  function kick(){
-    until=performance.now()+260;
-    if(!running){ running=true; requestAnimationFrame(loop); }
-  }
-  addEventListener('scroll', kick, {passive:true});
-  addEventListener('resize', kick);
-  addEventListener('load', kick);
-  kick();
+  addEventListener('scroll', onScroll, {passive:true});
+  addEventListener('resize', onScroll);
+  addEventListener('orientationchange', function(){ setTimeout(paint, 250); });
+  addEventListener('load', paint);
+  paint();
 })();
 </script>
 <script>
