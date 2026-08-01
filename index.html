@@ -136,8 +136,10 @@
 
   /* 씬 본문 — 한 줄 유지 */
   /* 씬 문구 — 워드마크 바로 아래에 작게. 세로 중앙 기준에서 아래로 밀어 배치 */
+  /* 42vw/480px에서는 2번 씬 제목("1인에서 4인까지…")이 512px를 필요로 해 두 줄이 됐다.
+     글자를 줄이는 대신 상자를 넓혀 22px 그대로 한 줄에 담는다. */
   .sw-copy{left:clamp(24px,6vw,88px)!important;
-    width:min(42vw,480px)!important;
+    width:min(48vw,560px)!important;
     top:50%!important;
     margin-top:clamp(96px,15vh,170px)!important}
   .sw-copy__num{display:none!important}                 /* 01 / 05 숨김 */
@@ -681,7 +683,7 @@ mountScrollWorld(document.getElementById('world'), SW);
   var segT=document.getElementById('segType'), segC=document.getElementById('segClient'),
       grid=document.getElementById('pfGrid'), stat=document.getElementById('pfStat'),
       empty=document.getElementById('pfEmpty');
-  var items=[], type='유튜브 예능', client='계룡건설';
+  var items=[], type='유튜브 예능', client='아이엠뱅크';
 
   fetch('assets/portfolio.json').then(function(r){return r.json()}).then(function(d){
     Object.keys(d).forEach(function(c){
