@@ -4,8 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>화목스튜디오 | Tuesday Thursday Studio — 전문 영상제작</title>
-<meta name="description" content="화목스튜디오 - 1인 제작부터 팀 작업까지, 예능부터 시네마틱까지. 웹드라마·강의 영상·릴스·비하인드·예능 촬영을 기획하고 제작합니다." />
-<meta name="keywords" content="영상제작, 화목스튜디오, Tuesday Thursday Studio, 웹드라마, 강의영상, 릴스, 비하인드, 예능촬영" />
+<meta name="description" content="화목스튜디오 - 1인 제작부터 팀 작업까지, 예능부터 시네마틱까지. 유튜브 예능, 행사 스케치, 비하인드·브이로그, 홍보영상·숏드라마, 강의·인터뷰, 공연 영상과 사진을 제작합니다." />
+<meta name="keywords" content="영상제작, 화목스튜디오, Tuesday Thursday Studio, 유튜브 예능, 행사 스케치, 비하인드, 브이로그, 홍보영상, 숏드라마, 강의 촬영, 인터뷰, 공연 영상" />
 <meta name="author" content="화목스튜디오" />
 <meta name="naver-site-verification" content="8fb175c015b43d8a3a56067131782c5965f3e692" />
 <meta property="og:title" content="화목스튜디오 | Tuesday Thursday Studio" />
@@ -223,6 +223,9 @@
   .fact__n{font-size:clamp(21px,2.2vw,27px);font-weight:900;letter-spacing:-.03em;color:var(--ink)}
   .fact__l{margin-top:6px;font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:.05em}
 
+  @media(max-width:1040px){ .svcs{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:620px){ .svcs{grid-template-columns:1fr} }
+
   @media(max-width:900px){
     .hero-pin{height:170vh}
     .hero{height:100svh}
@@ -237,14 +240,17 @@
   }
 
   /* ── 서비스 ── */
-  .svcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  .svcs{display:grid;grid-template-columns:repeat(3,1fr);
     gap:1px;margin-top:clamp(40px,5vw,64px);background:var(--line);
     border:1px solid var(--line);border-radius:16px;overflow:hidden}
-  .svc{background:var(--surface);padding:34px 28px 38px;transition:background .3s}
+  .svc{background:var(--surface);padding:34px 28px 38px;transition:background .3s;
+    display:flex;flex-direction:column}
   .svc:hover{background:var(--surface-2)}
   .svc__i{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.08em}
-  .svc__t{margin-top:16px;font-size:21px;font-weight:700;letter-spacing:-.02em}
-  .svc__d{margin-top:12px;font-size:15.5px;line-height:1.65;color:var(--ink-2)}
+  .svc__t{margin-top:16px;font-size:21px;font-weight:700;letter-spacing:-.02em;
+    line-height:1.35;word-break:keep-all}
+  .svc__d{margin-top:12px;font-size:15.5px;line-height:1.7;color:var(--ink-2);
+    word-break:keep-all}
 
   /* ── 포트폴리오 ── */
   .pf-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px}
@@ -387,20 +393,27 @@
 <!-- ═══ 서비스 ═══ -->
 <section class="sec" id="services"><div class="wrap">
   <div class="eyebrow">Services</div>
-  <h2 class="h2">이런 걸 만듭니다</h2>
-  <p class="lead">아래 다섯 가지를 주력으로 합니다.</p>
+  <h2 class="h2">제작 포맷</h2>
+  <p class="lead">여섯 가지 포맷을 다룹니다. 포맷마다 필요한 장비와 인력 구성이 다릅니다.</p>
 
   <div class="svcs">
-    <div class="svc"><div class="svc__i">01</div><h3 class="svc__t">웹드라마</h3>
-      <p class="svc__d">촬영부터 편집까지. 회차가 이어져도 톤이 흔들리지 않게.</p></div>
-    <div class="svc"><div class="svc__i">02</div><h3 class="svc__t">강의 영상</h3>
-      <p class="svc__d">온라인 강의와 교육 콘텐츠. 전문적이고 명확한 구성.</p></div>
-    <div class="svc"><div class="svc__i">03</div><h3 class="svc__t">릴스 · 쇼츠</h3>
-      <p class="svc__d">세로 화면에 맞춰 처음부터 설계하는 숏폼.</p></div>
-    <div class="svc"><div class="svc__i">04</div><h3 class="svc__t">비하인드</h3>
-      <p class="svc__d">촬영 현장의 공기를 가장 가까이에서 기록.</p></div>
-    <div class="svc"><div class="svc__i">05</div><h3 class="svc__t">예능 촬영</h3>
-      <p class="svc__d">유튜브 예능. 생동감 있고 재미있게.</p></div>
+    <div class="svc"><div class="svc__i">01</div><h3 class="svc__t">유튜브 예능</h3>
+      <p class="svc__d">예능 촬영에 최적화된 세팅을 제공하며, 핸드헬드 및 짐벌 팔로우 촬영 등으로 모든 순간을 놓치지 않고 담아냅니다.</p></div>
+
+    <div class="svc"><div class="svc__i">02</div><h3 class="svc__t">행사 스케치</h3>
+      <p class="svc__d">기업 행사, 마라톤 대회, 콘서트 등에서 시네마 카메라와 드론 등으로 현장감이 가득 담긴 스케치를 제작합니다.</p></div>
+
+    <div class="svc"><div class="svc__i">03</div><h3 class="svc__t">비하인드 · 브이로그</h3>
+      <p class="svc__d">인물의 스토리에 집중할 수 있는 스토리텔링 영상을 제작합니다.</p></div>
+
+    <div class="svc"><div class="svc__i">04</div><h3 class="svc__t">홍보영상 · 숏드라마</h3>
+      <p class="svc__d">사전 기획을 통한 연출된 촬영을 통해 완성도 높은 영상을 제작합니다.</p></div>
+
+    <div class="svc"><div class="svc__i">05</div><h3 class="svc__t">강의 · 인터뷰</h3>
+      <p class="svc__d">가독성이 좋고 정보 전달이 분명한 영상을 제공합니다.</p></div>
+
+    <div class="svc"><div class="svc__i">06</div><h3 class="svc__t">공연 영상 · 행사 사진</h3>
+      <p class="svc__d">공연 아카이브 영상을 제작하고, 웨딩 및 행사 등의 사진 촬영도 진행하고 있습니다.</p></div>
   </div>
 </div></section>
 
@@ -446,8 +459,10 @@
       <div class="field"><label for="f-svc">종류</label>
         <select id="f-svc" name="service" required>
           <option value="">선택해주세요</option>
-          <option>웹드라마</option><option>강의 영상</option><option>릴스 · 쇼츠</option>
-          <option>비하인드 영상</option><option>예능 촬영</option><option>기타</option>
+          <option>유튜브 예능</option><option>행사 스케치</option>
+          <option>비하인드 · 브이로그</option><option>홍보영상 · 숏드라마</option>
+          <option>강의 · 인터뷰</option><option>공연 영상 · 행사 사진</option>
+          <option>기타</option>
         </select>
       </div>
       <div class="field"><label for="f-msg">내용</label><textarea id="f-msg" name="message" required></textarea></div>
@@ -481,29 +496,29 @@ var SW = {
       body:'촬영본이 아니라 완성된 영상을 드립니다.',
       tags:['FX3 · A7M4 · A7C2','DJI AVATA2 · MINI 4 PRO'] },
 
-    { id:'shoot', label:'웹드라마 · 예능',
+    { id:'shoot', label:'예능 · 드라마',
       still:'assets/s2_shoot.jpg', clip:'assets/vid/dive2.mp4', clipMobile:'assets/vid/dive2-m.mp4',
       accent:'#E8D5A3',
-      eyebrow:'웹드라마 · 예능 촬영',
+      eyebrow:'유튜브 예능 · 숏드라마',
       title:'회차가 쌓여도 같은 톤',
       body:'1화와 10화의 인상이 달라지지 않게.',
-      tags:['웹드라마','예능 촬영','유튜브 콘텐츠'] },
+      tags:['유튜브 예능','숏드라마','홍보영상'] },
 
-    { id:'lecture', label:'강의 영상',
+    { id:'lecture', label:'강의 · 인터뷰',
       still:'assets/s3_lecture.jpg', clip:'assets/vid/dive3.mp4', clipMobile:'assets/vid/dive3-m.mp4',
       accent:'#4FB3A8',
-      eyebrow:'강의 영상',
+      eyebrow:'강의 · 인터뷰',
       title:'끝까지 들리게',
       body:'화면보다 전달이 먼저입니다.',
-      tags:['온라인 강의','교육 콘텐츠','3카메라'] },
+      tags:['온라인 강의','인터뷰','3카메라'] },
 
-    { id:'reels', label:'릴스 · 비하인드',
+    { id:'reels', label:'비하인드 · 숏폼',
       still:'assets/s4_reels.jpg', clip:'assets/vid/dive4.mp4', clipMobile:'assets/vid/dive4-m.mp4',
       accent:'#C9A86C',
-      eyebrow:'릴스 · 비하인드',
-      title:'세로로 찍습니다',
-      body:'가로 영상을 잘라 쓰지 않습니다.',
-      tags:['릴스 · 쇼츠','비하인드','세로 촬영'] },
+      eyebrow:'비하인드 · 브이로그',
+      title:'가장 가까이에서',
+      body:'정리된 화면 밖의 시간을 담습니다.',
+      tags:['비하인드','브이로그','숏폼'] },
 
     { id:'finale', label:'딜리버리',
       still:'assets/s5_edit.jpg', clip:'assets/vid/dive5.mp4', clipMobile:'assets/vid/dive5-m.mp4',
