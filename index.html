@@ -38,6 +38,7 @@
     --surface:#101012;
     --surface-2:#18181B;
     --gold:#C9A86C; --gold-lt:#E8D5A3;
+    --copy-bottom:clamp(44px,8vh,72px);
     --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,monospace;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -155,10 +156,18 @@
   .sw-hint i{border-color:rgba(255,255,255,.42)!important}
 
   @media(max-width:860px){
+    /* 문구는 화면 아래에 붙이고, 워드마크는 그 위로 확실히 비켜서게 한다.
+       (문구 높이가 씬마다 달라 JS가 가장 큰 값을 재어 --copy-h로 넘겨준다) */
     .sw-copy{left:clamp(20px,6vw,40px)!important;right:clamp(20px,6vw,40px)!important;
       width:auto!important;max-width:none!important;
       top:auto!important;margin-top:0!important;
-      bottom:clamp(48px,9vh,80px)!important}
+      bottom:var(--copy-bottom)!important}
+    .sw-copy__title{font-size:19px!important;line-height:1.48!important;margin-top:8px!important}
+    .sw-copy__eyebrow{font-size:11px!important;letter-spacing:.16em!important}
+    .sw-copy__body{font-size:12.5px!important;line-height:1.65!important;margin-top:9px!important}
+    /* 폰에서는 태그 칩을 접는다 — 좁은 화면에서 문구 블록 높이만 두 배로 키운다.
+       데스크탑에는 그대로 남는다. */
+    .sw-copy__tags{display:none!important}
   }
 
 
@@ -177,8 +186,10 @@
   .mark span{display:block;text-indent:.26em}
 
   @media(max-width:860px){
-    .mark{left:clamp(20px,6vw,40px);top:auto;bottom:clamp(120px,22vh,190px);transform:none;
-      font-size:clamp(24px,7.4vw,40px);letter-spacing:.2em}
+    .mark{left:clamp(20px,6vw,40px);top:auto;transform:none;
+      font-size:clamp(23px,6.9vw,38px);letter-spacing:.2em;
+      /* 문구 블록 실측 높이 위로 올라앉는다 — 어느 씬에서도 겹치지 않는다 */
+      bottom:calc(var(--copy-bottom) + var(--copy-h,150px) + clamp(16px,2.6vh,26px))}
   }
 
 
@@ -250,18 +261,22 @@
   @media(max-width:1040px){ .svcs{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:620px){
     .svcs{grid-template-columns:1fr;border-radius:12px}
-    .svc{padding:18px 18px 20px;display:grid;grid-template-columns:34px 1fr;
-      grid-template-rows:auto auto;column-gap:12px;row-gap:6px}
-    .svc__i{grid-row:1/3;align-self:start;padding-top:3px}
-    .svc__t{margin-top:0;font-size:17px}
-    .svc__d{margin-top:0;font-size:13.5px;line-height:1.6;grid-column:2}
+    .svc{padding:20px 18px 22px;display:grid;grid-template-columns:30px 1fr;
+      grid-template-rows:auto auto;column-gap:10px;row-gap:7px}
+    .svc__i{grid-row:1/3;align-self:start;padding-top:4px;font-size:11px}
+    .svc__t{margin-top:0;font-size:17.5px;line-height:1.3}
+    /* 13.5px는 폰에서 읽기 부담 — 본문 최소선까지 올린다 */
+    .svc__d{margin-top:0;font-size:15px;line-height:1.65;grid-column:2;
+      color:var(--ink-2)}
   }
 
   @media(max-width:900px){
     /* 세로 화면: 2.33:1 이미지를 전면 배경으로 쓰면 심하게 잘린다.
        상단 40%는 이미지가 온전히 보이는 밴드, 글은 그 아래로. */
     .hero-pin{height:150vh}
-    .hero{height:100svh;min-height:600px;align-items:flex-end}
+    /* 글을 화면 맨 아래에 붙이면 이미지 밴드와 글 사이에 검은 공백이 크게 뜬다.
+       밴드 바로 아래에서 글이 시작하도록 위로 붙인다. */
+    .hero{height:100svh;min-height:600px;align-items:flex-start}
     .hero__bg{background-image:url('assets/about-bg-m.jpg');
       background-size:cover;background-position:center 30%;
       top:0;height:46svh;inset:auto 0 auto 0}
@@ -269,11 +284,16 @@
       linear-gradient(180deg, transparent 0%, transparent 26%,
                               rgba(0,0,0,.55) 40%, #000 48%)}
     .hero__inner{justify-content:flex-start}
-    .hero__col{width:100%;padding-bottom:clamp(28px,6vh,52px)}
+    .hero__col{width:100%;padding-top:calc(46svh + clamp(22px,4.2vh,38px));
+      padding-bottom:clamp(28px,6vh,52px)}
     .hero__stmt{font-size:clamp(17px,4.9vw,21px)}
-    .hero .fact__n{font-size:19px}
-    .hero .fact{padding-right:12px}
-    .hero .fact + .fact{padding-left:14px}
+    /* 사실 3개는 폰에서도 가로 한 줄로 — 세로로 쌓이면 가로줄용 좌측 구분선이
+       계단처럼 어긋나 보인다(실제 발생). .hero 접두사로 아래 520px 규칙보다 우선. */
+    .hero .facts{grid-template-columns:repeat(3,1fr)}
+    .hero .fact__n{font-size:18px}
+    .hero .fact{padding:0 8px 0 0}
+    .hero .fact + .fact{padding-left:12px}
+    .hero .fact__l{font-size:10px;letter-spacing:.02em;line-height:1.45;word-break:keep-all}
   }
   @media(max-width:520px){
     .facts{grid-template-columns:1fr}
@@ -541,7 +561,7 @@ var SW = {
   connScroll: 1.0,
   sections: [
     { id:'studio', label:'스튜디오 장비',
-      still:'assets/s1_studio.jpg', clip:'assets/vid/dive1.mp4', clipMobile:'assets/vid/dive1-m.mp4',
+      still:'assets/s1_studio.jpg', clip:'assets/vid/dive1.mp4', clipMobile:'assets/vid/dive1-m.mp4', framesMobile:{base:'assets/seq/d1/',count:20},
       accent:'#C9A86C', scroll:1.8, linger:0.35,
       eyebrow:'스튜디오 장비',
       title:'어떤 촬영이든 가능한 장비 구비',
@@ -549,7 +569,7 @@ var SW = {
       tags:['시네마 카메라','드론','짐벌'] },
 
     { id:'shoot', label:'예능 · 드라마',
-      still:'assets/s2_shoot.jpg', clip:'assets/vid/dive2.mp4', clipMobile:'assets/vid/dive2-m.mp4',
+      still:'assets/s2_shoot.jpg', clip:'assets/vid/dive2.mp4', clipMobile:'assets/vid/dive2-m.mp4', framesMobile:{base:'assets/seq/d2/',count:20},
       accent:'#E8D5A3',
       eyebrow:'예능 · 드라마',
       title:'1인에서 4인까지, 7년 차 이상의 촬영감독들로 이뤄진 팀 촬영',
@@ -557,7 +577,7 @@ var SW = {
       tags:['멀티캠','팀 구성','현장 연출'] },
 
     { id:'lecture', label:'강의 · 인터뷰',
-      still:'assets/s3_lecture.jpg', clip:'assets/vid/dive3.mp4', clipMobile:'assets/vid/dive3-m.mp4',
+      still:'assets/s3_lecture.jpg', clip:'assets/vid/dive3.mp4', clipMobile:'assets/vid/dive3-m.mp4', framesMobile:{base:'assets/seq/d3/',count:20},
       accent:'#4FB3A8',
       eyebrow:'강의 · 인터뷰',
       title:'전문화된 조명과 녹음 시스템',
@@ -565,7 +585,7 @@ var SW = {
       tags:['3카메라','전용 조명','현장 음향'] },
 
     { id:'reels', label:'비하인드 · 숏폼',
-      still:'assets/s4_reels.jpg', clip:'assets/vid/dive4.mp4', clipMobile:'assets/vid/dive4-m.mp4',
+      still:'assets/s4_reels.jpg', clip:'assets/vid/dive4.mp4', clipMobile:'assets/vid/dive4-m.mp4', framesMobile:{base:'assets/seq/d4/',count:20},
       accent:'#C9A86C',
       eyebrow:'비하인드 · 숏폼',
       title:'트랜디한 촬영과 편집 스타일',
@@ -573,7 +593,7 @@ var SW = {
       tags:['세로 촬영','숏폼 편집','브이로그'] },
 
     { id:'finale', label:'딜리버리',
-      still:'assets/s5_edit.jpg', clip:'assets/vid/dive5.mp4', clipMobile:'assets/vid/dive5-m.mp4',
+      still:'assets/s5_edit.jpg', clip:'assets/vid/dive5.mp4', clipMobile:'assets/vid/dive5-m.mp4', framesMobile:{base:'assets/seq/d5/',count:20},
       accent:'#E8D5A3', scroll:2.0, linger:0.45,
       eyebrow:'딜리버리',
       title:'빠른 제작과 피드백 반영',
@@ -587,12 +607,19 @@ var SW = {
     'assets/vid/conn3.mp4',
     'assets/vid/conn4.mp4',
   ],
-  // 폰에서는 가벼운 720p + 더 조밀한 키프레임 버전을 씁니다
+  // 폰에서는 영상 스크럽 대신 프레임 이미지 시퀀스를 씁니다 (아래 connectorFramesMobile).
+  // 아래 -m.mp4 목록은 시퀀스를 못 받았을 때만 쓰이는 폴백입니다.
   connectorsMobile: [
     'assets/vid/conn1-m.mp4',
     'assets/vid/conn2-m.mp4',
     'assets/vid/conn3-m.mp4',
     'assets/vid/conn4-m.mp4',
+  ],
+  connectorFramesMobile: [
+    { base:'assets/seq/c1/', count:12 },
+    { base:'assets/seq/c2/', count:12 },
+    { base:'assets/seq/c3/', count:12 },
+    { base:'assets/seq/c4/', count:12 },
   ],
 };
 mountScrollWorld(document.getElementById('world'), SW);
@@ -799,6 +826,33 @@ mountScrollWorld(document.getElementById('world'), SW);
   addEventListener('resize', kick);
   addEventListener('load', kick);
   kick();
+})();
+</script>
+<script>
+/* ══ 모바일: 워드마크가 씬 문구를 비켜서게 ══
+   씬마다 문구 높이가 달라(장비 목록이 있는 1번 씬이 가장 큼) 고정값으로는
+   어느 씬에서든 겹친다. 가장 큰 문구 블록을 재어 --copy-h로 넘긴다.
+   한 번 재고 고정하므로 씬이 바뀌어도 워드마크는 움직이지 않는다. */
+(function(){
+  var mq = matchMedia('(max-width:860px)');
+  function measure(){
+    var root = document.documentElement;
+    if(!mq.matches){ root.style.removeProperty('--copy-h'); return; }
+    var cs = document.querySelectorAll('#world .sw-copy');
+    if(!cs.length) return;
+    var max = 0;
+    for(var i=0;i<cs.length;i++){ var h = cs[i].offsetHeight; if(h>max) max=h; }
+    if(max>0) root.style.setProperty('--copy-h', Math.round(max)+'px');
+  }
+  function schedule(){ requestAnimationFrame(function(){ requestAnimationFrame(measure); }); }
+  schedule();
+  window.addEventListener('load', schedule);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
+  // 폭이 실제로 바뀔 때만 (모바일 주소창 여닫힘은 무시)
+  var w = window.innerWidth;
+  window.addEventListener('resize', function(){ if(window.innerWidth!==w){ w=window.innerWidth; schedule(); } });
+  window.addEventListener('orientationchange', function(){ setTimeout(schedule, 250); });
+  if(mq.addEventListener) mq.addEventListener('change', schedule);
 })();
 </script>
 </body>

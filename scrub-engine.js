@@ -74,6 +74,8 @@ function mountScrollWorld(container, config) {
   const SECTIONS = config.sections || [];
   const CONNECTORS = config.connectors || [];
   const CONNECTORS_M = config.connectorsMobile || [];
+  // 모바일 프레임 시퀀스(영상 대신 이미지 스크럽). 있으면 폰에서 영상보다 우선.
+  const CONN_FRAMES_M = config.connectorFramesMobile || [];
   const DIVE_W = config.diveScroll || 1.3;
   const CONN_W = config.connScroll || 0.9;
   const CROSSFADE = (config.crossfade != null) ? config.crossfade : 0.12;  // seam dissolve width (vh)
@@ -87,6 +89,7 @@ function mountScrollWorld(container, config) {
   const SEGMENTS = [];
   SECTIONS.forEach((s, i) => {
     const dive = { kind: 'dive', si: i, clip: s.clip, clipM: s.clipMobile, still: s.still, stillM: s.stillMobile,
+                   framesM: s.framesMobile,
                    accent: s.accent, w: s.scroll || DIVE_W, linger: s.linger || 0 };
     SEGMENTS.push(dive);
     s._seg = dive;
@@ -95,6 +98,7 @@ function mountScrollWorld(container, config) {
     // connector can't be generated (e.g. a content-filter false-positive).
     if (i < N - 1 && CONNECTORS[i]) {
       SEGMENTS.push({ kind: 'conn', si: i, clip: CONNECTORS[i], clipM: CONNECTORS_M[i],
+                      framesM: CONN_FRAMES_M[i],
                       still: SECTIONS[i + 1].still, stillM: SECTIONS[i + 1].stillMobile,
                       accent: SECTIONS[i + 1].accent, w: CONN_W });
     }
@@ -144,6 +148,7 @@ function mountScrollWorld(container, config) {
     scene.appendChild(img); stage.appendChild(scene);
     s.el = scene; s.img = img; s.video = null; s.hasClip = false;
     s.loading = false; s.ready = false; s.cur = 0; s.target = 0; s.visible = false;
+    s.hasSeq = null; s.seqReady = false; s.seqAt = -1; s.swapping = false;
   });
 
   // per-section copy / route / nav
@@ -195,9 +200,65 @@ function mountScrollWorld(container, config) {
     window.scrollTo({ top: seg.start + (seg.end - seg.start) * 0.5, behavior: reduce ? 'auto' : 'smooth' });
   }
 
+  // ---- 모바일 프레임 시퀀스 ----
+  // 씬마다 <img> 두 장을 겹쳐 두고 번갈아 쓴다(더블 버퍼). 새 프레임은 decode()가
+  // 끝난 뒤에야 앞으로 나오므로 교체 순간에 빈 화면이 스치지 않는다.
+  function frameURL(f, k) {
+    return f.base + String(k + 1).padStart(2, '0') + (f.ext || '.webp');
+  }
+  function loadFrames(s) {
+    if (s.loading) return;
+    s.loading = true;
+    const f = s.framesM;
+    const a = el('img', 'sw-scene__video sw-seqimg');
+    const b = el('img', 'sw-scene__video sw-seqimg');
+    [a, b].forEach(x => { x.alt = ''; x.decoding = 'async'; x.style.opacity = '0'; s.el.appendChild(x); });
+    s.seqA = a; s.seqB = b; s.seqFront = a; s.hasSeq = true;
+    // 세그먼트 전체를 미리 받아 캐시에 올려둔다(장당 ~35KB). 참조는 다 받은 뒤 버려서
+    // 디코딩된 비트맵이 메모리에 쌓이지 않게 한다 — 화면에 남는 건 버퍼 두 장뿐.
+    s.warm = [];
+    let left = f.count;
+    for (let k = 0; k < f.count; k++) {
+      const im = new Image(); im.decoding = 'async';
+      im.onerror = () => {
+        // 프레임을 못 받으면(폴더 누락 등) 조용히 기존 영상 스크럽으로 되돌아간다.
+        if (k === 0 && !s.seqReady) {
+          s.hasSeq = false; s.loading = false; s.warm = null;
+          [s.seqA, s.seqB].forEach(x => { if (x && x.parentNode) x.parentNode.removeChild(x); });
+          s.seqA = s.seqB = s.seqFront = null;
+          loadClip(s);
+          return;
+        }
+        if (--left === 0) s.warm = null;
+      };
+      im.onload = () => {
+        if (!s.seqReady) { s.seqReady = true; read(); }
+        if (--left === 0) s.warm = null;
+      };
+      im.src = frameURL(f, k);
+      s.warm.push(im);
+    }
+  }
+  function showFrame(s, k) {
+    if (s.swapping) return;
+    const back = (s.seqFront === s.seqA) ? s.seqB : s.seqA;
+    s.swapping = true;
+    const done = () => {
+      back.style.opacity = '1'; s.seqFront.style.opacity = '0';
+      s.seqFront = back; s.seqAt = k; s.swapping = false;
+      if (!s.hasClip) { s.hasClip = true; s.ready = true; s.el.classList.add('has-clip'); }
+    };
+    back.src = frameURL(s.framesM, k);
+    if (back.decode) back.decode().then(done).catch(done); else done();
+  }
+
   function loadClip(s) {
     // Under prefers-reduced-motion we never load the clips at all — the stills stay up
     // and simply cross-dissolve as you scroll. No scrubbed video motion, no decode cost.
+    // 폰에서 프레임 시퀀스가 준비돼 있으면 영상을 아예 받지 않는다.
+    // iOS의 스크럽 끊김은 디코더 '탐색(seek)' 비용이 원인이라 인코딩을 아무리 줄여도
+    // 남는다. 미리 뽑아둔 프레임 이미지를 바꿔 끼우면 탐색이 0이 되어 원인 자체가 사라짐.
+    if (isMobile() && s.framesM && s.framesM.count && s.hasSeq !== false) { loadFrames(s); return; }
     if (reduce || s.loading || !s.clip) return;
     s.loading = true;
     // Serve the lighter mobile encode on phones when one was provided.
@@ -274,6 +335,16 @@ function mountScrollWorld(container, config) {
     const eps = isMobile() ? 0.02 : 0.008;   // coarser seek step on phones = fewer decodes
     for (let i = 0; i < NSEG; i++) {
       const s = SEGMENTS[i];
+      if (s.hasSeq) {
+        if (!s.seqReady) continue;
+        if (!s.visible && Math.abs(s.cur - s.target) < 0.002) continue;
+        // 디코딩 지연이 없으므로 영상(0.18)보다 빠르게 따라붙여도 안정적이다.
+        s.cur += (s.target - s.cur) * (reduce ? 1 : 0.3);
+        const n = s.framesM.count;
+        const k = Math.max(0, Math.min(n - 1, Math.round(clamp(s.cur, 0, 1) * (n - 1))));
+        if (k !== s.seqAt) showFrame(s, k);
+        continue;
+      }
       if (!s.hasClip || !s.ready || !s.video) continue;
       // Never queue a seek while the decoder is still resolving the last one.
       // On phones a fast flick would otherwise pile up seeks and freeze the clip;
