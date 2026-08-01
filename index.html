@@ -172,6 +172,9 @@
   .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
     color:var(--gold);margin-bottom:20px}
   .h2{font-size:clamp(34px,5.6vw,60px);font-weight:900;letter-spacing:-.035em;line-height:1.06}
+  .lead--one{max-width:none;white-space:nowrap}
+  @media(max-width:520px){ .lead--one{white-space:normal} }
+
   .lead{margin-top:20px;font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:var(--ink-2);
     max-width:36ch;font-weight:400}
 
@@ -394,7 +397,7 @@
 <section class="sec" id="services"><div class="wrap">
   <div class="eyebrow">Services</div>
   <h2 class="h2">제작 포맷</h2>
-  <p class="lead">여섯 가지 포맷을 다룹니다. 포맷마다 필요한 장비와 인력 구성이 다릅니다.</p>
+  <p class="lead lead--one">여섯 가지 포맷을 다룹니다.</p>
 
   <div class="svcs">
     <div class="svc"><div class="svc__i">01</div><h3 class="svc__t">유튜브 예능</h3>
