@@ -240,6 +240,20 @@
     background-size:cover;background-position:100% center;background-repeat:no-repeat}
   /* 우측 텍스트 가독성 확보 — 우하단 불꽃이 밝아 그쪽을 더 눌러준다 */
   /* 전체는 살짝만 눌러 이미지를 살리고, 가독성은 글자 뒤 패널이 담당한다 */
+  /* ══ 세로로 긴 창 대응 ══
+     배경은 2400x1029(2.33:1)로 아주 납작하다. cover는 세로를 먼저 채우므로
+     창이 세로로 길어질수록 좌우가 급격히 잘린다(비율 1.13에서 폭의 48%만 보임).
+     이 구간에서는 이미지를 세로 중앙에 띄우고 폭을 우선해 더 넓게 보여준다.
+     위아래 남는 자리는 마스크로 검정에 흘려보내 잘린 단면이 드러나지 않게 한다.
+     가로가 넉넉한 화면(비율 1.25 초과)은 지금과 완전히 동일하다. */
+  @media (min-width:901px) and (max-aspect-ratio: 5/4){
+    .hero__bg{
+      top:0;bottom:0;margin-top:auto;margin-bottom:auto;
+      height:min(100vh, calc(100vw / 1.7));
+      background-position:center center;
+      -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 88%,transparent 100%);
+              mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 88%,transparent 100%)}
+  }
   .hero__scrim{position:absolute;inset:0;z-index:-1;
     background:
       linear-gradient(270deg, rgba(0,0,0,.78) 0%, rgba(0,0,0,.66) 26%,
