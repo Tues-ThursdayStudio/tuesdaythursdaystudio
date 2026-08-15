@@ -395,8 +395,11 @@
   .card__meta em{font-style:normal;opacity:.4}
   .pf-empty{margin-top:40px;color:var(--ink-3);font-size:15px}
 
-  /* ── 문의 ── */
-  .contact{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1fr);
+  /* ── 연락처 ── */
+  /* 문의 폼을 비활성화한 상태라 1단으로 둔다.
+     폼을 되살릴 때는 아래 grid-template-columns를
+     minmax(0,.85fr) minmax(0,1fr) 로 되돌리면 된다. */
+  .contact{display:grid;grid-template-columns:minmax(0,560px);
     gap:clamp(40px,6vw,80px);margin-top:clamp(44px,5vw,64px)}
   .cinfo{border-top:1px solid var(--line);padding-top:20px;margin-top:26px}
   .cinfo__k{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
@@ -498,28 +501,28 @@
 
 <!-- ═══ 서비스 ═══ -->
 <section class="sec" id="services"><div class="wrap">
-  <div class="eyebrow">Services</div>
-  <h2 class="h2">제작 포맷</h2>
-  <p class="lead lead--one">여섯 가지 포맷을 다룹니다.</p>
+  <div class="eyebrow">Works Field</div>
+  <h2 class="h2">작업 분야</h2>
+  <p class="lead lead--one">여섯 가지 포맷을 다뤄왔습니다.</p>
 
   <div class="svcs">
     <div class="svc"><div class="svc__i">01</div><h3 class="svc__t">유튜브 예능</h3>
-      <p class="svc__d">예능 촬영에 최적화된 세팅을 제공하며, 핸드헬드 및 짐벌 팔로우 촬영 등으로 모든 순간을 놓치지 않고 담아냅니다.</p></div>
+      <p class="svc__d">예능 촬영에 최적화된 세팅으로, 핸드헬드 및 짐벌 팔로우 촬영 등을 통해 모든 순간을 놓치지 않고 담아냈습니다.</p></div>
 
     <div class="svc"><div class="svc__i">02</div><h3 class="svc__t">행사 스케치</h3>
-      <p class="svc__d">기업 행사, 마라톤 대회, 콘서트 등에서 시네마 카메라와 드론 등으로 현장감이 가득 담긴 스케치를 제작합니다.</p></div>
+      <p class="svc__d">기업 행사, 마라톤 대회, 콘서트 등에서 시네마 카메라와 드론 등으로 현장감이 가득 담긴 스케치를 제작했습니다.</p></div>
 
     <div class="svc"><div class="svc__i">03</div><h3 class="svc__t">비하인드 · 브이로그</h3>
-      <p class="svc__d">인물의 스토리에 집중할 수 있는 스토리텔링 영상을 제작합니다.</p></div>
+      <p class="svc__d">인물의 스토리에 집중할 수 있는 스토리텔링 영상을 제작했습니다.</p></div>
 
     <div class="svc"><div class="svc__i">04</div><h3 class="svc__t">홍보영상 · 숏드라마</h3>
-      <p class="svc__d">사전 기획을 통한 연출된 촬영을 통해 완성도 높은 영상을 제작합니다.</p></div>
+      <p class="svc__d">사전 기획을 바탕으로 연출된 촬영을 진행해 완성도 높은 영상을 제작했습니다.</p></div>
 
     <div class="svc"><div class="svc__i">05</div><h3 class="svc__t">강의 · 인터뷰</h3>
-      <p class="svc__d">가독성이 좋고 정보 전달이 분명한 영상을 제공합니다.</p></div>
+      <p class="svc__d">가독성이 좋고 정보 전달이 분명한 영상을 만들어왔습니다.</p></div>
 
     <div class="svc"><div class="svc__i">06</div><h3 class="svc__t">공연 영상 · 행사 사진</h3>
-      <p class="svc__d">공연 아카이브 영상을 제작하고, 웨딩 및 행사 등의 사진 촬영도 진행하고 있습니다.</p></div>
+      <p class="svc__d">공연 아카이브 영상을 제작했고, 웨딩 및 행사 등의 사진 촬영도 함께 수행했습니다.</p></div>
   </div>
 </div></section>
 
@@ -539,15 +542,14 @@
   <p class="pf-empty" id="pfEmpty" hidden>해당하는 작업이 없습니다.</p>
 </div></section>
 
-<!-- ═══ 문의 ═══ -->
+<!-- ═══ 연락처 ═══ -->
 <section class="sec" id="contact"><div class="wrap">
   <div class="eyebrow">Contact</div>
-  <h2 class="h2">프로젝트 문의</h2>
+  <h2 class="h2">연락처</h2>
 
   <div class="contact">
     <div>
-      <p class="lead" style="margin-top:0">촬영 일정과 예산, 대략적인 방향만 알려주시면
-        가능 여부와 견적을 회신드립니다.</p>
+      <p class="lead" style="margin-top:0">작업 관련 문의는 아래로 연락 주세요.</p>
       <div class="cinfo">
         <div class="cinfo__k">Email</div>
         <div class="cinfo__v"><a href="mailto:info@tuesdaythursdaystudio.com">info@tuesdaythursdaystudio.com</a></div>
@@ -558,6 +560,14 @@
       </div>
     </div>
 
+    <!-- ─────────────────────────────────────────────────────────────
+         견적 문의 폼 (Formspree) — 현재 비활성화
+         수주 영업을 재개할 때 아래 블록의 주석만 해제하면 원상 복구됩니다.
+         함께 되돌릴 것:
+           1) 위 h2 "연락처" → "프로젝트 문의"
+           2) 위 lead 문구 → "촬영 일정과 예산, 대략적인 방향만 알려주시면
+              가능 여부와 견적을 회신드립니다."
+           3) 파일 하단 .cta-fixed 앵커 주석 해제
     <form id="inquiry" method="POST" action="https://formspree.io/f/mgodnpwe">
       <div class="field"><label for="f-name">이름</label><input id="f-name" name="name" required /></div>
       <div class="field"><label for="f-mail">이메일</label><input id="f-mail" name="email" type="email" required /></div>
@@ -574,6 +584,7 @@
       <div class="field"><label for="f-msg">내용</label><textarea id="f-msg" name="message" required></textarea></div>
       <button class="btn" type="submit">문의 보내기</button>
     </form>
+         ───────────────────────────────────────────────────────────── -->
   </div>
 </div></section>
 
@@ -585,7 +596,9 @@
 
 </div><!-- /#after -->
 
+<!-- 고정 CTA — 수주 영업 재개 시 아래 한 줄의 주석만 해제하면 됩니다.
 <a class="cta-fixed" href="#contact">프로젝트 문의</a>
+-->
 <script src="scrub-engine.js"></script>
 <script>
 var SW = {
