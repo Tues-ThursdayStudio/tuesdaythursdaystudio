@@ -3,15 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>화목스튜디오 | Tuesday Thursday Studio</title>
-<meta name="description" content="예능, 행사 스케치, 브랜드 필름까지. 기획부터 촬영, 편집까지 맡아 제작하는 영상 제작사 화목스튜디오입니다.">
+<!-- 검색에는 영문 이름이 먼저 걸리도록 모든 제목을 Tuesday Thursday Studio로 시작한다.
+     한글 이름은 뒤에 남겨, '화목스튜디오'로 찾는 사람도 그대로 들어올 수 있게 둔다. -->
+<title>Tuesday Thursday Studio | 화목스튜디오 영상 제작</title>
+<meta name="description" content="Tuesday Thursday Studio(화목스튜디오) — 예능, 행사 스케치, 브랜드 필름까지. 기획부터 촬영, 편집까지 맡아 제작하는 영상 제작사입니다.">
 <link rel="canonical" href="https://tuesdaythursdaystudio.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tuesdaythursdaystudio.com/">
-<meta property="og:title" content="화목스튜디오 | Tuesday Thursday Studio">
+<meta property="og:site_name" content="Tuesday Thursday Studio">
+<meta property="og:title" content="Tuesday Thursday Studio | 화목스튜디오">
 <meta property="og:description" content="예능, 행사 스케치, 브랜드 필름까지. 기획부터 촬영, 편집까지 맡아 제작합니다.">
 <meta property="og:image" content="/assets/s1_studio.jpg">
 <link rel="icon" href="/TTS logo.png">
+
+<!-- 검색엔진에 '이 사이트의 정식 이름은 영문, 화목스튜디오는 같은 곳의 다른 이름'이라고 알린다.
+     이게 있으면 검색 결과 제목이 한글로 바뀌는 일이 줄어든다. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Tuesday Thursday Studio",
+  "alternateName": ["화목스튜디오", "TTS"],
+  "url": "https://tuesdaythursdaystudio.com/",
+  "logo": "https://tuesdaythursdaystudio.com/TTS%20logo.png",
+  "email": "info@tuesdaythursdaystudio.com",
+  "description": "영상 제작사 — 예능, 숏폼, 비하인드, 행사 스케치, 강의·인터뷰, 브랜드 필름",
+  "address": { "@type": "PostalAddress", "addressCountry": "KR" }
+}
+</script>
 
 <style>
 /* ══════════════════════════════════════════════════════════
@@ -92,7 +111,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-a
   display:flex;align-items:center;gap:28px;
   height:68px;max-width:var(--wrap);margin:0 auto;padding-inline:var(--gut);
 }
-.hd__logo{display:flex;align-items:center;font-weight:900;letter-spacing:-.02em;font-size:17px}
+/* 영문 이름은 한글보다 글자 수가 많다. 굵기를 한 단계 낮추고 자간을 조여
+   헤더 높이 안에서 한 줄로 떨어지게 한다. */
+.hd__logo{
+  display:flex;align-items:center;white-space:nowrap;
+  font-weight:800;letter-spacing:-.015em;font-size:16.5px;
+}
 .hd__nav{display:flex;gap:4px;margin-left:auto}
 .hd__nav a{
   padding:9px 15px;border-radius:4px;font-size:15px;font-weight:500;color:var(--ink-soft);
@@ -351,7 +375,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-a
 <!-- ═══ 헤더 ═══ -->
 <header class="hd" id="hd">
   <div class="hd__in">
-    <a class="hd__logo" href="#top">화목스튜디오</a>
+    <a class="hd__logo" href="#top">Tuesday Thursday Studio</a>
     <button class="hd__burger" id="burger" aria-label="메뉴 열기" aria-expanded="false">
       <span></span><span></span>
     </button>
@@ -377,7 +401,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-a
   </div>
   <div class="hero__scrim"></div>
 
-  <h1 class="sr">화목스튜디오 — Tuesday Thursday Studio</h1>
+  <h1 class="sr">Tuesday Thursday Studio — 화목스튜디오 영상 제작</h1>
   <a class="hero__cue" href="#field" aria-label="작업 분야로 이동"><span></span></a>
 </section>
 
@@ -504,8 +528,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-a
 
 <footer class="ft">
   <div class="wrap ft__in">
-    <div><b>화목스튜디오</b> · TUESDAY THURSDAY STUDIO</div>
-    <div>© 2026 화목스튜디오</div>
+    <div><b>Tuesday Thursday Studio</b> · 화목스튜디오</div>
+    <div>© 2026 Tuesday Thursday Studio</div>
   </div>
 </footer>
 
