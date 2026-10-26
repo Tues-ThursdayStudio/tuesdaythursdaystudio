@@ -1,0 +1,11 @@
+# 화목스튜디오 — Tuesday Thursday Studio
+# 모든 검색로봇에 전체 수집을 허용합니다.
+
+User-agent: *
+Allow: /
+
+# 네이버 검색로봇
+User-agent: Yeti
+Allow: /
+
+Sitemap: https://tuesdaythursdaystudio.com/sitemap.xml
